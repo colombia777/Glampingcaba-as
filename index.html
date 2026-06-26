@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Glamping Cabañas Ewduin – Pereira, Risaralda. Reserva tu cabaña privada rodeada de naturaleza en el Eje Cafetero." />
+  <meta name="keywords" content="glamping Pereira, cabañas Risaralda, alojamiento Eje Cafetero, reserva cabaña, glamping Colombia" />
+  <meta name="author" content="Glamping Cabañas Ewduin" />
+  <meta property="og:title" content="Glamping Cabañas Ewduin – Pereira" />
+  <meta property="og:description" content="Reserva tu cabaña privada en el Eje Cafetero. Naturaleza, confort y experiencias únicas." />
+  <meta property="og:type" content="website" />
+  <title>Glamping Cabañas Ewduin – Pereira, Risaralda</title>
+
+  <!-- ===== MÓDULO: FUENTES ===== -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- ===== MÓDULO: ESTILOS GLOBALES ===== -->
+  <style>
+    :root {
+      --color-bosque:   #1e3a1e;
+      --color-tierra:   #4a7c3f;
+      --color-crema:    #f9f6f0;
+      --color-dorado:   #c9a84c;
+      --color-verde:    #c9a84c;
+      --color-blanco:   #ffffff;
+      --color-texto:    #1e2a1a;
+      --color-suave:    #f0ece4;
+      --font-display:   'Playfair Display', serif;
+      --font-body:      'Inter', sans-serif;
+      --radio:          12px;
+      --sombra:         0 4px 20px rgba(0,0,0,0.10);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-crema);
+      color: var(--color-texto);
+    }
+
+    /* ===== MÓDULO: HEADER / NAV ===== */
+    header {
+      background: #1e3a1e;
+      border-bottom: 3px solid #c9a84c;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header .marca {
+      font-family: var(--font-display);
+      color: #c9a84c;
+      font-size: 1.3rem;
+      letter-spacing: 0.5px;
+    }
+
+    header nav a {
+      color: #1e3a1e;
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    header nav a:hover { color: #c9a84c; }
+
+    /* ===== MÓDULO: SECCIÓN 1 – HERO VIDEO ===== */
+    #seccion-hero {
+      position: relative;
+      width: 100%;
+      background: var(--color-bosque);
+      overflow: hidden;
+    }
+
+    .hero-video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9/16;
+      max-height: 90vh;
+      background: #f9f6f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero-video-wrapper {
+        aspect-ratio: 16/9;
+        max-height: 85vh;
+      }
+    }
+
+    .hero-video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-video-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: #1e3a1e;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .hero-video-placeholder .icono-play {
+      width: 72px;
+      height: 72px;
+      border: 3px solid #c9a84c;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #c9a84c;
+      margin-bottom: 8px;
+    }
+
+    .hero-video-placeholder h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 5vw, 2.8rem);
+      color: #c9a84c;
+      line-height: 1.2;
+    }
+
+    .hero-video-placeholder p {
+      font-size: 1rem;
+      color: #1e3a1e;
+      max-width: 360px;
+      line-height: 1.6;
+    }
+
+    .hero-video-placeholder .nota-admin {
+      margin-top: 16px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      border: 1px dashed rgba(255,255,255,0.3);
+      padding: 8px 16px;
+      border-radius: 6px;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(30,77,43,0.9));
+      padding: 32px 24px 24px;
+    }
+
+    .hero-overlay h1 {
+      font-family: var(--font-display);
+      color: #c9a84c;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      margin-bottom: 8px;
+    }
+
+    .hero-overlay p {
+      color: #1e3a1e;
+      font-size: 0.9rem;
+    }
+
+    /* ===== MÓDULO: SECCIÓN 2 – SLIDER ===== */
+    #seccion-slider {
+      padding: 48px 0 40px;
+      background: #f9f6f0;
+    }
+
+    .seccion-titulo {
+      text-align: center;
+      margin-bottom: 28px;
+      padding: 0 24px;
+    }
+
+    .seccion-titulo h2 {
+      font-family: var(--font-display);
+      color: #c9a84c;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      margin-bottom: 6px;
+    }
+
+    .seccion-titulo p {
+      color: var(--color-suave);
+      font-size: 0.9rem;
+    }
+
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.45s ease;
+    }
+
+    .slide {
+      min-width: 100%;
+      position: relative;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (min-width: 768px) {
+      .slide img { height: 460px; }
+    }
+
+    .slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(27,58,45,0.9));
+      padding: 24px 20px 20px;
+      color: var(--color-crema);
+    }
+
+    .slide-caption h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: #c9a84c;
+      margin-bottom: 4px;
+    }
+
+    .slide-caption p { font-size: 0.85rem; }
+
+    .slide-promo-badge {
+      display: inline-block;
+      background: #c9a84c;
+      color: #1E3A8A;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .slide-btn-wa {
+      display: inline-block;
+      margin-top: 10px;
+      background: #25d366;
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      border: 2px solid #1ebe5d;
+    }
+
+    /* Slide placeholder */
+    .slide-placeholder {
+      width: 100%;
+      height: 320px;
+      background: #f9f6f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      color: var(--color-crema);
+    }
+
+    @media (min-width: 768px) {
+      .slide-placeholder { height: 460px; }
+    }
+
+    .slide-placeholder span { font-size: 3rem; }
+    .slide-placeholder p { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+
+    .slider-controles {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 20px;
+      padding: 0 24px;
+    }
+
+    .slider-btn {
+      background: #c9a84c;
+      border: none;
+      color: var(--color-bosque);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-weight: 700;
+      transition: opacity 0.2s;
+    }
+
+    .slider-btn:hover { opacity: 0.85; }
+
+    .slider-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .dot.activo { background: #c9a84c; }
+
+    /* ===== MÓDULO: SECCIÓN 3 – SERVICIOS / CABAÑAS ===== */
+    #seccion-servicios {
+      padding: 48px 20px 56px;
+      background: var(--color-crema);
+      border-top: 3px solid #c9a84c;
+    }
+
+    #seccion-servicios .seccion-titulo h2 { color: var(--color-bosque); }
+    #seccion-servicios .seccion-titulo p  { color: var(--color-tierra); }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .cards-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .card-servicio {
+      background: var(--color-blanco);
+      border-radius: var(--radio);
+      overflow: hidden;
+      box-shadow: var(--sombra);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #c9a84c;
+      color: #1E3A8A;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      z-index: 2;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      background: #f9f6f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 14px 14px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-nombre {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--color-bosque);
+      margin-bottom: 4px;
+    }
+
+    .card-precio {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-tierra);
+      margin-bottom: 10px;
+    }
+
+    .card-features {
+      list-style: none;
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    .card-features li {
+      font-size: 0.78rem;
+      color: #555;
+      padding: 2px 0;
+    }
+
+    .card-features li::before {
+      content: "✔ ";
+      color: #c9a84c;
+      font-weight: 700;
+    }
+
+    .btn-reservar {
+      display: block;
+      width: 100%;
+      background: #c9a84c;
+      color: #1E3A8A;
+      border: 2px solid #b8922a;
+      padding: 11px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.2s;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-reservar:hover { background: #90d96e; }
+
+    /* ===== MÓDULO: FOOTER ===== */
+    footer {
+      background: #1e3a1e;
+      border-top: 3px solid #c9a84c;
+      color: #f0ece4;
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 0.82rem;
+    }
+
+    footer span { color: #c9a84c; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== MÓDULO: HEADER ===== -->
+  <header>
+    <div class="marca">🌿 CABAÑAS GLAMPING EWDUIN</div>
+    <nav></nav>
+  </header>
+
+  <!-- ===== MÓDULO: SECCIÓN 1 – HERO / BIENVENIDA ===== -->
+  <section id="seccion-hero">
+    <div class="hero-video-wrapper">
+
+      <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;">
+        <source src="video-principal.mp4" type="video/mp4">
+      </video>
+
+      <div class="hero-overlay">
+        <h1>Tu refugio en Pereira</h1>
+        <p>Reserva directamente · Sin intermediarios</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MÓDULO: SECCIÓN 2 – SLIDER PROMOCIONES ===== -->
+  <section id="seccion-slider">
+    <div class="seccion-titulo">
+      <h2>Promociones & Servicios</h2>
+      <p>Descubre lo que viviras en Cabañas Ewduin</p>
+    </div>
+
+    <div class="slider-container">
+      <div class="slider-track" id="sliderTrack">
+
+        <!-- Slide 1 -->
+        <div class="slide">
+          <img src="foto6-jacuzzi-cascada.jpg" alt="Promoción Hoy" style="width:100%;height:320px;object-fit:cover;display:block;" />
+          <div class="slide-caption">
+            <div class="slide-promo-badge">🔥 HOY 10% OFF</div>
+            <h3>Promoción del Día</h3>
+            <p>Reserva hoy y obtén 10% de descuento en cualquier cabaña</p>
+            <a class="slide-btn-wa" href="https://wa.me/573016550121?text=Hola,%20quiero%20info%20sobre%20la%20promoción%20del%20día%2010%25%20OFF" target="_blank">💬 Quiero esta promo</a>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+          <img src="foto4-terraza-vista.jpg" alt="Promoción Jueves" style="width:100%;height:320px;object-fit:cover;display:block;" />
+          <div class="slide-caption">
+            <div class="slide-promo-badge">🌟 JUEVES 20% OFF</div>
+            <h3>Promoción Jueves</h3>
+            <p>Cada jueves celebramos con 20% de descuento especial</p>
+            <a class="slide-btn-wa" href="https://wa.me/573016550121?text=Hola,%20quiero%20info%20sobre%20la%20promoción%20del%20jueves%2020%25%20OFF" target="_blank">💬 Quiero esta promo</a>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+          <img src="foto3-jacuzzi-marmol.jpg" alt="Promoción Lunes" style="width:100%;height:320px;object-fit:cover;display:block;" />
+          <div class="slide-caption">
+            <div class="slide-promo-badge">💚 LUNES 15% OFF</div>
+            <h3>Promoción Lunes</h3>
+            <p>Empieza la semana con 15% de descuento en tu estadía</p>
+            <a class="slide-btn-wa" href="https://wa.me/573016550121?text=Hola,%20quiero%20info%20sobre%20la%20promoción%20del%20lunes%2015%25%20OFF" target="_blank">💬 Quiero esta promo</a>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+          <img src="foto7-deck-montaña.jpg" alt="Pasadía Especial" style="width:100%;height:320px;object-fit:cover;display:block;" />
+          <div class="slide-caption">
+            <div class="slide-promo-badge">☀️ PASADÍA ESPECIAL</div>
+            <h3>Escápate por unas horas</h3>
+            <p>Disfruta el día completo rodeado de naturaleza desde $120.000</p>
+            <a class="slide-btn-wa" href="https://wa.me/573016550121?text=Hola,%20quiero%20info%20sobre%20el%20Pasadía%20Especial" target="_blank">💬 Quiero esta promo</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="slider-controles">
+      <button class="slider-btn" id="btnAnterior">‹</button>
+      <div class="slider-dots" id="sliderDots"></div>
+      <button class="slider-btn" id="btnSiguiente">›</button>
+    </div>
+  </section>
+
+  <!-- ===== MÓDULO: SECCIÓN 3 – SERVICIOS / CABAÑAS ===== -->
+  <section id="seccion-servicios">
+    <div class="seccion-titulo">
+      <h2>Nuestras Cabañas</h2>
+      <p>Elige tu experiencia · Reserva directa sin intermediarios</p>
+    </div>
+
+    <div class="cards-grid" id="cardsGrid">
+
+      <!-- Card 1 -->
+      <div class="card-servicio">
+        <div class="card-badge">⭐ Popular</div>
+        <div class="card-img"><img src="foto1-cabana-exterior.jpg" alt="Cabaña Luna" /></div>
+        <div class="card-body">
+          <div class="card-nombre">Cabaña Luna</div>
+          <div class="card-precio">$280.000</div>
+          <ul class="card-features">
+            <li>Jacuzzi privado</li>
+            <li>Cama King</li>
+            <li>Desayuno incluido</li>
+            <li>WiFi</li>
+          </ul>
+          <button class="btn-reservar" onclick="abrirReserva('Cabaña Luna', 280000)">🗓️ Reservar</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card-servicio">
+        <div class="card-img"><img src="foto2-jacuzzi-sala.jpg" alt="Cabaña Orquídea" /></div>
+        <div class="card-body">
+          <div class="card-nombre">Cabaña Orquídea</div>
+          <div class="card-precio">$220.000</div>
+          <ul class="card-features">
+            <li>Terraza privada</li>
+            <li>Cama doble</li>
+            <li>Desayuno incluido</li>
+            <li>WiFi</li>
+          </ul>
+          <button class="btn-reservar" onclick="abrirReserva('Cabaña Orquídea', 220000)">🗓️ Reservar</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card-servicio">
+        <div class="card-badge">👑 Premium</div>
+        <div class="card-img"><img src="foto5-jacuzzi-sala2.jpg" alt="Cabaña Estrella" /></div>
+        <div class="card-body">
+          <div class="card-nombre">Cabaña Estrella</div>
+          <div class="card-precio">$380.000</div>
+          <ul class="card-features">
+            <li>Jacuzzi + chimenea</li>
+            <li>Cama King</li>
+            <li>Desayuno gourmet</li>
+            <li>WiFi + TV</li>
+          </ul>
+          <button class="btn-reservar" onclick="abrirReserva('Cabaña Estrella', 380000)">🗓️ Reservar</button>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card-servicio">
+        <div class="card-img"><img src="foto7-deck-montaña.jpg" alt="Pasadía" /></div>
+        <div class="card-body">
+          <div class="card-nombre">Pasadía</div>
+          <div class="card-precio">$120.000</div>
+          <ul class="card-features">
+            <li>Acceso zonas comunes</li>
+            <li>Piscina / jacuzzi</li>
+            <li>Almuerzo incluido</li>
+          </ul>
+          <button class="btn-reservar" onclick="abrirReserva('Pasadía', 120000)">🗓️ Reservar</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== MÓDULO: SECCIÓN CONFIANZA PAGOS ===== -->
+  <section id="seccion-pagos-confianza" style="background:#f9f6f0; padding:24px 20px; border-top:3px solid #c9a84c; border-bottom:3px solid #c9a84c;">
+    <div style="max-width:500px; margin:0 auto; text-align:center;">
+
+      <div style="font-size:1.6rem; margin-bottom:6px;">🔒</div>
+      <h2 style="font-family:'Playfair Display',serif; color:#c9a84c; font-size:1.15rem; margin-bottom:4px;">Tus pagos, 100% seguros</h2>
+      <p style="color:#1e3a1e; font-size:0.8rem; margin-bottom:14px; line-height:1.5;">Múltiples formas de pago para que elijas la que más confianza te dé.</p>
+
+      <!-- Métodos en grid -->
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px;">
+        <div style="background:#f0ece4; border:1.5px solid #c9a84c; border-radius:8px; padding:8px 6px; text-align:center;">
+          <div style="font-size:1.2rem;">📱</div>
+          <div style="color:#1e3a1e; font-size:0.68rem; margin-top:3px; font-weight:600;">Nequi</div>
+        </div>
+        <div style="background:#f0ece4; border:1.5px solid #c9a84c; border-radius:8px; padding:8px 6px; text-align:center;">
+          <div style="font-size:1.2rem;">💜</div>
+          <div style="color:#1e3a1e; font-size:0.68rem; margin-top:3px; font-weight:600;">Daviplata</div>
+        </div>
+        <div style="background:#f0ece4; border:1.5px solid #c9a84c; border-radius:8px; padding:8px 6px; text-align:center;">
+          <div style="font-size:1.2rem;">🏦</div>
+          <div style="color:#1e3a1e; font-size:0.68rem; margin-top:3px; font-weight:600;">Bancolombia</div>
+        </div>
+        <div style="background:#f0ece4; border:1.5px solid #c9a84c; border-radius:8px; padding:8px 6px; text-align:center;">
+          <div style="font-size:1.2rem;">🔑</div>
+          <div style="color:#1e3a1e; font-size:0.68rem; margin-top:3px; font-weight:600;">Llaves Breve</div>
+        </div>
+        <div style="background:#f0ece4; border:1.5px solid #c9a84c; border-radius:8px; padding:8px 6px; text-align:center;">
+          <div style="font-size:1.2rem;">🌐</div>
+          <div style="color:#1e3a1e; font-size:0.68rem; margin-top:3px; font-weight:600;">PSE</div>
+        </div>
+        <div style="background:#f0ece4; border:1.5px solid #c9a84c; border-radius:8px; padding:8px 6px; text-align:center;">
+          <div style="font-size:1.2rem;">💳</div>
+          <div style="color:#1e3a1e; font-size:0.68rem; margin-top:3px; font-weight:600;">Tarjeta</div>
+        </div>
+      </div>
+
+      <!-- Punto físico con imagen -->
+      <div style="background:#c9a84c; border-radius:12px; overflow:hidden; text-align:left;">
+        <img src="img-punto-pago.jpg" alt="Punto de pago físico Pereira" style="width:100%; height:140px; object-fit:cover; display:block;" />
+        <div style="padding:14px 16px;">
+          <div style="font-weight:800; color:#1e4d2b; font-size:0.9rem; margin-bottom:4px;">🏪 Punto físico de pago — Pereira</div>
+          <div style="color:#1e4d2b; font-size:0.8rem; line-height:1.6;">¿Desconfías de los pagos por internet? <strong>Visítanos</strong> en nuestro punto autorizado y paga en efectivo con total tranquilidad.<br><br>
+          📍 <strong>Cra. 10 No. 17 - 55<br>Edificio Torre Central, Local 124<br>Pereira, Risaralda</strong><br>
+          <span style="font-size:0.75rem;">(Al lado del Centro Comercial Victoria)</span></div>
+          <a href="https://wa.me/573016550121?text=Hola,%20quiero%20info%20sobre%20el%20punto%20de%20pago%20físico%20en%20Pereira" target="_blank" style="display:inline-block; margin-top:10px; background:#f9f6f0; color:#c9a84c; font-size:0.78rem; font-weight:700; padding:7px 14px; border-radius:20px; text-decoration:none;">📍 ¿Dónde queda? Escríbenos</a>
+          <a href="https://vt.tiktok.com/ZSCMYmpgg/" target="_blank" style="display:inline-block; margin-top:8px; margin-left:6px; background:#000; color:#fff; font-size:0.78rem; font-weight:700; padding:7px 14px; border-radius:20px; text-decoration:none;">🎥 Ver el punto · No corras riesgos</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== MÓDULO: SECCIÓN RESERVAS ===== -->
+  <section id="seccion-reservas" style="background:#f5f5f0; padding:48px 20px 56px; border-top:3px solid #c9a84c; border-bottom:3px solid #c9a84c;">
+    <div class="seccion-titulo" style="margin-bottom:28px;">
+      <h2 style="font-family:'Playfair Display',serif; color:#c9a84c; font-size:clamp(1.4rem,4vw,2rem); margin-bottom:6px;">Reserva tu Cabaña</h2>
+      <p style="color:#1E3A8A; font-size:0.9rem;">Reserva directa · Sin intermediarios · Pago seguro</p>
+    </div>
+
+    <div style="max-width:500px; margin:0 auto; background:#fff; border-radius:16px; padding:24px 20px; box-shadow:0 4px 20px rgba(30,58,138,0.10);">
+
+      <!-- PASO 1: DATOS -->
+      <div id="paso1">
+        <p style="font-weight:700; color:#1e3a1e; margin-bottom:16px; font-size:0.95rem;">📋 Paso 1 de 3 — Tus datos</p>
+
+        <div style="margin-bottom:12px;">
+          <label style="font-size:0.82rem; color:#555; display:block; margin-bottom:4px;">Cabaña seleccionada</label>
+          <select id="res-cabana" onchange="actualizarCalendario()" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.9rem; color:#1e2a3a;">
+            <option value="">— Selecciona una cabaña —</option>
+            <option value="Cabaña Luna|280000">🌙 Cabaña Luna — $280.000/noche</option>
+            <option value="Cabaña Orquídea|220000">🌺 Cabaña Orquídea — $220.000/noche</option>
+            <option value="Cabaña Estrella|380000">🌟 Cabaña Estrella — $380.000/noche</option>
+            <option value="Pasadía|120000">☀️ Pasadía — $120.000</option>
+          </select>
+        </div>
+
+        <!-- CALENDARIO DE DISPONIBILIDAD -->
+        <div id="bloque-calendario" style="display:none; margin-bottom:14px;">
+          <label style="font-size:0.82rem; color:#555; display:block; margin-bottom:8px;">📅 Disponibilidad — selecciona tus fechas</label>
+          <div style="background:#f9f6f0; border:1.5px solid #c9a84c; border-radius:10px; padding:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <button onclick="cambiarMes(-1)" style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:#1e3a1e;">‹</button>
+              <span id="cal-titulo" style="font-weight:700; color:#1e3a1e; font-size:0.9rem;"></span>
+              <button onclick="cambiarMes(1)" style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:#1e3a1e;">›</button>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:3px; text-align:center; margin-bottom:6px;">
+              <div style="font-size:0.65rem; font-weight:700; color:#888;">Do</div>
+              <div style="font-size:0.65rem; font-weight:700; color:#888;">Lu</div>
+              <div style="font-size:0.65rem; font-weight:700; color:#888;">Ma</div>
+              <div style="font-size:0.65rem; font-weight:700; color:#888;">Mi</div>
+              <div style="font-size:0.65rem; font-weight:700; color:#888;">Ju</div>
+              <div style="font-size:0.65rem; font-weight:700; color:#888;">Vi</div>
+              <div style="font-size:0.65rem; font-weight:700; color:#888;">Sa</div>
+            </div>
+            <div id="cal-grid" style="display:grid; grid-template-columns:repeat(7,1fr); gap:3px; text-align:center;"></div>
+            <div style="display:flex; gap:12px; margin-top:10px; font-size:0.7rem; color:#555;">
+              <span>🟢 Disponible</span>
+              <span>🔴 Ocupado</span>
+              <span>🟡 Seleccionado</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
+          <div>
+            <label style="font-size:0.82rem; color:#555; display:block; margin-bottom:4px;">Fecha entrada</label>
+            <input type="date" id="res-entrada" onchange="calcularTotal()" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.88rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.82rem; color:#555; display:block; margin-bottom:4px;">Fecha salida</label>
+            <input type="date" id="res-salida" onchange="calcularTotal()" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.88rem;" />
+          </div>
+        </div>
+
+        <div style="margin-bottom:12px;">
+          <label style="font-size:0.82rem; color:#555; display:block; margin-bottom:4px;">Nombre completo</label>
+          <input type="text" id="res-nombre" placeholder="Tu nombre completo" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.9rem;" />
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
+          <div>
+            <label style="font-size:0.82rem; color:#555; display:block; margin-bottom:4px;">WhatsApp</label>
+            <input type="tel" id="res-tel" placeholder="3XXXXXXXXX" style="width:100%; padding:10px; border:1.5px solid #DBEAFE; border-radius:8px; font-size:0.9rem;" />
+          </div>
+          <div>
+            <label style="font-size:0.82rem; color:#555; display:block; margin-bottom:4px;">Personas</label>
+            <select id="res-personas" style="width:100%; padding:10px; border:1.5px solid #DBEAFE; border-radius:8px; font-size:0.9rem;">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- RESUMEN PRECIO -->
+        <div id="res-resumen" style="display:none; background:linear-gradient(135deg,#d4f5b0,#DBEAFE); border-radius:10px; padding:14px; margin-bottom:16px; font-size:0.88rem; color:#1E3A8A;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+            <span>Total estadía:</span><strong id="res-total"></strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; border-top:1px solid #93c5fd; padding-top:8px; margin-top:4px;">
+            <span>💳 Abono 50% requerido:</span><strong id="res-abono" style="color:#1E3A8A; font-size:1rem;"></strong>
+          </div>
+        </div>
+
+        <button onclick="irPaso2()" style="width:100%; background:#c9a84c; color:#1E3A8A; border:2px solid #b8922a; padding:13px; border-radius:8px; font-size:0.95rem; font-weight:700; cursor:pointer;">Continuar →</button>
+      </div>
+
+      <!-- PASO 2: MÉTODO DE PAGO -->
+      <div id="paso2" style="display:none;">
+        <p style="font-weight:700; color:#1E3A8A; margin-bottom:6px; font-size:0.95rem;">💳 Paso 2 de 3 — Método de pago</p>
+        <p style="font-size:0.82rem; color:#555; margin-bottom:16px;">Abono requerido: <strong id="paso2-abono" style="color:#1E3A8A;"></strong></p>
+
+        <div id="metodos-pago" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
+          <div class="metodo-btn" onclick="seleccionarPago(this,'nequi')" style="border:2px solid #DBEAFE; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
+            <div style="font-size:1.6rem;">📱</div>
+            <div style="font-size:0.82rem; font-weight:600; color:#1E3A8A; margin-top:4px;">Nequi</div>
+          </div>
+          <div class="metodo-btn" onclick="seleccionarPago(this,'daviplata')" style="border:2px solid #DBEAFE; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
+            <div style="font-size:1.6rem;">💜</div>
+            <div style="font-size:0.82rem; font-weight:600; color:#1E3A8A; margin-top:4px;">Daviplata</div>
+          </div>
+          <div class="metodo-btn" onclick="seleccionarPago(this,'bancolombia')" style="border:2px solid #DBEAFE; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
+            <div style="font-size:1.6rem;">🏦</div>
+            <div style="font-size:0.82rem; font-weight:600; color:#1E3A8A; margin-top:4px;">Bancolombia</div>
+          </div>
+          <div class="metodo-btn" onclick="seleccionarPago(this,'pse')" style="border:2px solid #DBEAFE; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
+            <div style="font-size:1.6rem;">🌐</div>
+            <div style="font-size:0.82rem; font-weight:600; color:#1E3A8A; margin-top:4px;">PSE</div>
+          </div>
+          <div class="metodo-btn" onclick="seleccionarPago(this,'tarjeta')" style="border:2px solid #DBEAFE; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
+            <div style="font-size:1.6rem;">💳</div>
+            <div style="font-size:0.82rem; font-weight:600; color:#1E3A8A; margin-top:4px;">Tarjeta</div>
+          </div>
+          <div class="metodo-btn" onclick="seleccionarPago(this,'efectivo')" style="border:2px solid #DBEAFE; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
+            <div style="font-size:1.6rem;">💵</div>
+            <div style="font-size:0.82rem; font-weight:600; color:#1E3A8A; margin-top:4px;">Efectivo</div>
+          </div>
+          <div class="metodo-btn" onclick="seleccionarPago(this,'breve')" style="border:2px solid #DBEAFE; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
+            <div style="font-size:1.6rem;">🔑</div>
+            <div style="font-size:0.82rem; font-weight:600; color:#1E3A8A; margin-top:4px;">Llaves Breve</div>
+          </div>
+        </div>
+
+        <!-- Info según método -->
+        <div id="info-pago" style="display:none; background:#f9f6f0; border-radius:10px; padding:14px; margin-bottom:16px; font-size:0.85rem; color:#1E3A8A; line-height:1.6;"></div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <button onclick="irPaso1()" style="background:#f5f5f0; color:#1E3A8A; border:1.5px solid #DBEAFE; padding:12px; border-radius:8px; font-size:0.88rem; font-weight:600; cursor:pointer;">← Volver</button>
+          <button onclick="irPaso3()" style="background:#c9a84c; color:#1E3A8A; border:2px solid #b8922a; padding:12px; border-radius:8px; font-size:0.88rem; font-weight:700; cursor:pointer;">Continuar →</button>
+        </div>
+      </div>
+
+      <!-- PASO 3: COMPROBANTE -->
+      <div id="paso3" style="display:none;">
+        <p style="font-weight:700; color:#1E3A8A; margin-bottom:6px; font-size:0.95rem;">📸 Paso 3 de 3 — Sube tu comprobante</p>
+        <p style="font-size:0.82rem; color:#555; margin-bottom:16px;">Toma una foto o selecciona la imagen de tu comprobante de pago.</p>
+
+        <label for="res-comprobante" style="display:block; border:2px dashed #3B82F6; border-radius:12px; padding:28px; text-align:center; cursor:pointer; margin-bottom:16px; background:#f5f5f0;">
+          <div style="font-size:2.5rem; margin-bottom:8px;">📎</div>
+          <div style="color:#1E3A8A; font-weight:600; font-size:0.9rem;">Toca aquí para subir comprobante</div>
+          <div style="color:#888; font-size:0.78rem; margin-top:4px;">JPG, PNG o PDF</div>
+          <div id="archivo-nombre" style="margin-top:10px; color:#3B82F6; font-size:0.82rem; font-weight:600;"></div>
+        </label>
+        <input type="file" id="res-comprobante" accept="image/*,application/pdf" style="display:none;" onchange="mostrarArchivo(this)" />
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <button onclick="irPaso2()" style="background:#f5f5f0; color:#1E3A8A; border:1.5px solid #DBEAFE; padding:12px; border-radius:8px; font-size:0.88rem; font-weight:600; cursor:pointer;">← Volver</button>
+          <button onclick="enviarReserva()" style="background:#c9a84c; color:#1E3A8A; border:2px solid #b8922a; padding:12px; border-radius:8px; font-size:0.88rem; font-weight:700; cursor:pointer;">✅ Confirmar Reserva</button>
+        </div>
+      </div>
+
+      <!-- PASO 4: CONFIRMACIÓN -->
+      <div id="paso4" style="display:none; text-align:center; padding:16px 0;">
+        <div style="font-size:3rem; margin-bottom:12px;">🎉</div>
+        <h3 style="font-family:'Playfair Display',serif; color:#1E3A8A; font-size:1.3rem; margin-bottom:8px;">¡Reserva enviada!</h3>
+        <p style="font-size:0.85rem; color:#555; margin-bottom:16px; line-height:1.6;" id="msg-confirmacion"></p>
+        <div style="background:#f9f6f0; border-radius:10px; padding:14px; font-size:0.82rem; color:#1E3A8A; margin-bottom:20px;" id="resumen-final"></div>
+        <button onclick="nuevaReserva()" style="background:#c9a84c; color:#1E3A8A; border:2px solid #b8922a; padding:12px 28px; border-radius:8px; font-weight:600; cursor:pointer;">Nueva reserva</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== MÓDULO: SECCIÓN TESTIMONIOS ===== -->
+  <section id="seccion-testimonios" style="background:#f9f6f0; padding:48px 20px 56px; border-top:3px solid #c9a84c; border-bottom:3px solid #c9a84c;">
+    <div class="seccion-titulo">
+      <h2>Clientes nos Recomiendan</h2>
+      <p style="color:#DBEAFE; font-size:0.9rem;">Videos reales · Experiencias auténticas</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:600px; margin:0 auto;">
+
+      <!-- Video/Imagen 1 -->
+      <div style="background:#f5f5f0; border-radius:12px; overflow:hidden; border:2px solid #c9a84c;">
+        <div style="aspect-ratio:9/16; background:#f9f6f0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center;">
+          <span style="font-size:2.2rem;">🎬</span>
+          <p style="color:#c9a84c; font-size:0.75rem; font-weight:600;">[ Video cliente 1 ]</p>
+          <p style="color:#6b8ab0; font-size:0.7rem;">Subir video corto</p>
+        </div>
+        <div style="padding:10px 12px;">
+          <p style="color:#c9a84c; font-size:0.78rem; font-weight:700;">⭐⭐⭐⭐⭐</p>
+          <p style="color:#1E3A8A; font-size:0.78rem; margin-top:4px;">"Una experiencia increíble, volvería mil veces."</p>
+          <p style="color:#6b8ab0; font-size:0.72rem; margin-top:4px;">— Cliente, Pereira</p>
+        </div>
+      </div>
+
+      <!-- Video/Imagen 2 -->
+      <div style="background:#f5f5f0; border-radius:12px; overflow:hidden; border:2px solid #c9a84c;">
+        <div style="aspect-ratio:9/16; background:#f9f6f0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center;">
+          <span style="font-size:2.2rem;">🎬</span>
+          <p style="color:#c9a84c; font-size:0.75rem; font-weight:600;">[ Video cliente 2 ]</p>
+          <p style="color:#6b8ab0; font-size:0.7rem;">Subir video corto</p>
+        </div>
+        <div style="padding:10px 12px;">
+          <p style="color:#c9a84c; font-size:0.78rem; font-weight:700;">⭐⭐⭐⭐⭐</p>
+          <p style="color:#1E3A8A; font-size:0.78rem; margin-top:4px;">"El jacuzzi privado y la vista son espectaculares."</p>
+          <p style="color:#6b8ab0; font-size:0.72rem; margin-top:4px;">— Cliente, Medellín</p>
+        </div>
+      </div>
+
+      <!-- Video/Imagen 3 -->
+      <div style="background:#f5f5f0; border-radius:12px; overflow:hidden; border:2px solid #c9a84c;">
+        <div style="aspect-ratio:9/16; background:#f9f6f0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center;">
+          <span style="font-size:2.2rem;">📸</span>
+          <p style="color:#c9a84c; font-size:0.75rem; font-weight:600;">[ Imagen cliente 3 ]</p>
+          <p style="color:#6b8ab0; font-size:0.7rem;">Subir imagen</p>
+        </div>
+        <div style="padding:10px 12px;">
+          <p style="color:#c9a84c; font-size:0.78rem; font-weight:700;">⭐⭐⭐⭐⭐</p>
+          <p style="color:#1E3A8A; font-size:0.78rem; margin-top:4px;">"Perfecto para desconectarse. Naturaleza pura."</p>
+          <p style="color:#6b8ab0; font-size:0.72rem; margin-top:4px;">— Cliente, Bogotá</p>
+        </div>
+      </div>
+
+      <!-- Video/Imagen 4 -->
+      <div style="background:#f5f5f0; border-radius:12px; overflow:hidden; border:2px solid #c9a84c;">
+        <div style="aspect-ratio:9/16; background:#f9f6f0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:16px; text-align:center;">
+          <span style="font-size:2.2rem;">📸</span>
+          <p style="color:#c9a84c; font-size:0.75rem; font-weight:600;">[ Imagen cliente 4 ]</p>
+          <p style="color:#6b8ab0; font-size:0.7rem;">Subir imagen</p>
+        </div>
+        <div style="padding:10px 12px;">
+          <p style="color:#c9a84c; font-size:0.78rem; font-weight:700;">⭐⭐⭐⭐⭐</p>
+          <p style="color:#1E3A8A; font-size:0.78rem; margin-top:4px;">"La atención y el desayuno, simplemente 10/10."</p>
+          <p style="color:#6b8ab0; font-size:0.72rem; margin-top:4px;">— Cliente, Cali</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <div style="
+    position: fixed;
+    bottom: 16px; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    z-index: 300;
+    pointer-events: none;
+  ">
+    <a href="tel:+573016550121" style="
+      pointer-events: all;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #1E3A8A;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      gap: 3px;
+      background: #fff;
+      padding: 8px 16px;
+      border-radius: 24px;
+      border: 1.5px solid #c9a84c;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+    ">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="#25d366"/>
+      </svg>
+      Contáctame
+    </a>
+    <a href="https://wa.me/573016550121?text=Hola,%20quiero%20información%20sobre%20las%20cabañas" target="_blank" style="
+      pointer-events: all;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      gap: 3px;
+      background: #25d366;
+      padding: 8px 16px;
+      border-radius: 24px;
+      border: 1.5px solid #1ebe5d;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+    ">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.09-1.35A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.95 7.95 0 01-4.07-1.12l-.29-.17-3.02.8.81-2.95-.19-.3A7.96 7.96 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.4-5.8c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.16 1.51.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z" fill="#fff"/>
+      </svg>
+      WhatsApp
+    </a>
+  </div>
+
+  <!-- Espaciado para que el footer no quede tapado por la barra flotante -->
+  <div style="height: 65px;"></div>
+
+  <!-- ===== MÓDULO: FOOTER ===== -->
+  <footer>
+    <p>🌿 <span>CABAÑAS GLAMPING EWDUIN</span> · Pereira, Risaralda, Colombia</p>
+    <p style="margin-top:6px; opacity:0.6;">Versión 1.0 · Actualización A#030 N#031 · Jose Alex N-R</p>
+  </footer>
+
+  <!-- ===== MÓDULO: JAVASCRIPT ===== -->
+  <script>
+    // --- Módulo Slider ---
+    (function() {
+      const track  = document.getElementById('sliderTrack');
+      const slides = track.querySelectorAll('.slide');
+      const dots   = document.getElementById('sliderDots');
+      let actual   = 0;
+      let autoPlay;
+
+      // Crear dots
+      slides.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'dot' + (i === 0 ? ' activo' : '');
+        d.addEventListener('click', () => irA(i));
+        dots.appendChild(d);
+      });
+
+      function irA(idx) {
+        actual = (idx + slides.length) % slides.length;
+        track.style.transform = `translateX(-${actual * 100}%)`;
+        dots.querySelectorAll('.dot').forEach((d, i) =>
+          d.classList.toggle('activo', i === actual));
+      }
+
+      document.getElementById('btnAnterior').addEventListener('click', () => irA(actual - 1));
+      document.getElementById('btnSiguiente').addEventListener('click', () => irA(actual + 1));
+
+      // Auto-play cada 4 segundos
+      autoPlay = setInterval(() => irA(actual + 1), 4000);
+      track.addEventListener('touchstart', () => clearInterval(autoPlay), { passive: true });
+    })();
+
+    // ===== MÓDULO: CALENDARIO + FIREBASE DEMO =====
+    // NOTA: En producción reemplazar firebaseDemo por Firebase SDK real
+    // con credenciales de colombiacomercial1@gmail.com
+
+    // Simulación Firebase demo — reservas en memoria
+    const firebaseDemo = {
+      reservas: {
+        'Cabaña Luna':     ['2026-07-05', '2026-07-06', '2026-07-07', '2026-07-12', '2026-07-13'],
+        'Cabaña Orquídea': ['2026-07-03', '2026-07-04', '2026-07-10', '2026-07-11'],
+        'Cabaña Estrella': ['2026-07-01', '2026-07-08', '2026-07-09', '2026-07-15'],
+        'Pasadía':         ['2026-07-02', '2026-07-06', '2026-07-14']
+      },
+      getFechasOcupadas(cabana) {
+        return this.reservas[cabana] || [];
+      },
+      bloquearFechas(cabana, entrada, salida) {
+        if (!this.reservas[cabana]) this.reservas[cabana] = [];
+        let d = new Date(entrada);
+        const fin = new Date(salida);
+        while (d <= fin) {
+          const f = d.toISOString().split('T')[0];
+          if (!this.reservas[cabana].includes(f)) this.reservas[cabana].push(f);
+          d.setDate(d.getDate() + 1);
+        }
+      }
+    };
+
+    let calMes = new Date().getMonth();
+    let calAnio = new Date().getFullYear();
+
+    function actualizarCalendario() {
+      const cabana = document.getElementById('res-cabana').value;
+      const bloque = document.getElementById('bloque-calendario');
+      if (!cabana) { bloque.style.display = 'none'; return; }
+      bloque.style.display = 'block';
+      renderCalendario();
+    }
+
+    function renderCalendario() {
+      const cabana = document.getElementById('res-cabana').value.split('|')[0];
+      const ocupadas = firebaseDemo.getFechasOcupadas(cabana);
+      const titulo = document.getElementById('cal-titulo');
+      const grid = document.getElementById('cal-grid');
+      const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+      titulo.textContent = meses[calMes] + ' ' + calAnio;
+      grid.innerHTML = '';
+
+      const primerDia = new Date(calAnio, calMes, 1).getDay();
+      const diasMes   = new Date(calAnio, calMes + 1, 0).getDate();
+      const hoy       = new Date().toISOString().split('T')[0];
+
+      // Espacios vacíos
+      for (let i = 0; i < primerDia; i++) {
+        grid.innerHTML += '<div></div>';
+      }
+
+      for (let d = 1; d <= diasMes; d++) {
+        const fecha = `${calAnio}-${String(calMes+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        const pasado  = fecha < hoy;
+        const ocupado = ocupadas.includes(fecha);
+        const entrada = document.getElementById('res-entrada').value;
+        const salida  = document.getElementById('res-salida').value;
+        const seleccionado = entrada && salida && fecha >= entrada && fecha <= salida;
+
+        let bg = '#e8f5e0'; let color = '#1e3a1e'; let cursor = 'pointer';
+        if (pasado)      { bg = '#f0f0f0'; color = '#bbb'; cursor = 'default'; }
+        if (ocupado)     { bg = '#fde8e8'; color = '#c0392b'; cursor = 'not-allowed'; }
+        if (seleccionado){ bg = '#c9a84c'; color = '#fff'; }
+
+        grid.innerHTML += `<div onclick="${!pasado && !ocupado ? `seleccionarFecha('${fecha}')` : ''}"
+          style="background:${bg}; color:${color}; border-radius:6px; padding:5px 2px;
+          font-size:0.75rem; font-weight:600; cursor:${cursor};">${d}</div>`;
+      }
+    }
+
+    let fechaClickCount = 0;
+    function seleccionarFecha(fecha) {
+      fechaClickCount++;
+      if (fechaClickCount % 2 === 1) {
+        document.getElementById('res-entrada').value = fecha;
+        document.getElementById('res-salida').value = '';
+      } else {
+        const entrada = document.getElementById('res-entrada').value;
+        if (fecha > entrada) {
+          document.getElementById('res-salida').value = fecha;
+          calcularTotal();
+        } else {
+          document.getElementById('res-entrada').value = fecha;
+          fechaClickCount--;
+        }
+      }
+      renderCalendario();
+    }
+
+    function cambiarMes(dir) {
+      calMes += dir;
+      if (calMes > 11) { calMes = 0; calAnio++; }
+      if (calMes < 0)  { calMes = 11; calAnio--; }
+      renderCalendario();
+    }
+
+    // Al confirmar reserva — bloquear fechas en Firebase demo
+    const _enviarReservaOriginal = enviarReserva;
+
+
+    const ADMIN_WA = '573016550121';
+    let reservaData = {};
+
+    // Datos de pago por método
+    const infoPagos = {
+      nequi:       '📱 <strong>Nequi:</strong> Envía el abono al número<br><strong>301 655 0121</strong><br>Concepto: tu nombre + cabaña',
+      daviplata:   '💜 <strong>Daviplata:</strong> Envía el abono al número<br><strong>301 655 0121</strong><br>Concepto: tu nombre + cabaña',
+      bancolombia: '🏦 <strong>Bancolombia:</strong><br>Cuenta Ahorros: <strong>XXXX-XXXX-XXXX</strong><br>A nombre de: Cabañas Ewduin<br>Concepto: tu nombre + cabaña',
+      pse:         '🌐 <strong>PSE:</strong> Serás redirigido a la pasarela PSE para completar tu pago de forma segura.',
+      tarjeta:     '💳 <strong>Tarjeta crédito/débito:</strong><br>⚠️ Aplica recargo del 3% por uso de tarjeta.<br>Serás redirigido a la pasarela de pago segura.',
+      efectivo:    '💵 <strong>Efectivo:</strong> Puedes pagar al llegar. El 50% de reserva se confirma con el administrador vía WhatsApp.',
+      breve:       '🔑 <strong>Llaves Breve:</strong> Transfiere el abono usando tu llave Breve al número<br><strong>301 655 0121</strong><br>Concepto: tu nombre + cabaña'
+    };
+
+    function calcularTotal() {
+      const cabana  = document.getElementById('res-cabana').value;
+      const entrada = document.getElementById('res-entrada').value;
+      const salida  = document.getElementById('res-salida').value;
+      if (!cabana || !entrada || !salida) return;
+      const [, precio] = cabana.split('|');
+      const dias = Math.ceil((new Date(salida) - new Date(entrada)) / 86400000);
+      if (dias <= 0) return;
+      const total = parseInt(precio) * dias;
+      const abono = total / 2;
+      document.getElementById('res-total').textContent = '$ ' + total.toLocaleString('es-CO');
+      document.getElementById('res-abono').textContent = '$ ' + abono.toLocaleString('es-CO');
+      document.getElementById('res-resumen').style.display = 'block';
+      reservaData.total = total;
+      reservaData.abono = abono;
+      reservaData.dias  = dias;
+    }
+
+    // Escuchar cambios en fechas y cabaña
+    ['res-cabana','res-entrada','res-salida'].forEach(id =>
+      document.getElementById(id).addEventListener('change', calcularTotal));
+
+    function irPaso1() {
+      document.getElementById('paso1').style.display = 'block';
+      document.getElementById('paso2').style.display = 'none';
+      document.getElementById('paso3').style.display = 'none';
+    }
+
+    function irPaso2() {
+      const cabana  = document.getElementById('res-cabana').value;
+      const entrada = document.getElementById('res-entrada').value;
+      const salida  = document.getElementById('res-salida').value;
+      const nombre  = document.getElementById('res-nombre').value.trim();
+      const tel     = document.getElementById('res-tel').value.trim();
+      if (!cabana)  { alert('Selecciona una cabaña.'); return; }
+      if (!entrada || !salida) { alert('Selecciona fechas de entrada y salida.'); return; }
+      if (new Date(salida) <= new Date(entrada)) { alert('La fecha de salida debe ser posterior a la entrada.'); return; }
+      if (!nombre)  { alert('Ingresa tu nombre completo.'); return; }
+      if (!tel || tel.length < 10) { alert('Ingresa tu número de WhatsApp.'); return; }
+      reservaData.cabana  = cabana.split('|')[0];
+      reservaData.entrada = entrada;
+      reservaData.salida  = salida;
+      reservaData.nombre  = nombre;
+      reservaData.tel     = tel;
+      reservaData.personas = document.getElementById('res-personas').value;
+      document.getElementById('paso2-abono').textContent = '$ ' + reservaData.abono.toLocaleString('es-CO');
+      document.getElementById('paso1').style.display = 'none';
+      document.getElementById('paso2').style.display = 'block';
+      document.getElementById('paso3').style.display = 'none';
+    }
+
+    function seleccionarPago(el, metodo) {
+      document.querySelectorAll('.metodo-btn').forEach(b => b.style.border = '2px solid #DBEAFE');
+      el.style.border = '2px solid #1E3A8A';
+      reservaData.metodo = metodo;
+      const info = document.getElementById('info-pago');
+      info.style.display = 'block';
+      info.innerHTML = infoPagos[metodo];
+    }
+
+    function irPaso3() {
+      if (!reservaData.metodo) { alert('Selecciona un método de pago.'); return; }
+      document.getElementById('paso2').style.display = 'none';
+      document.getElementById('paso3').style.display = 'block';
+    }
+
+    function mostrarArchivo(input) {
+      const nombre = input.files[0] ? input.files[0].name : '';
+      document.getElementById('archivo-nombre').textContent = nombre ? '✅ ' + nombre : '';
+    }
+
+    function enviarReserva() {
+      const archivo = document.getElementById('res-comprobante').files[0];
+      if (!archivo) { alert('Por favor sube el comprobante de pago.'); return; }
+
+      // Bloquear fechas en Firebase demo
+      firebaseDemo.bloquearFechas(reservaData.cabana, reservaData.entrada, reservaData.salida);
+
+      // Mensaje para el administrador
+      const msgAdmin = encodeURIComponent(
+        `🏕️ *NUEVA RESERVA - Cabañas Ewduin*\n\n` +
+        `👤 Cliente: ${reservaData.nombre}\n` +
+        `📱 WhatsApp: ${reservaData.tel}\n` +
+        `🏠 Cabaña: ${reservaData.cabana}\n` +
+        `📅 Entrada: ${reservaData.entrada}\n` +
+        `📅 Salida: ${reservaData.salida}\n` +
+        `👥 Personas: ${reservaData.personas}\n` +
+        `💰 Total: $${reservaData.total.toLocaleString('es-CO')}\n` +
+        `💳 Abono 50%: $${reservaData.abono.toLocaleString('es-CO')}\n` +
+        `💳 Método: ${reservaData.metodo.toUpperCase()}\n\n` +
+        `⚠️ El cliente adjuntó el comprobante. Por favor verificar.`
+      );
+
+      // Mensaje para el cliente
+      const msgCliente = encodeURIComponent(
+        `✅ *Reserva confirmada - Cabañas Ewduin*\n\n` +
+        `Hola ${reservaData.nombre}, tu reserva fue enviada exitosamente.\n\n` +
+        `🏠 ${reservaData.cabana}\n` +
+        `📅 Entrada: ${reservaData.entrada}\n` +
+        `📅 Salida: ${reservaData.salida}\n` +
+        `👥 Personas: ${reservaData.personas}\n` +
+        `💰 Total: $${reservaData.total.toLocaleString('es-CO')}\n` +
+        `💳 Abono pagado: $${reservaData.abono.toLocaleString('es-CO')}\n\n` +
+        `Nos comunicaremos contigo para confirmar. ¡Gracias!`
+      );
+
+      // Abrir WhatsApp admin
+      window.open(`https://wa.me/${ADMIN_WA}?text=${msgAdmin}`, '_blank');
+
+      // Abrir WhatsApp cliente con pequeño delay
+      setTimeout(() => {
+        window.open(`https://wa.me/57${reservaData.tel}?text=${msgCliente}`, '_blank');
+      }, 1500);
+
+      // Mostrar confirmación
+      document.getElementById('paso3').style.display = 'none';
+      document.getElementById('paso4').style.display = 'block';
+      document.getElementById('msg-confirmacion').textContent =
+        `¡Gracias ${reservaData.nombre}! Tu reserva fue enviada. El administrador recibirá tu comprobante y te confirmará por WhatsApp.`;
+      document.getElementById('resumen-final').innerHTML =
+        `🏠 <strong>${reservaData.cabana}</strong><br>` +
+        `📅 ${reservaData.entrada} → ${reservaData.salida} (${reservaData.dias} noche(s))<br>` +
+        `👥 ${reservaData.personas} persona(s)<br>` +
+        `💳 Abono: <strong>$${reservaData.abono.toLocaleString('es-CO')}</strong>`;
+    }
+
+    function nuevaReserva() {
+      document.getElementById('paso4').style.display = 'none';
+      document.getElementById('paso1').style.display = 'block';
+      document.getElementById('res-cabana').value = '';
+      document.getElementById('res-entrada').value = '';
+      document.getElementById('res-salida').value = '';
+      document.getElementById('res-nombre').value = '';
+      document.getElementById('res-tel').value = '';
+      document.getElementById('res-resumen').style.display = 'none';
+      document.getElementById('archivo-nombre').textContent = '';
+      reservaData = {};
+    }
+
+    // Conectar botón "Reservar" de cards a sección reservas
+    function abrirReserva(nombre, precio) {
+      document.getElementById('seccion-reservas').scrollIntoView({ behavior: 'smooth' });
+      const select = document.getElementById('res-cabana');
+      for (let opt of select.options) {
+        if (opt.value.startsWith(nombre)) { select.value = opt.value; break; }
+      }
+      calcularTotal();
+    }
+
+    function cerrarReserva() {}  // compatibilidad
+  </script>
+
+</body>
+</html>
