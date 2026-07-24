@@ -713,7 +713,7 @@
           <button onclick="abrirDisponibilidad('Cabaña Luna')" style="width:100%; background:transparent; border:1.5px solid #2d6e3e; color:#2d6e3e; padding:8px; border-radius:8px; font-size:0.82rem; cursor:pointer; margin-bottom:6px;">📅 Ver disponibilidad</button>
                     <div onclick="var d=document.getElementById('abono-luna'); d.style.display = d.style.display==='none'?'block':'none';" style="cursor:pointer; text-align:center; font-size:0.75rem; font-weight:600; color:#2d6e3e; background:#eef7ee; border:1px dashed #2d6e3e; border-radius:20px; padding:7px 8px; margin-bottom:8px;">💰 Reserva con el 50% ▾</div>
           <div id="abono-luna" style="display:none; font-size:0.75rem; color:#1e2a1a; background:#f9f6f0; border-radius:8px; padding:10px; margin-bottom:8px; line-height:1.7;">Reservas tu fecha abonando el 50% del valor del plan. El 50% restante se paga el día de tu llegada.</div>
-          <button class="btn-reservar" onclick="reservarConValidacionFestivo('Cabaña Luna', 280000)">🗓️ Reservar</button>
+          <button class="btn-reservar" onclick="abrirReserva('Cabaña Luna', 280000)">🗓️ Reservar</button>
         </div>
       </div>
 
@@ -736,7 +736,7 @@
           <button onclick="abrirDisponibilidad('Cabaña Orquídea')" style="width:100%; background:transparent; border:1.5px solid #2d6e3e; color:#2d6e3e; padding:8px; border-radius:8px; font-size:0.82rem; cursor:pointer; margin-bottom:6px;">📅 Ver disponibilidad</button>
                     <div onclick="var d=document.getElementById('abono-orquidea'); d.style.display = d.style.display==='none'?'block':'none';" style="cursor:pointer; text-align:center; font-size:0.75rem; font-weight:600; color:#2d6e3e; background:#eef7ee; border:1px dashed #2d6e3e; border-radius:20px; padding:7px 8px; margin-bottom:8px;">💰 Reserva con el 50% ▾</div>
           <div id="abono-orquidea" style="display:none; font-size:0.75rem; color:#1e2a1a; background:#f9f6f0; border-radius:8px; padding:10px; margin-bottom:8px; line-height:1.7;">Reservas tu fecha abonando el 50% del valor del plan. El 50% restante se paga el día de tu llegada.</div>
-          <button class="btn-reservar" onclick="reservarConValidacionFestivo('Cabaña Orquídea', 220000)">🗓️ Reservar</button>
+          <button class="btn-reservar" onclick="abrirReserva('Cabaña Orquídea', 220000)">🗓️ Reservar</button>
         </div>
       </div>
 
@@ -760,7 +760,7 @@
           <button onclick="abrirDisponibilidad('Cabaña Estrella')" style="width:100%; background:transparent; border:1.5px solid #2d6e3e; color:#2d6e3e; padding:8px; border-radius:8px; font-size:0.82rem; cursor:pointer; margin-bottom:6px;">📅 Ver disponibilidad</button>
                     <div onclick="var d=document.getElementById('abono-estrella'); d.style.display = d.style.display==='none'?'block':'none';" style="cursor:pointer; text-align:center; font-size:0.75rem; font-weight:600; color:#2d6e3e; background:#eef7ee; border:1px dashed #2d6e3e; border-radius:20px; padding:7px 8px; margin-bottom:8px;">💰 Reserva con el 50% ▾</div>
           <div id="abono-estrella" style="display:none; font-size:0.75rem; color:#1e2a1a; background:#f9f6f0; border-radius:8px; padding:10px; margin-bottom:8px; line-height:1.7;">Reservas tu fecha abonando el 50% del valor del plan. El 50% restante se paga el día de tu llegada.</div>
-          <button class="btn-reservar" onclick="reservarConValidacionFestivo('Cabaña Estrella', 380000)">🗓️ Reservar</button>
+          <button class="btn-reservar" onclick="abrirReserva('Cabaña Estrella', 380000)">🗓️ Reservar</button>
         </div>
       </div>
 
@@ -859,7 +859,7 @@
         <button onclick="abrirDisponibilidad('Plan Pasadía')" style="margin-top:8px; width:100%; background:transparent; border:1.5px solid #2d6e3e; color:#2d6e3e; padding:10px; border-radius:8px; font-size:0.85rem; cursor:pointer;">📅 Ver disponibilidad</button>
         <div onclick="var d=document.getElementById('abono-planpasadia'); d.style.display = d.style.display==='none'?'block':'none';" style="cursor:pointer; text-align:center; font-size:0.75rem; font-weight:600; color:#2d6e3e; background:#eef7ee; border:1px dashed #2d6e3e; border-radius:20px; padding:7px 8px; margin-top:8px;">💰 Reserva con el 50% ▾</div>
         <div id="abono-planpasadia" style="display:none; font-size:0.75rem; color:#1e2a1a; background:#f9f6f0; border-radius:8px; padding:10px; margin-top:8px; line-height:1.7;">Reservas tu fecha abonando el 50% del valor del plan. El 50% restante se paga el día de tu llegada.</div>
-        <button onclick="reservarConValidacionFestivo('Pasadía',250000)" style="margin-top:12px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; font-size:0.88rem; cursor:pointer;">🗓️ Reservar este plan</button>
+        <button onclick="abrirReserva('Pasadía',250000)" style="margin-top:12px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; font-size:0.88rem; cursor:pointer;">🗓️ Reservar este plan</button>
         </div>
       </div>
 
@@ -889,7 +889,7 @@
         <button onclick="abrirDisponibilidad('Cabaña Dúo')" style="margin-top:8px; width:100%; background:transparent; border:1.5px solid #2d6e3e; color:#2d6e3e; padding:10px; border-radius:8px; font-size:0.85rem; cursor:pointer;">📅 Ver disponibilidad</button>
         <div onclick="var d=document.getElementById('abono-duo'); d.style.display = d.style.display==='none'?'block':'none';" style="cursor:pointer; text-align:center; font-size:0.75rem; font-weight:600; color:#2d6e3e; background:#eef7ee; border:1px dashed #2d6e3e; border-radius:20px; padding:7px 8px; margin-top:8px;">💰 Reserva con el 50% ▾</div>
         <div id="abono-duo" style="display:none; font-size:0.75rem; color:#1e2a1a; background:#f9f6f0; border-radius:8px; padding:10px; margin-top:8px; line-height:1.7;">Reservas tu fecha abonando el 50% del valor del plan. El 50% restante se paga el día de tu llegada.</div>
-        <button onclick="reservarConValidacionFestivo('Cabaña Dúo',390000)" style="margin-top:12px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; font-size:0.88rem; cursor:pointer;">🗓️ Reservar este plan</button>
+        <button onclick="abrirReserva('Cabaña Dúo',390000)" style="margin-top:12px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; font-size:0.88rem; cursor:pointer;">🗓️ Reservar este plan</button>
         </div>
       </div>
 
@@ -921,7 +921,7 @@
         <button onclick="abrirDisponibilidad('Plan Full Dúo')" style="margin-top:8px; width:100%; background:transparent; border:1.5px solid #2d6e3e; color:#2d6e3e; padding:10px; border-radius:8px; font-size:0.85rem; cursor:pointer;">📅 Ver disponibilidad</button>
         <div onclick="var d=document.getElementById('abono-fullduo'); d.style.display = d.style.display==='none'?'block':'none';" style="cursor:pointer; text-align:center; font-size:0.75rem; font-weight:600; color:#2d6e3e; background:#eef7ee; border:1px dashed #2d6e3e; border-radius:20px; padding:7px 8px; margin-top:8px;">💰 Reserva con el 50% ▾</div>
         <div id="abono-fullduo" style="display:none; font-size:0.75rem; color:#1e2a1a; background:#f9f6f0; border-radius:8px; padding:10px; margin-top:8px; line-height:1.7;">Reservas tu fecha abonando el 50% del valor del plan. El 50% restante se paga el día de tu llegada.</div>
-        <button onclick="reservarConValidacionFestivo('Plan Full Dúo',540000)" style="margin-top:12px; width:100%; background:#ffffff; color:#000000; border:2px solid #c9a84c; padding:10px; border-radius:8px; font-weight:700; font-size:0.88rem; cursor:pointer;">🗓️ Reservar este plan</button>
+        <button onclick="abrirReserva('Plan Full Dúo',540000)" style="margin-top:12px; width:100%; background:#ffffff; color:#000000; border:2px solid #c9a84c; padding:10px; border-radius:8px; font-weight:700; font-size:0.88rem; cursor:pointer;">🗓️ Reservar este plan</button>
         </div>
       </div>
       </div>
@@ -942,7 +942,7 @@
       </video>
     </div>
   </div>
-  <section id="seccion-pagos-confianza" style="background:#f9f6f0; padding:16px 20px; border-top:1px solid #c9a84c; border-bottom:1px solid #c9a84c;">
+  <section id="seccion-pagos-confianza" style="background:#f9f6f0; padding:16px 20px; margin:16px 20px; border:2px solid #1e3a1e; border-radius:16px;">
     <div style="max-width:500px; margin:0 auto;">
 
       <!-- Botón acordeón pagos -->
@@ -1624,17 +1624,23 @@
   <div id="chat-faq-modal" style="display:none; position:fixed; bottom:80px; right:16px; left:16px; width:auto; max-width:300px; margin-left:auto; max-height:460px; background:#fff; border-radius:16px; border:2px solid #c9a84c; box-shadow:0 8px 32px rgba(0,0,0,0.25); z-index:400; flex-direction:column; overflow:hidden;">
     <div style="background:#ffffff; padding:14px 16px; display:flex; justify-content:space-between; align-items:center;">
       <div>
-        <span style="color:#000000; font-weight:700; font-size:0.9rem;">🤖 Asistente Virtual</span>
-        <p style="color:#000000; font-weight:700; font-size:0.68rem; margin:2px 0 0; opacity:0.75;">Pregúntame lo que quieras</p>
+        <span style="color:#000000; font-weight:700; font-size:0.95rem;">Elige una pregunta ❓</span>
       </div>
       <button onclick="cerrarChatFAQ()" style="background:none; border:none; color:#000000; font-size:1.2rem; cursor:pointer;">✕</button>
     </div>
-    <div id="chat-mensajes" style="overflow-y:auto; padding:12px; flex:1; display:flex; flex-direction:column; gap:8px; max-height:300px;"></div>
-    <div style="padding:10px; border-top:1px solid #e8e0d0; display:flex; gap:8px;">
-      <input id="chat-input" type="text" placeholder="Escribe tu pregunta..." 
-        style="flex:1; padding:8px 10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.82rem; outline:none;"
-        onkeyup="if(event.key==='Enter') enviarMensajeIA()" />
-      <button onclick="enviarMensajeIA()" style="background:#ffffff; color:#000000; border:none; border-radius:8px; padding:8px 12px; cursor:pointer; font-size:1rem;">➤</button>
+    <div id="faq-lista" style="overflow-y:auto; padding:12px; display:flex; flex-direction:column; gap:8px; max-height:340px;">
+      <button onclick="mostrarFAQ('precios')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Cuáles son los precios?</button>
+      <button onclick="mostrarFAQ('ubicacion')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Dónde están ubicados?</button>
+      <button onclick="mostrarFAQ('pago')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Cómo puedo pagar?</button>
+      <button onclick="mostrarFAQ('horario')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Cuál es el horario de check in y check out?</button>
+      <button onclick="mostrarFAQ('mascotas')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Admiten mascotas?</button>
+      <button onclick="mostrarFAQ('ninos')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Admiten niños?</button>
+      <button onclick="mostrarFAQ('reserva')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Cómo hago una reserva?</button>
+      <button onclick="mostrarFAQ('cancelacion')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Puedo cancelar una reserva?</button>
+    </div>
+    <div id="faq-respuesta" style="display:none; overflow-y:auto; padding:14px; max-height:340px; font-size:0.82rem; color:#1e2a1a; line-height:1.7;">
+      <div id="faq-respuesta-texto"></div>
+      <a onclick="volverFAQ()" style="display:inline-block; margin-top:12px; color:#c9a84c; font-weight:600; cursor:pointer; text-decoration:underline;">← Volver a preguntas</a>
     </div>
   </div>
 
@@ -1992,63 +1998,37 @@ const festivosColombia = (function() {
   };
 })();
 
-// ===== CHAT IA =====
-var chatHistorial = [];
+// ===== PREGUNTAS FRECUENTES PREDISEÑADAS =====
+var faqRespuestas = {
+  precios: 'Nuestros planes:<br>🌙 Cabaña Luna: $280.000<br>🌺 Cabaña Orquídea: $220.000<br>⭐ Cabaña Estrella: $380.000<br>☀️ Pasadía: $120.000<br>🏡 Suite Glamping: $180.000 (5h)<br>☀️ Pasadía 8h: $250.000<br>💑 Cabaña Dúo: desde $390.000<br>✨ Plan Full Dúo: desde $540.000',
+  ubicacion: 'Estamos ubicados en la Autopista del Café, Km. 14, vía Armenia, Vereda Laguneta, Finca La Reserva, a solo 20 minutos de Pereira.',
+  pago: 'Aceptamos Nequi, Daviplata, transferencia bancaria (Bancolombia/PSE) y efectivo. Puedes reservar abonando el 50% del valor del plan.',
+  horario: 'Check in: 3:00 PM · Check out: 11:00 AM. Los planes por horas (Pasadía, Suite Glamping) tienen su propio horario de alojamiento indicado en cada tarjeta.',
+  mascotas: 'Sí, admitimos mascotas. Puedes indicarlo al momento de hacer la reserva en el formulario.',
+  ninos: 'Sí, admitimos niños. También puedes indicarlo en el formulario de reserva.',
+  reserva: 'Elige tu plan, revisa disponibilidad en el calendario, completa el formulario de 4 pasos y confirma abonando el 50% del valor. El resto se paga el día de tu llegada.',
+  cancelacion: 'Para consultar la política de cancelación de tu reserva, escríbenos directamente por WhatsApp y con gusto te ayudamos.'
+};
 
+function mostrarFAQ(clave) {
+  document.getElementById('faq-lista').style.display = 'none';
+  document.getElementById('faq-respuesta-texto').innerHTML = faqRespuestas[clave] || '';
+  document.getElementById('faq-respuesta').style.display = 'block';
+}
+
+function volverFAQ() {
+  document.getElementById('faq-respuesta').style.display = 'none';
+  document.getElementById('faq-lista').style.display = 'flex';
+}
+
+// ===== MODAL PREGUNTAS FRECUENTES =====
 function abrirChatFAQ() {
   const modal = document.getElementById('chat-faq-modal');
   modal.style.display = 'flex';
-  if (chatHistorial.length === 0) {
-    agregarMensajeChat('bot', '¡Hola! 👋 Soy el asistente virtual de Glamping Cabaña La Reserva. Pregúntame sobre precios, disponibilidad, cómo reservar o cualquier duda que tengas. ¡Con gusto te ayudo!');
-  }
-  setTimeout(function(){ document.getElementById('chat-input').focus(); }, 200);
 }
 
 function cerrarChatFAQ() {
   document.getElementById('chat-faq-modal').style.display = 'none';
-}
-
-function agregarMensajeChat(tipo, texto) {
-  const cont = document.getElementById('chat-mensajes');
-  const div = document.createElement('div');
-  const esBot = tipo === 'bot';
-  div.style.cssText = 'display:flex; justify-content:' + (esBot ? 'flex-start' : 'flex-end') + ';';
-  div.innerHTML = '<div style="max-width:80%; padding:8px 12px; border-radius:12px; font-size:0.8rem; line-height:1.5; ' +
-    (esBot ? 'background:#f0f0f0; color:#1e2a1a; border-bottom-left-radius:4px;' : 'background:#ffffff; color:#000000; border:1px solid #c9a84c; border-bottom-right-radius:4px;') +
-    '">' + texto + '</div>';
-  cont.appendChild(div);
-  cont.scrollTop = cont.scrollHeight;
-}
-
-function enviarMensajeIA() {
-  const input = document.getElementById('chat-input');
-  const pregunta = input.value.trim();
-  if (!pregunta) return;
-  
-  agregarMensajeChat('usuario', pregunta);
-  input.value = '';
-  agregarMensajeChat('bot', '⏳ Escribiendo...');
-
-  fetch('chat.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ pregunta: pregunta })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    const msgs = document.getElementById('chat-mensajes');
-    msgs.removeChild(msgs.lastChild);
-    if (data.respuesta) {
-      agregarMensajeChat('bot', data.respuesta);
-    } else {
-      agregarMensajeChat('bot', 'Hubo un problema. Por favor escríbenos al WhatsApp 3016550121.');
-    }
-  })
-  .catch(function() {
-    const msgs = document.getElementById('chat-mensajes');
-    msgs.removeChild(msgs.lastChild);
-    agregarMensajeChat('bot', 'Sin conexión. Por favor contáctanos por WhatsApp al 3016550121.');
-  });
 }
 
 // ===== PIN DE GUARDAR CAMBIOS =====
