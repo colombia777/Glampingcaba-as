@@ -107,9 +107,6 @@
       header {
         justify-content: center;
       }
-      header .marca {
-        font-size: 1.1rem;
-      }
       section, .seccion-experiencia, footer {
         max-width: 860px;
         margin-left: auto;
@@ -151,21 +148,48 @@
     header .marca {
       font-family: var(--font-display);
       color: #1e3a1e;
-      font-size: 0.95rem;
       font-weight: 700;
+      display: flex;
+      align-items: center;
+      max-width: 100%;
+    }
+
+    header .marca span {
+      font-size: clamp(0.62rem, 3vw, 1.3rem);
+      white-space: nowrap;
       letter-spacing: 0.3px;
+      color: #1e3a1e;
+      font-weight: 700;
+      display: inline-block;
+      transform: scaleY(1.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header .marca span::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.85), transparent);
+      animation: brilloMarca 1.6s ease-out 0.4s 1;
+    }
+
+    @keyframes brilloMarca {
+      from { left: -150%; }
+      to { left: 150%; }
     }
 
     header .marca img {
       max-height: 40px;
       width: auto;
       display: block;
+      flex-shrink: 0;
     }
 
     @media (min-width: 768px) {
-      header .marca {
-        font-size: 1.2rem;
-      }
       header .marca img {
         max-height: 50px;
       }
@@ -581,6 +605,13 @@
     }
 
     footer span { color: #c9a84c; }
+
+    /* ===== PANEL DE AUTOGESTIÓN: MÁS ANCHO EN PANTALLAS GRANDES ===== */
+    @media (min-width: 1024px) {
+      #panel-admin > div {
+        max-width: 900px !important;
+      }
+    }
   </style>
 
 </style>
@@ -1251,6 +1282,17 @@
           </div>
         </div>
 
+        <div id="res-horas-extra-box" style="display:none; margin-bottom:12px;">
+          <label style="font-size:0.82rem; color:#2a2a2a; display:block; margin-bottom:4px;">➕ ¿Cuántas horas adicionales necesitas?</label>
+          <select id="res-horas-extra" onchange="calcularTotal()" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.9rem;">
+            <option value="0">Ninguna hora adicional</option>
+            <option value="1">1 hora adicional</option>
+            <option value="2">2 horas adicionales</option>
+            <option value="3">3 horas adicionales</option>
+            <option value="4">4 horas adicionales</option>
+          </select>
+        </div>
+
         <div style="margin-bottom:12px;">
           <label style="font-size:0.82rem; color:#2a2a2a; display:block; margin-bottom:4px;">Nombre completo</label>
           <input type="text" id="res-nombre" placeholder="Tu nombre completo" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.9rem;" />
@@ -1294,6 +1336,15 @@
         <!-- RESUMEN PRECIO -->
         <div id="res-resumen" style="display:none; background:linear-gradient(135deg,#d4f5b0,#e8e0d0); border-radius:10px; padding:14px; margin-bottom:16px; font-size:0.88rem; color:#1e2a1a;">
           <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+            <span>Estadía base:</span><strong id="res-base"></strong>
+          </div>
+          <div id="res-linea-personas" style="display:none; justify-content:space-between; margin-bottom:4px;">
+            <span>👥 Personas adicionales:</span><strong id="res-cargo-personas"></strong>
+          </div>
+          <div id="res-linea-horas" style="display:none; justify-content:space-between; margin-bottom:4px;">
+            <span>🕐 Horas adicionales:</span><strong id="res-cargo-horas"></strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:4px; border-top:1px solid #c9a84c; padding-top:6px; margin-top:4px;">
             <span>Total estadía:</span><strong id="res-total"></strong>
           </div>
           <div style="border-top:1px solid #c9a84c; padding-top:8px; margin-top:4px;">
@@ -1495,17 +1546,12 @@
 
     </div>
   </section>
-  <div style="position:fixed; bottom:16px; left:0; right:0; display:flex; justify-content:space-between; padding:0 16px; z-index:300; pointer-events:none;">
+  <div style="position:fixed; bottom:16px; left:16px; z-index:300; pointer-events:none;">
 
     <button onclick="abrirChatFAQ()" style="pointer-events:all; display:flex; flex-direction:column; align-items:center; background:#ffffff; color:#000000; border:1.5px solid #c9a84c; padding:8px 18px; border-radius:24px; cursor:pointer; font-size:0.72rem; font-weight:600; gap:3px; box-shadow:0 2px 10px rgba(0,0,0,0.25); font-family:'Inter',sans-serif; min-width:90px;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 10H6v-2h12v2zm0-3H6V7h12v2z" fill="#c9a84c"/></svg>
       Preguntas
     </button>
-
-    <a href="https://wa.me/573016550121?text=Hola,%20quiero%20información%20sobre%20las%20cabañas" target="_blank" style="pointer-events:all; display:flex; flex-direction:column; align-items:center; text-decoration:none; color:#000000; font-family:'Inter',sans-serif; font-size:0.72rem; font-weight:600; gap:3px; background:#25d366; padding:8px 18px; border-radius:24px; border:1.5px solid #1ebe5d; box-shadow:0 2px 10px rgba(0,0,0,0.18); min-width:90px;">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.09-1.35A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.95 7.95 0 01-4.07-1.12l-.29-.17-3.02.8.81-2.95-.19-.3A7.96 7.96 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.4-5.8c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.16 1.51.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z" fill="#fff"/></svg>
-      WhatsApp
-    </a>
 
   </div>
 
@@ -1566,10 +1612,17 @@
       <a href="https://www.google.com/maps/search/Vereda+Laguneta+Autopista+del+Cafe+Km+14+Armenia+Pereira+Risaralda+Colombia/@4.5205,-75.7539,13z" target="_blank" rel="noopener" style="display:inline-block; background:#c9a84c; color:#1a1a1a; font-weight:700; font-size:0.8rem; padding:10px 24px; border-radius:20px; text-decoration:none;">🗺️ Abrir en Google Maps</a>
     </div>
 
+    <a href="https://wa.me/573016550121?text=Hola,%20quiero%20información%20sobre%20las%20cabañas" target="_blank" style="display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; color:#000000; font-family:'Inter',sans-serif; font-size:0.82rem; font-weight:700; background:#25d366; padding:11px 24px; border-radius:24px; border:1.5px solid #1ebe5d; box-shadow:0 2px 10px rgba(0,0,0,0.15); margin-bottom:10px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.09-1.35A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.95 7.95 0 01-4.07-1.12l-.29-.17-3.02.8.81-2.95-.19-.3A7.96 7.96 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.4-5.8c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.16 1.51.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z" fill="#fff"/></svg>
+      Escríbenos por WhatsApp
+    </a>
+    <br>
     <button onclick="abrirAdmin()" style="margin-top:8px; background:transparent; border:1px solid rgba(0,0,0,0.3); color:#000000; font-weight:700; font-size:0.72rem; padding:6px 14px; border-radius:20px; cursor:pointer;">⚙️ Admin</button>
 
-    <p style="margin-top:14px;">🌿 <span>GLAMPING LA RESERVA</span> · Pereira, Risaralda, Colombia</p>
-    <p style="margin-top:6px; opacity:0.9;">Versión 1.0 · Actualización A#213 N#214 · Jose Alex N-R</p>
+    <div style="margin-top:14px; display:inline-block; background:#f9f6f0; border:1px solid #c9a84c; border-radius:10px; padding:10px 18px;">
+      <p>🌿 <span>GLAMPING LA RESERVA</span> · Pereira, Risaralda, Colombia</p>
+      <p style="margin-top:6px; opacity:0.9;">Versión 1.0 · Actualización A#232 N#233 · Jose Alex N-R</p>
+    </div>
   </footer>
 
   <!-- ===== MÓDULO: MODAL DISPONIBILIDAD ===== -->
@@ -1625,14 +1678,7 @@
       <button onclick="cerrarChatFAQ()" style="background:none; border:none; color:#000000; font-size:1.2rem; cursor:pointer;">✕</button>
     </div>
     <div id="faq-lista" style="overflow-y:auto; padding:12px; display:flex; flex-direction:column; gap:8px; max-height:340px;">
-      <button onclick="mostrarFAQ('precios')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Cuáles son los precios?</button>
-      <button onclick="mostrarFAQ('ubicacion')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Dónde están ubicados?</button>
-      <button onclick="mostrarFAQ('pago')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Cómo puedo pagar?</button>
-      <button onclick="mostrarFAQ('horario')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Cuál es el horario de check in y check out?</button>
-      <button onclick="mostrarFAQ('mascotas')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Admiten mascotas?</button>
-      <button onclick="mostrarFAQ('ninos')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Admiten niños?</button>
-      <button onclick="mostrarFAQ('reserva')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Cómo hago una reserva?</button>
-      <button onclick="mostrarFAQ('cancelacion')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">¿Puedo cancelar una reserva?</button>
+      <!-- Las preguntas se generan dinámicamente desde faqLista (ver config.js) -->
     </div>
     <div id="faq-respuesta" style="display:none; overflow-y:auto; padding:14px; max-height:340px; font-size:0.82rem; color:#1e2a1a; line-height:1.7;">
       <div id="faq-respuesta-texto"></div>
@@ -1707,10 +1753,18 @@
         <h2 style="font-family:'Playfair Display',serif; color:#1e3a1e; font-size:1.2rem;">⚙️ Panel de Autogestión</h2>
         <button onclick="cerrarAdmin()" style="background:none; border:none; color:#1e3a1e; font-size:1.4rem; cursor:pointer;">✕</button>
       </div>
-      <p style="color:#4a5a4a; font-weight:600; font-size:0.75rem; margin-bottom:20px; border-bottom:1px solid #d8cfc0; padding-bottom:12px;">Mismo orden de la página — de arriba hacia abajo. Cada sección corresponde a lo que ves al navegar el sitio.</p>
+      <p style="color:#4a5a4a; font-weight:600; font-size:0.75rem; margin-bottom:14px; border-bottom:1px solid #d8cfc0; padding-bottom:12px;">Mismo orden de la página — de arriba hacia abajo. Cada sección corresponde a lo que ves al navegar el sitio.</p>
+
+      <div style="position:sticky; top:0; background:#f9f6f0; z-index:10; padding-bottom:10px; margin-bottom:10px; border-bottom:1px solid #d8cfc0;">
+        <div style="position:relative;">
+          <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); font-size:1rem; pointer-events:none;">🔍</span>
+          <input id="panel-buscador" type="text" oninput="filtrarPanel(this.value)" placeholder="Buscar una sección (ej: logo, precios, whatsapp)..." style="width:100%; padding:11px 12px 11px 38px; border:1.5px solid #c9a84c; border-radius:10px; background:#ffffff; color:#1e2a1a; font-size:0.85rem;" />
+        </div>
+        <p id="panel-buscador-resultado" style="color:#6b6b6b; font-size:0.72rem; margin-top:6px; display:none;"></p>
+      </div>
 
       <!-- 🏢 Encabezado -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🏢 · Encabezado (Nombre del negocio)</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Barra superior — Nombre visible en todo momento al navegar el sitio.</p>
         <label style="color:#1e2a1a; font-weight:600; font-size:0.78rem;">Selecciona el logo (imagen)
@@ -1720,7 +1774,7 @@
       </div>
 
       <!-- 🅐 Video de bienvenida -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅐 · Video de Bienvenida</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección 1 — Primera imagen que ve el cliente al entrar. Video del equipo o del lugar dando la bienvenida.</p>
         <label style="color:#1e2a1a; font-weight:600; font-size:0.78rem;">Selecciona el video (MP4)
@@ -1730,7 +1784,7 @@
       </div>
 
       <!-- 🅑 Video principal -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅑 · Video Principal del Glamping</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección 2 — Video de fondo que muestra la naturaleza, las cabañas y la experiencia.</p>
         <label style="color:#1e2a1a; font-weight:600; font-size:0.78rem;">Selecciona el video (MP4)
@@ -1747,7 +1801,7 @@
       </div>
 
       <!-- 🅒 Promociones & Slider -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅒 · Promociones & Slider de Imágenes</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección 3 — Textos del banner rotativo y fotos que el cliente ve al deslizar.</p>
         <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:10px;">
@@ -1777,7 +1831,7 @@
       </div>
 
       <!-- 🅓 Fotos de cabañas -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅓 · Fotos de Nuestras Cabañas</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección 4 — Foto principal de cada cabaña que el cliente ve en la galería.</p>
         <div style="display:flex; flex-direction:column; gap:10px;">
@@ -1826,7 +1880,7 @@
       </div>
 
       <!-- 🅔 Precios -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅔 · Precios de Cabañas y Planes</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección 4-5 — Actualiza el precio de cada cabaña o plan en pesos colombianos.</p>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
@@ -1871,10 +1925,21 @@
           </div>
           <button onclick="confirmarGuardar('¿Guardar las descripciones de planes?', guardarDescripcionesPlanes)" style="margin-top:8px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar descripciones</button>
         </div>
+        <div style="border-top:1px solid #e3dcc9; margin-top:14px; padding-top:12px;">
+          <p style="color:#1e3a1e; font-size:0.8rem; font-weight:700; margin-bottom:4px;">👥🕐 Personas y horas adicionales</p>
+          <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:8px;">Define cuántas personas/horas van incluidas en el precio base, y cuánto se cobra por cada una extra. Se calcula automático en el formulario de reserva del cliente.</p>
+          <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Personas incluidas en el precio base</label>
+          <input id="adm-personas-incluidas" type="number" placeholder="2" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px; margin-bottom:8px;" />
+          <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Precio por persona adicional</label>
+          <input id="adm-precio-persona-extra" type="number" placeholder="50000" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px; margin-bottom:8px;" />
+          <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Precio por hora adicional (solo planes por horas)</label>
+          <input id="adm-precio-hora-extra" type="number" placeholder="40000" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px;" />
+          <button onclick="confirmarGuardar('¿Guardar la configuración de personas y horas adicionales?', guardarConfigExtras)" style="margin-top:8px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar configuración</button>
+        </div>
       </div>
 
       <!-- 🅕 Pagos -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅕 · Sección Pagos</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección 6 — Título y texto del punto físico de pago.</p>
         <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Título</label>
@@ -1887,7 +1952,7 @@
       </div>
 
       <!-- 🅖 Promociones del día -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅖 · Promociones del Día (Descuentos)</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:36px;">📍 Sección 7 — Activa un descuento especial del día. Se aplica automáticamente al reservar.</p>
         <label style="display:flex; align-items:center; gap:10px; color:#1e2a1a; font-weight:600; font-size:0.85rem; margin-bottom:14px; cursor:pointer;">
@@ -1903,7 +1968,7 @@
       </div>
 
       <!-- 🅗 Inventario -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅗 · Inventario de Entrega al Cliente</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección 8 (Reservas) — Lista de lo que recibe el cliente al llegar. Aparece en el comprobante.</p>
         <textarea id="adm-inventario" rows="7" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; background:#fffdf7; color:#1e2a1a; font-size:0.82rem; line-height:1.6; resize:vertical;">1 cabaña en perfecto estado
@@ -1927,7 +1992,7 @@ Zona de terraza/hamaca</textarea>
       </div>
 
       <!-- 🅘 Audio experiencia -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅘 · Audio de Bienvenida Narrativo</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección 9 "Tu experiencia comienza aquí" — Nota de voz que acompaña el texto narrativo.</p>
         <label style="color:#1e2a1a; font-weight:600; font-size:0.78rem;">Selecciona el audio (MP3)
@@ -1942,7 +2007,7 @@ Zona de terraza/hamaca</textarea>
       </div>
 
       <!-- 🅙 Testimonios de Clientes -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅙 · Testimonios de Clientes</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección 10 — Título y frases de clientes que recomiendan el lugar.</p>
         <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Título de la sección</label>
@@ -1959,7 +2024,7 @@ Zona de terraza/hamaca</textarea>
       </div>
 
       <!-- 🅚 Referidos -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅚 · Sección Referidos</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Última sección — Video y audio para explicar cómo ganar comisión refiriendo clientes.</p>
         <label style="color:#1e2a1a; font-weight:600; font-size:0.78rem;">Video explicativo (MP4)
@@ -1982,7 +2047,7 @@ Zona de terraza/hamaca</textarea>
       </div>
 
       <!-- 🅛 Pie de página (Footer) -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅛 · Pie de Página (Dirección)</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Última sección — Dirección que aparece en "¿Cómo llegar?" al final del sitio.</p>
         <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Título</label>
@@ -1992,8 +2057,15 @@ Zona de terraza/hamaca</textarea>
         <button onclick="confirmarGuardar('¿Guardar la dirección del pie de página?', guardarDireccionFooter)" style="margin-top:8px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar dirección</button>
       </div>
 
+      <!-- ===== DIVISOR: HERRAMIENTAS ADMINISTRATIVAS ===== -->
+      <div style="margin:28px 0 20px; text-align:center; position:relative;">
+        <div style="border-top:2px dashed #c9a84c;"></div>
+        <span style="position:relative; top:-13px; background:#f9f6f0; padding:0 14px; color:#1e3a1e; font-weight:700; font-size:0.85rem;">🛠️ Herramientas Administrativas</span>
+      </div>
+      <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:20px; text-align:center;">Estas herramientas te ayudan a gestionar tu negocio — no son parte de lo que el cliente ve al navegar el sitio.</p>
+
       <!-- 💳 Métodos de Pago -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">💳 · Métodos de Pago</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección de Reservas — Datos que ve el cliente al elegir cómo pagar (cuentas, llaves, números).</p>
         <div style="display:flex; flex-direction:column; gap:10px;">
@@ -2008,8 +2080,19 @@ Zona de terraza/hamaca</textarea>
         <button onclick="confirmarGuardar('¿Guardar los datos de métodos de pago?', guardarInfoPagos)" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar métodos de pago</button>
       </div>
 
+      <!-- ❓ Preguntas Frecuentes (FAQ) -->
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+        <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">❓ · Preguntas Frecuentes (FAQ)</h3>
+        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Botón "Preguntas" del sitio — Agrega, edita o elimina las preguntas que ve el cliente. Sin límite de cantidad.</p>
+
+        <div id="adm-faq-lista" style="display:flex; flex-direction:column; gap:10px; margin-bottom:12px;"></div>
+
+        <button onclick="agregarFAQAdmin()" style="width:100%; background:#ffffff; color:#1e2a1a; border:2px dashed #c9a84c; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem; margin-bottom:10px;">➕ Agregar nueva pregunta</button>
+        <button onclick="confirmarGuardar('¿Guardar todos los cambios de preguntas frecuentes?', guardarFAQAdmin)" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar preguntas frecuentes</button>
+      </div>
+
       <!-- 📅 Disponibilidad y Reservas -->
-      <div style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">📅 · Disponibilidad y Reservas</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Herramienta de gestión — No es un texto de la página. Consulta qué está reservado y bloquea/libera fechas manualmente (ej: reservas por WhatsApp).</p>
 
@@ -2028,20 +2111,55 @@ Zona de terraza/hamaca</textarea>
         <div id="disp-adm-reporte" style="background:#f9f6f0; border-radius:8px; padding:10px; margin-bottom:14px; min-height:40px; font-size:0.78rem; color:#1e2a1a;"></div>
 
         <div style="border-top:1px solid #e3dcc9; padding-top:12px;">
-          <p style="color:#1e3a1e; font-size:0.8rem; font-weight:700; margin-bottom:8px;">➕ Bloquear fecha manualmente</p>
+          <p style="color:#1e3a1e; font-size:0.8rem; font-weight:700; margin-bottom:4px;">➕ Bloquear fecha manualmente</p>
+          <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:8px;">Usa esto cuando alguien te reserve por fuera de la plataforma (WhatsApp, llamada, en persona) y necesites marcar esa fecha como ocupada aquí, para que no se cruce con otra reserva.</p>
           <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Fecha</label>
           <input id="disp-adm-fecha" type="date" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px; margin-bottom:8px;" />
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
             <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">H. Inicio</label><input id="disp-adm-hora-entrada" type="time" value="15:00" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px;" /></div>
             <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">H. Finaliza</label><input id="disp-adm-hora-salida" type="time" value="11:00" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px;" /></div>
           </div>
+          <p style="color:#6b6b6b; font-size:0.7rem; margin:10px 0 6px;">🧾 Datos del cliente (opcional, para trazabilidad)</p>
+          <input id="disp-adm-nombre" type="text" placeholder="Nombre completo" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-bottom:8px;" />
+          <input id="disp-adm-whatsapp" type="tel" placeholder="WhatsApp (ej: 3001234567)" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-bottom:8px;" />
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+            <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Valor total</label><input id="disp-adm-total" type="number" placeholder="280000" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px;" /></div>
+            <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Abono pagado</label><input id="disp-adm-abono" type="number" placeholder="140000" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px;" /></div>
+          </div>
           <button onclick="confirmarGuardar('¿Bloquear esta fecha manualmente?', bloquearFechaManual)" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">🔒 Bloquear fecha</button>
         </div>
         <p style="color:#a08a3f; font-size:0.68rem; margin-top:10px; font-style:italic;">⚠️ Datos en memoria (demo). Se reinician al recargar la página hasta conectar base de datos real.</p>
       </div>
 
+      <!-- 🗂️ Base de Datos de Clientes -->
+      <div class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+        <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🗂️ · Base de Datos de Clientes</h3>
+        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Herramienta administrativa — Cada reserva hecha en el sitio se guarda aquí sola. También puedes cargar clientes de años anteriores manualmente.</p>
+
+        <input id="adm-clientes-buscador" type="text" oninput="renderClientesDB(this.value)" placeholder="🔍 Buscar por nombre o WhatsApp..." style="width:100%; padding:9px 12px; border:1.5px solid #c9a84c; border-radius:8px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-bottom:12px;" />
+
+        <div id="adm-clientes-lista" style="display:flex; flex-direction:column; gap:10px; margin-bottom:12px;"></div>
+
+        <div style="border-top:1px solid #e3dcc9; padding-top:12px;">
+          <p style="color:#1e3a1e; font-size:0.8rem; font-weight:700; margin-bottom:8px;">➕ Agregar cliente manual (histórico)</p>
+          <input id="adm-cliente-nombre" type="text" placeholder="Nombre completo" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-bottom:8px;" />
+          <input id="adm-cliente-whatsapp" type="tel" placeholder="WhatsApp" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-bottom:8px;" />
+          <input id="adm-cliente-servicio" type="text" placeholder="Cabaña o plan (ej: Cabaña Luna)" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-bottom:8px;" />
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+            <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Fecha de la reserva</label><input id="adm-cliente-fecha" type="date" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px;" /></div>
+            <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Duración (ej: 2 noches / 5h)</label><input id="adm-cliente-duracion" type="text" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px;" /></div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+            <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Valor total</label><input id="adm-cliente-total" type="number" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px;" /></div>
+            <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Abono/Pago</label><input id="adm-cliente-abono" type="number" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px;" /></div>
+          </div>
+          <button onclick="confirmarGuardar('¿Agregar este cliente a la base de datos?', agregarClienteManual)" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Agregar cliente</button>
+        </div>
+        <p style="color:#a08a3f; font-size:0.68rem; margin-top:10px; font-style:italic;">⚠️ Datos en memoria (demo). Se reinician al recargar la página hasta conectar base de datos real.</p>
+      </div>
+
       <!-- ⚙️ Configuración general (no ligado a una sección visual específica) -->
-      <div style="background:#f0ece4; border-radius:12px; padding:16px; margin-bottom:0; border:1px dashed #c9a84c;">
+      <div class="panel-card" style="background:#f0ece4; border-radius:12px; padding:16px; margin-bottom:0; border:1px dashed #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">⚙️ · Configuración General</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 No es una sección visual — Número de WhatsApp donde llegan las reservas.</p>
         <input id="adm-whatsapp" type="tel" placeholder="573016550121" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; background:#fffdf7; color:#1e2a1a; font-size:0.9rem;" />
@@ -2147,7 +2265,7 @@ const firebaseDemo = {
     }
     return null;
   },
-  bloquearFechas(cabana, entrada, salida, horaEntrada, horaSalida) {
+  bloquearFechas(cabana, entrada, salida, horaEntrada, horaSalida, infoCliente) {
     if (!this.reservasDetalle[cabana]) this.reservasDetalle[cabana] = [];
     let d = new Date(entrada);
     const fin = new Date(salida);
@@ -2163,8 +2281,11 @@ const firebaseDemo = {
       if (existente) {
         existente.horaEntrada = nuevaEntrada;
         existente.horaSalida  = nuevaSalida;
+        if (infoCliente) existente.cliente = infoCliente;
       } else {
-        this.reservasDetalle[cabana].push({ fecha:f, horaEntrada:nuevaEntrada, horaSalida:nuevaSalida });
+        const entry = { fecha:f, horaEntrada:nuevaEntrada, horaSalida:nuevaSalida };
+        if (infoCliente) entry.cliente = infoCliente;
+        this.reservasDetalle[cabana].push(entry);
       }
       d.setDate(d.getDate() + 1);
       i++;
@@ -2208,16 +2329,26 @@ const _enviarReservaOriginal = enviarReserva;
 
 
 
-var faqRespuestas = {
-  precios: 'Nuestros planes:<br>🌙 Cabaña Luna: $280.000<br>🌺 Cabaña Orquídea: $220.000<br>⭐ Cabaña Estrella: $380.000<br>☀️ Pasadía: $120.000<br>🏡 Suite Glamping: $180.000 (5h)<br>☀️ Pasadía 8h: $250.000<br>💑 Cabaña Dúo: desde $390.000<br>✨ Plan Full Dúo: desde $540.000',
-  ubicacion: 'Estamos ubicados en la Autopista del Café, Km. 14, vía Armenia, Vereda Laguneta, Finca La Reserva, a solo 20 minutos de Pereira.',
-  pago: 'Aceptamos Nequi, Daviplata, transferencia bancaria (Bancolombia/PSE) y efectivo. Puedes reservar abonando el 50% del valor del plan.',
-  horario: 'Check in: 3:00 PM · Check out: 11:00 AM. Los planes por horas (Pasadía, Suite Glamping) tienen su propio horario de alojamiento indicado en cada tarjeta.',
-  mascotas: 'Sí, admitimos mascotas. Puedes indicarlo al momento de hacer la reserva en el formulario.',
-  ninos: 'Sí, admitimos niños. También puedes indicarlo en el formulario de reserva.',
-  reserva: 'Elige tu plan, revisa disponibilidad en el calendario, completa el formulario de 4 pasos y confirma abonando el 50% del valor. El resto se paga el día de tu llegada.',
-  cancelacion: 'Para consultar la política de cancelación de tu reserva, escríbenos directamente por WhatsApp y con gusto te ayudamos.'
+// ===== BASE DE DATOS DE CLIENTES (trazabilidad administrativa) =====
+var clientesDB = [];
+
+// ===== CONFIGURACIÓN DE PERSONAS Y HORAS ADICIONALES (editable desde el panel) =====
+var configExtras = {
+  personasIncluidas: 2,
+  precioPersonaExtra: 50000,
+  precioHoraExtra: 40000
 };
+
+var faqLista = [
+  { pregunta: '¿Cuáles son los precios?', respuesta: 'Nuestros planes:<br>🌙 Cabaña Luna: $280.000<br>🌺 Cabaña Orquídea: $220.000<br>⭐ Cabaña Estrella: $380.000<br>☀️ Pasadía: $120.000<br>🏡 Suite Glamping: $180.000 (5h)<br>☀️ Pasadía 8h: $250.000<br>💑 Cabaña Dúo: desde $390.000<br>✨ Plan Full Dúo: desde $540.000' },
+  { pregunta: '¿Dónde están ubicados?', respuesta: 'Estamos ubicados en la Autopista del Café, Km. 14, vía Armenia, Vereda Laguneta, Finca La Reserva, a solo 20 minutos de Pereira.' },
+  { pregunta: '¿Cómo puedo pagar?', respuesta: 'Aceptamos Nequi, Daviplata, transferencia bancaria (Bancolombia/PSE) y efectivo. Puedes reservar abonando el 50% del valor del plan.' },
+  { pregunta: '¿Cuál es el horario de check in y check out?', respuesta: 'Check in: 3:00 PM · Check out: 11:00 AM. Los planes por horas (Pasadía, Suite Glamping) tienen su propio horario de alojamiento indicado en cada tarjeta.' },
+  { pregunta: '¿Admiten mascotas?', respuesta: 'Sí, admitimos mascotas. Puedes indicarlo al momento de hacer la reserva en el formulario.' },
+  { pregunta: '¿Admiten niños?', respuesta: 'Sí, admitimos niños. También puedes indicarlo en el formulario de reserva.' },
+  { pregunta: '¿Cómo hago una reserva?', respuesta: 'Elige tu plan, revisa disponibilidad en el calendario, completa el formulario de 4 pasos y confirma abonando el 50% del valor. El resto se paga el día de tu llegada.' },
+  { pregunta: '¿Puedo cancelar una reserva?', respuesta: 'Para consultar la política de cancelación de tu reserva, escríbenos directamente por WhatsApp y con gusto te ayudamos.' }
+];
 
 
 
@@ -2295,17 +2426,7 @@ const festivosColombia = (function() {
   };
 })();
 
-// ===== PREGUNTAS FRECUENTES PREDISEÑADAS =====
-var faqRespuestas = {
-  precios: 'Nuestros planes:<br>🌙 Cabaña Luna: $280.000<br>🌺 Cabaña Orquídea: $220.000<br>⭐ Cabaña Estrella: $380.000<br>☀️ Pasadía: $120.000<br>🏡 Suite Glamping: $180.000 (5h)<br>☀️ Pasadía 8h: $250.000<br>💑 Cabaña Dúo: desde $390.000<br>✨ Plan Full Dúo: desde $540.000',
-  ubicacion: 'Estamos ubicados en la Autopista del Café, Km. 14, vía Armenia, Vereda Laguneta, Finca La Reserva, a solo 20 minutos de Pereira.',
-  pago: 'Aceptamos Nequi, Daviplata, transferencia bancaria (Bancolombia/PSE) y efectivo. Puedes reservar abonando el 50% del valor del plan.',
-  horario: 'Check in: 3:00 PM · Check out: 11:00 AM. Los planes por horas (Pasadía, Suite Glamping) tienen su propio horario de alojamiento indicado en cada tarjeta.',
-  mascotas: 'Sí, admitimos mascotas. Puedes indicarlo al momento de hacer la reserva en el formulario.',
-  ninos: 'Sí, admitimos niños. También puedes indicarlo en el formulario de reserva.',
-  reserva: 'Elige tu plan, revisa disponibilidad en el calendario, completa el formulario de 4 pasos y confirma abonando el 50% del valor. El resto se paga el día de tu llegada.',
-  cancelacion: 'Para consultar la política de cancelación de tu reserva, escríbenos directamente por WhatsApp y con gusto te ayudamos.'
-};
+// ===== PREGUNTAS FRECUENTES: ver faqLista en config.js =====
 
 function confirmarGuardar(mensaje, accion) {
   _pendienteMensaje = mensaje;
@@ -2850,7 +2971,7 @@ function calcularTotal() {
   const dias = Math.ceil((new Date(salida) - new Date(entrada)) / 86400000);
   const diasCobro = dias <= 0 ? 1 : dias;
   if (dias < 0) return;
-  let total = parseInt(precio) * diasCobro;
+  let base = parseInt(precio) * diasCobro;
   // Aplicar promo si está activa
   if (window._promoActivaReserva && window._promoPctReserva) {
     const cabanaVal = document.getElementById('res-cabana').value;
@@ -2859,10 +2980,33 @@ function calcularTotal() {
     const esHoras = cabanaVal.includes('Pasadía') || cabanaVal.includes('Escape');
     const aplicaAqui = aplica === 'todos' || (aplica === 'noche' && esNoche) || (aplica === 'horas' && esHoras);
     if (aplicaAqui) {
-      total = Math.round(total * (1 - window._promoPctReserva / 100));
+      base = Math.round(base * (1 - window._promoPctReserva / 100));
     }
   }
+
+  // Mostrar/ocultar selector de horas adicionales según el tipo de servicio
+  const cajaHorasExtra = document.getElementById('res-horas-extra-box');
+  const esHorasPlan = esPlanPorHoras(cabana);
+  cajaHorasExtra.style.display = esHorasPlan ? 'block' : 'none';
+
+  // Cargo por personas adicionales (según lo configurado en el panel de autogestión)
+  const personasVal = document.getElementById('res-personas').value;
+  const personasNum = parseInt(personasVal) || 1;
+  const personasExtra = Math.max(0, personasNum - configExtras.personasIncluidas);
+  const cargoPersonas = personasExtra * configExtras.precioPersonaExtra;
+
+  // Cargo por horas adicionales (solo si es un plan por horas)
+  const horasExtraNum = esHorasPlan ? (parseInt(document.getElementById('res-horas-extra').value) || 0) : 0;
+  const cargoHoras = horasExtraNum * configExtras.precioHoraExtra;
+
+  const total = base + cargoPersonas + cargoHoras;
   const abono = total / 2;
+
+  document.getElementById('res-base').textContent = '$ ' + base.toLocaleString('es-CO');
+  document.getElementById('res-linea-personas').style.display = cargoPersonas > 0 ? 'flex' : 'none';
+  document.getElementById('res-cargo-personas').textContent = '$ ' + cargoPersonas.toLocaleString('es-CO');
+  document.getElementById('res-linea-horas').style.display = cargoHoras > 0 ? 'flex' : 'none';
+  document.getElementById('res-cargo-horas').textContent = '$ ' + cargoHoras.toLocaleString('es-CO');
   document.getElementById('res-total').textContent = '$ ' + total.toLocaleString('es-CO');
   document.getElementById('res-abono').textContent = '$ ' + abono.toLocaleString('es-CO');
   document.getElementById('res-abono-custom').value = abono;
@@ -2870,10 +3014,12 @@ function calcularTotal() {
   reservaData.total = total;
   reservaData.abono = abono;
   reservaData.dias  = dias;
+  reservaData.cargoPersonas = cargoPersonas;
+  reservaData.cargoHoras = cargoHoras;
 }
 
-// Escuchar cambios en fechas y cabaña
-['res-cabana','res-entrada','res-salida'].forEach(id =>
+// Escuchar cambios en fechas, cabaña y personas
+['res-cabana','res-entrada','res-salida','res-personas'].forEach(id =>
   document.getElementById(id).addEventListener('change', calcularTotal));
 
 // ===== PASOS DEL FORMULARIO =====
@@ -3067,8 +3213,34 @@ function enviarReserva() {
   const archivo = document.getElementById('res-comprobante').files[0];
   if (!archivo) { alert('Por favor sube el comprobante de pago.'); return; }
 
-  // Bloquear fechas en Firebase demo (con hora real de entrada/salida)
-  firebaseDemo.bloquearFechas(reservaData.cabana, reservaData.entrada, reservaData.salida, reservaData.horaEntrada, reservaData.horaSalida);
+  // Bloquear fechas en Firebase demo (con hora real de entrada/salida + trazabilidad del cliente)
+  const saldoPendiente = (reservaData.total || 0) - (reservaData.abono || 0);
+  const infoCliente = {
+    nombre: reservaData.nombre,
+    whatsapp: reservaData.tel,
+    total: reservaData.total,
+    abono: reservaData.abono,
+    saldo: saldoPendiente,
+    fechaReserva: new Date().toISOString().split('T')[0]
+  };
+  firebaseDemo.bloquearFechas(reservaData.cabana, reservaData.entrada, reservaData.salida, reservaData.horaEntrada, reservaData.horaSalida, infoCliente);
+
+  // Registrar automáticamente en la Base de Datos de Clientes
+  clientesDB.push({
+    nombre: reservaData.nombre,
+    whatsapp: reservaData.tel,
+    cabana: reservaData.cabana,
+    entrada: reservaData.entrada,
+    salida: reservaData.salida,
+    horaEntrada: reservaData.horaEntrada,
+    horaSalida: reservaData.horaSalida,
+    total: reservaData.total,
+    abono: reservaData.abono,
+    saldo: saldoPendiente,
+    fechaReserva: infoCliente.fechaReserva,
+    dejoOpinion: false,
+    opinionTexto: ''
+  });
 
   // Inventario: usar el personalizado del admin o el por defecto
   const invDefault = `▸ 1 cabaña en perfecto estado\n▸ Ropa de cama completa y toallas\n▸ Jacuzzi operativo y limpio\n▸ Cocina equipada (menaje básico)\n▸ Control TV / WiFi activo\n▸ Zona de terraza/hamaca`;
@@ -3382,9 +3554,16 @@ function cerrarReserva() {}  // compatibilidad
 
 
 
-function mostrarFAQ(clave) {
+function renderFAQLista() {
+  const cont = document.getElementById('faq-lista');
+  cont.innerHTML = faqLista.map((item, i) =>
+    '<button onclick="mostrarFAQ(' + i + ')" style="text-align:left; background:#f9f6f0; border:1px solid #e8e0d0; border-radius:8px; padding:10px 12px; font-size:0.82rem; color:#1e2a1a; cursor:pointer;">' + item.pregunta + '</button>'
+  ).join('');
+}
+
+function mostrarFAQ(indice) {
   document.getElementById('faq-lista').style.display = 'none';
-  document.getElementById('faq-respuesta-texto').innerHTML = faqRespuestas[clave] || '';
+  document.getElementById('faq-respuesta-texto').innerHTML = (faqLista[indice] && faqLista[indice].respuesta) || '';
   document.getElementById('faq-respuesta').style.display = 'block';
 }
 
@@ -3396,6 +3575,7 @@ function volverFAQ() {
 function abrirChatFAQ() {
   const modal = document.getElementById('chat-faq-modal');
   modal.style.display = 'flex';
+  renderFAQLista();
 }
 
 function cerrarChatFAQ() {
@@ -3590,6 +3770,10 @@ function verificarPinAdmin() {
     document.getElementById('panel-admin').style.display = 'block';
     document.body.style.overflow = 'hidden';
     renderReporteDisponibilidad();
+    renderFAQAdmin();
+    renderClientesDB('');
+    document.getElementById('panel-buscador').value = '';
+    filtrarPanel('');
   } else {
     document.getElementById('pin-error').style.display = 'block';
     document.getElementById('input-pin-admin').value = '';
@@ -3998,12 +4182,25 @@ function renderReporteDisponibilidad() {
     cont.innerHTML = '✅ Sin fechas ocupadas para este servicio.';
     return;
   }
-  cont.innerHTML = lista.map(r =>
-    '<div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid #e3dcc9;">' +
-      '<span>📌 ' + r.fecha + ' · H. Inicio ' + r.horaEntrada + ' – H. Finaliza ' + r.horaSalida + '</span>' +
-      '<button onclick="liberarFechaAdmin(\'' + cabana + '\',\'' + r.fecha + '\')" style="background:#fde8e8; color:#c0392b; border:1px solid #f5a0a0; border-radius:6px; padding:4px 8px; font-size:0.72rem; cursor:pointer;">Liberar</button>' +
-    '</div>'
-  ).join('');
+  cont.innerHTML = lista.map(r => {
+    let clienteHtml = '';
+    if (r.cliente && r.cliente.nombre) {
+      const c = r.cliente;
+      clienteHtml =
+        '<div style="margin-top:6px; padding:8px; background:#fffdf7; border:1px dashed #c9a84c; border-radius:6px; font-size:0.72rem; color:#3a3a3a; line-height:1.5;">' +
+          '👤 <strong>' + c.nombre + '</strong> · 📱 ' + (c.whatsapp || '—') + '<br>' +
+          '💰 Total: $' + (c.total || 0).toLocaleString('es-CO') + ' · Abono: $' + (c.abono || 0).toLocaleString('es-CO') + ' · Saldo: $' + (c.saldo || 0).toLocaleString('es-CO') + '<br>' +
+          '🗓️ Reservó el: ' + (c.fechaReserva || '—') +
+        '</div>';
+    }
+    return '<div style="padding:8px 0; border-bottom:1px solid #e3dcc9;">' +
+      '<div style="display:flex; justify-content:space-between; align-items:center;">' +
+        '<span>📌 ' + r.fecha + ' · H. Inicio ' + r.horaEntrada + ' – H. Finaliza ' + r.horaSalida + '</span>' +
+        '<button onclick="liberarFechaAdmin(\'' + cabana + '\',\'' + r.fecha + '\')" style="background:#fde8e8; color:#c0392b; border:1px solid #f5a0a0; border-radius:6px; padding:4px 8px; font-size:0.72rem; cursor:pointer;">Liberar</button>' +
+      '</div>' +
+      clienteHtml +
+    '</div>';
+  }).join('');
 }
 
 function liberarFechaAdmin(cabana, fecha) {
@@ -4020,8 +4217,23 @@ function bloquearFechaManual() {
   const fecha = document.getElementById('disp-adm-fecha').value;
   const horaE = document.getElementById('disp-adm-hora-entrada').value;
   const horaS = document.getElementById('disp-adm-hora-salida').value;
+  const nombre = document.getElementById('disp-adm-nombre').value.trim();
+  const whatsapp = document.getElementById('disp-adm-whatsapp').value.trim();
+  const total = parseInt(document.getElementById('disp-adm-total').value) || 0;
+  const abono = parseInt(document.getElementById('disp-adm-abono').value) || 0;
   if (!fecha) { alert('Selecciona una fecha antes de bloquear.'); return; }
-  firebaseDemo.bloquearFechas(cabana, fecha, fecha, horaE, horaS);
+  let infoCliente = null;
+  if (nombre || whatsapp || total || abono) {
+    infoCliente = {
+      nombre: nombre || '(sin nombre)',
+      whatsapp: whatsapp || '—',
+      total: total,
+      abono: abono,
+      saldo: total - abono,
+      fechaReserva: new Date().toISOString().split('T')[0]
+    };
+  }
+  firebaseDemo.bloquearFechas(cabana, fecha, fecha, horaE, horaS, infoCliente);
   renderReporteDisponibilidad();
   alert('✅ Fecha bloqueada manualmente.');
 }
@@ -4044,6 +4256,187 @@ function guardarInfoPagos() {
   d.infoPagosBody = infoPagosBody;
   localStorage.setItem('admData', JSON.stringify(d));
   alert('✅ Métodos de pago actualizados.');
+}
+
+// ===== GESTIÓN DINÁMICA DE PREGUNTAS FRECUENTES (FAQ) =====
+
+function renderFAQAdmin() {
+  const cont = document.getElementById('adm-faq-lista');
+  cont.innerHTML = faqLista.map((item, i) =>
+    '<div style="border:1px solid #e3dcc9; border-radius:8px; padding:10px; background:#f9f6f0;">' +
+      '<label style="color:#1e2a1a; font-weight:600; font-size:0.72rem;">Pregunta ' + (i+1) + '</label>' +
+      '<input value="' + item.pregunta.replace(/"/g, '&quot;') + '" onchange="actualizarFAQTemp(' + i + ',\'pregunta\',this.value)" style="width:100%; padding:7px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.82rem; margin-top:3px; margin-bottom:6px;" />' +
+      '<label style="color:#1e2a1a; font-weight:600; font-size:0.72rem;">Respuesta</label>' +
+      '<textarea rows="2" onchange="actualizarFAQTemp(' + i + ',\'respuesta\',this.value)" style="width:100%; padding:7px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.8rem; margin-top:3px; resize:vertical;">' + item.respuesta + '</textarea>' +
+      '<button onclick="eliminarFAQAdmin(' + i + ')" style="margin-top:6px; background:#fde8e8; color:#c0392b; border:1px solid #f5a0a0; border-radius:6px; padding:5px 10px; font-size:0.72rem; cursor:pointer;">🗑️ Eliminar</button>' +
+    '</div>'
+  ).join('');
+}
+
+function actualizarFAQTemp(indice, campo, valor) {
+  if (faqLista[indice]) faqLista[indice][campo] = valor;
+}
+
+function agregarFAQAdmin() {
+  faqLista.push({ pregunta: 'Nueva pregunta', respuesta: 'Escribe aquí la respuesta.' });
+  renderFAQAdmin();
+}
+
+function eliminarFAQAdmin(indice) {
+  confirmarGuardar('¿Eliminar esta pregunta?', function() {
+    faqLista.splice(indice, 1);
+    renderFAQAdmin();
+    alert('✅ Pregunta eliminada.');
+  });
+}
+
+function guardarFAQAdmin() {
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  d.faqLista = faqLista;
+  localStorage.setItem('admData', JSON.stringify(d));
+  renderFAQAdmin();
+  alert('✅ Preguntas frecuentes guardadas.');
+}
+
+// ===== BUSCADOR DEL PANEL DE AUTOGESTIÓN =====
+
+// Palabras clave adicionales por tarjeta, en el mismo orden en que aparecen en el panel
+const panelKeywords = [
+  'encabezado logo nombre negocio marca',
+  'video bienvenida entrada',
+  'video principal hero glamping',
+  'promociones slider imagenes banner fotos deslizante',
+  'fotos cabañas galeria imagenes',
+  'precios tarifas planes valores costos personas adicionales horas extra',
+  'pagos cuenta bancaria punto fisico efectivo',
+  'promociones descuento dia especial',
+  'inventario entrega comprobante',
+  'audio bienvenida narrativo voz',
+  'testimonios clientes opiniones recomendaciones',
+  'referidos comision ganar dinero',
+  'pie pagina footer direccion como llegar mapa',
+  'metodos pago nequi daviplata bancolombia pse tarjeta llaves',
+  'preguntas frecuentes faq ayuda',
+  'disponibilidad reservas calendario ocupado liberar bloquear cliente whatsapp abono saldo',
+  'base de datos clientes historico buscar nombre whatsapp opinion',
+  'configuracion general whatsapp numero'
+];
+
+function quitarAcentos(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
+function filtrarPanel(valor) {
+  const tarjetas = document.querySelectorAll('.panel-card');
+  const resultadoTxt = document.getElementById('panel-buscador-resultado');
+  const termino = quitarAcentos(valor.trim());
+
+  if (!termino) {
+    tarjetas.forEach(t => { t.style.display = ''; t.style.opacity = '1'; t.style.outline = 'none'; });
+    resultadoTxt.style.display = 'none';
+    return;
+  }
+
+  let encontrados = 0;
+  tarjetas.forEach((t, i) => {
+    const textoTarjeta = quitarAcentos(t.textContent + ' ' + (panelKeywords[i] || ''));
+    if (textoTarjeta.includes(termino)) {
+      t.style.display = '';
+      t.style.opacity = '1';
+      t.style.outline = '2px solid #c9a84c';
+      encontrados++;
+    } else {
+      t.style.display = 'none';
+    }
+  });
+
+  resultadoTxt.style.display = 'block';
+  resultadoTxt.textContent = encontrados > 0
+    ? encontrados + ' resultado(s) para "' + valor + '"'
+    : 'Sin resultados para "' + valor + '". Prueba con otra palabra.';
+}
+
+// ===== BASE DE DATOS DE CLIENTES =====
+
+function renderClientesDB(filtro) {
+  const cont = document.getElementById('adm-clientes-lista');
+  const termino = quitarAcentos((filtro || '').trim());
+  const lista = clientesDB
+    .map((c, i) => ({ c, i }))
+    .filter(({ c }) => !termino || quitarAcentos(c.nombre + ' ' + c.whatsapp).includes(termino));
+
+  if (!lista.length) {
+    cont.innerHTML = '<p style="color:#6b6b6b; font-size:0.8rem;">Sin clientes registrados' + (termino ? ' para esa búsqueda.' : ' todavía.') + '</p>';
+    return;
+  }
+
+  cont.innerHTML = lista.slice().reverse().map(({ c, i }) =>
+    '<div style="background:#f9f6f0; border:1px solid #e3dcc9; border-radius:8px; padding:10px; font-size:0.78rem; color:#1e2a1a; line-height:1.6;">' +
+      '👤 <strong>' + c.nombre + '</strong> · 📱 ' + c.whatsapp + '<br>' +
+      '🏕️ ' + c.cabana + ' · 📅 ' + c.entrada + (c.salida && c.salida !== c.entrada ? ' → ' + c.salida : '') + (c.duracion ? ' · ' + c.duracion : '') + '<br>' +
+      '💰 Total: $' + (c.total || 0).toLocaleString('es-CO') + ' · Abono: $' + (c.abono || 0).toLocaleString('es-CO') + ' · Saldo: $' + (c.saldo || 0).toLocaleString('es-CO') + '<br>' +
+      '🗓️ Reservó el: ' + (c.fechaReserva || '—') + '<br>' +
+      '<label style="display:flex; align-items:center; gap:6px; margin-top:6px; cursor:pointer;">' +
+        '<input type="checkbox" ' + (c.dejoOpinion ? 'checked' : '') + ' onchange="toggleOpinionCliente(' + i + ', this.checked)" style="width:16px; height:16px; accent-color:#c9a84c;" /> ' +
+        '¿Dejó opinión?' +
+      '</label>' +
+    '</div>'
+  ).join('');
+}
+
+function toggleOpinionCliente(indice, valor) {
+  if (clientesDB[indice]) {
+    clientesDB[indice].dejoOpinion = valor;
+    const d = JSON.parse(localStorage.getItem('admData') || '{}');
+    d.clientesDB = clientesDB;
+    localStorage.setItem('admData', JSON.stringify(d));
+  }
+}
+
+function agregarClienteManual() {
+  const nombre = document.getElementById('adm-cliente-nombre').value.trim();
+  const whatsapp = document.getElementById('adm-cliente-whatsapp').value.trim();
+  const cabana = document.getElementById('adm-cliente-servicio').value.trim();
+  const fecha = document.getElementById('adm-cliente-fecha').value;
+  const duracion = document.getElementById('adm-cliente-duracion').value.trim();
+  const total = parseInt(document.getElementById('adm-cliente-total').value) || 0;
+  const abono = parseInt(document.getElementById('adm-cliente-abono').value) || 0;
+
+  if (!nombre || !whatsapp) { alert('Escribe al menos el nombre y el WhatsApp del cliente.'); return; }
+
+  clientesDB.push({
+    nombre, whatsapp, cabana: cabana || '—',
+    entrada: fecha || '—', salida: fecha || '—', duracion,
+    total, abono, saldo: total - abono,
+    fechaReserva: fecha || new Date().toISOString().split('T')[0],
+    dejoOpinion: false, opinionTexto: ''
+  });
+
+  ['nombre','whatsapp','servicio','fecha','duracion','total','abono'].forEach(campo => {
+    document.getElementById('adm-cliente-' + campo).value = '';
+  });
+
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  d.clientesDB = clientesDB;
+  localStorage.setItem('admData', JSON.stringify(d));
+
+  renderClientesDB(document.getElementById('adm-clientes-buscador').value);
+  alert('✅ Cliente agregado a la base de datos.');
+}
+
+function guardarConfigExtras() {
+  const personasIncluidas = parseInt(document.getElementById('adm-personas-incluidas').value);
+  const precioPersonaExtra = parseInt(document.getElementById('adm-precio-persona-extra').value);
+  const precioHoraExtra = parseInt(document.getElementById('adm-precio-hora-extra').value);
+
+  if (!isNaN(personasIncluidas)) configExtras.personasIncluidas = personasIncluidas;
+  if (!isNaN(precioPersonaExtra)) configExtras.precioPersonaExtra = precioPersonaExtra;
+  if (!isNaN(precioHoraExtra)) configExtras.precioHoraExtra = precioHoraExtra;
+
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  d.configExtras = configExtras;
+  localStorage.setItem('admData', JSON.stringify(d));
+  alert('✅ Configuración de personas y horas adicionales actualizada.');
 }
 
 
