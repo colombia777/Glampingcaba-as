@@ -957,6 +957,30 @@
 
   <!-- ===== MÓDULO: SECCIÓN CONFIANZA PAGOS ===== -->
 
+  <section id="seccion-peticiones-especiales" style="background:#ffffff; padding:20px; margin:16px auto 0; max-width:860px; text-align:center; border:2px solid #1e3a1e; border-radius:16px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+    <p id="peticion-especial-titulo" style="font-family:'Playfair Display',serif; color:#1e3a1e; font-size:1.05rem; font-weight:700; margin-bottom:4px;">🎨 Arma tu servicio a tu gusto</p>
+    <p id="peticion-especial-subtitulo" style="color:#4a5a4a; font-size:0.8rem; margin-bottom:12px;">¿Tienes una idea especial que no está en nuestras 8 tarjetas? Estamos dispuestos a negociar contigo.</p>
+    <button onclick="abrirPeticionEspecial()" style="background:#ffffff; color:#1e3a1e; border:2px solid #c9a84c; padding:10px 20px; border-radius:24px; font-weight:700; font-size:0.85rem; cursor:pointer;">💬 Cuéntanos tu petición especial</button>
+  </section>
+
+  <!-- Modal de Petición Especial -->
+  <div id="modal-peticion-especial" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:700; align-items:center; justify-content:center; padding:16px;">
+    <div style="background:#ffffff; border-radius:14px; max-width:460px; width:100%; padding:20px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <p style="font-weight:700; color:#1e3a1e; font-size:0.95rem;">💬 Petición Especial</p>
+        <button onclick="cerrarPeticionEspecial()" style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:#1e3a1e;">✕</button>
+      </div>
+      <label style="display:flex; align-items:flex-start; gap:8px; font-size:0.78rem; color:#1e2a1a; margin-bottom:12px; cursor:pointer; text-align:left;">
+        <input type="checkbox" id="check-reviso-tarjetas" onchange="validarPeticionEspecial()" style="margin-top:2px;" />
+        Confirmo que ya revisé las 8 tarjetas de servicios y lo que necesito no aplica a ninguna.
+      </label>
+      <label style="font-size:0.78rem; color:#1e2a1a; display:block; margin-bottom:4px; text-align:left;">Cuéntanos qué necesitas y por qué (mínimo 50 caracteres):</label>
+      <textarea id="texto-peticion-especial" rows="4" oninput="validarPeticionEspecial()" placeholder="Ej: Necesito alquilar por 60 días seguidos, con estas condiciones..." style="width:100%; padding:8px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.85rem; color:#1e2a1a; resize:vertical;"></textarea>
+      <p id="contador-peticion-especial" style="font-size:0.7rem; color:#888; text-align:right; margin-top:2px;">0 / 50</p>
+      <button id="btn-enviar-peticion-especial" onclick="enviarPeticionEspecial()" disabled style="width:100%; margin-top:10px; background:#c9c9c9; color:#ffffff; border:none; padding:12px; border-radius:8px; font-weight:700; cursor:not-allowed;">📤 Enviar por WhatsApp</button>
+    </div>
+  </div>
+
   <section id="seccion-pagos-confianza" style="background:#f9f6f0; padding:20px; margin:16px auto; max-width:860px; border:2px solid #1e3a1e; border-radius:16px;">
     <div style="max-width:500px; margin:0 auto;">
 
@@ -1340,6 +1364,8 @@
           </div>
         </div>
 
+        <button onclick="verTerminosCondiciones()" style="width:100%; background:none; border:none; color:#6b8ab0; font-size:0.78rem; text-decoration:underline; cursor:pointer; padding:6px 0 10px; text-align:center;">📋 Términos y condiciones</button>
+
         <div style="display:grid; grid-template-columns:1fr 2fr; gap:8px;">
           <button onclick="cancelarFormularioReserva()" style="width:100%; background:transparent; color:#555; border:1.5px solid #888; padding:13px; border-radius:8px; font-size:0.85rem; font-weight:700; cursor:pointer;">↩ Cancelar</button>
           <button onclick="validarYMostrarPaso1()" style="width:100%; background:#c9a84c; color:#1e2a1a; border:2px solid #b8922a; padding:13px; border-radius:8px; font-size:0.95rem; font-weight:700; cursor:pointer;">Continuar →</button>
@@ -1416,6 +1442,8 @@
           </label>
         </div>
 
+        <button onclick="verRecomendaciones()" style="width:100%; background:none; border:none; color:#6b8ab0; font-size:0.78rem; text-decoration:underline; cursor:pointer; padding:6px 0 10px; text-align:center;">📋 Recomendaciones para tu estadía</button>
+
         <p id="aviso-confirmar-envio" style="display:none; font-size:0.8rem; color:#1e3a1e; font-weight:600; text-align:center; margin-bottom:10px; background:#eef7ee; border:1px dashed #2d6e3e; border-radius:8px; padding:10px;">✅ Comprobante listo. Para que tu reserva quede registrada y le llegue la notificación al administrador, dale clic a "Confirmar y enviar al administrador".</p>
         <button onclick="enviarReserva()" style="width:100%; background:#c9a84c; color:#1e2a1a; border:2px solid #b8922a; padding:12px; border-radius:8px; font-size:0.88rem; font-weight:700; cursor:pointer;">📤 Confirmar y enviar al administrador</button>
       </div>
@@ -1433,6 +1461,139 @@
     </div>
     </div> <!-- cierre form-reserva-container -->
   </section>
+
+  <!-- Modal de Términos y Condiciones -->
+  <div id="modal-terminos" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:700; align-items:center; justify-content:center; padding:16px;">
+    <div style="background:#ffffff; border-radius:14px; max-width:480px; width:100%; max-height:80vh; display:flex; flex-direction:column; overflow:hidden;">
+      <div style="padding:16px; border-bottom:1px solid #e3dcc9; display:flex; justify-content:space-between; align-items:center;">
+        <p style="font-weight:700; color:#1e3a1e; font-size:0.95rem;">📋 Términos y Condiciones</p>
+        <button onclick="cerrarTerminosCondiciones()" style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:#1e3a1e;">✕</button>
+      </div>
+      <div id="texto-terminos-condiciones" style="padding:16px; overflow-y:auto; font-size:0.8rem; color:#1e2a1a; line-height:1.6; white-space:pre-line;">TÉRMINOS Y CONDICIONES DE ALOJAMIENTO
+
+GLAMPING LA RESERVA
+Bienvenido a Glamping La Reserva. Nuestro propósito es brindarte una experiencia de descanso, comodidad y conexión con la naturaleza. Estos Términos y Condiciones buscan proteger tanto a nuestros huéspedes como a nuestras instalaciones, estableciendo de manera clara los derechos y responsabilidades de ambas partes, con el fin de garantizar una estadía segura, tranquila y agradable para todos.
+
+1. Aceptación
+Al realizar una reserva, efectuar un pago, ingresar a las instalaciones o utilizar cualquiera de nuestros servicios, el huésped manifiesta haber leído, comprendido y aceptado íntegramente los presentes Términos y Condiciones.
+
+2. Nuestro compromiso
+Glamping La Reserva se compromete a entregar la cabaña en adecuadas condiciones de limpieza, funcionamiento y seguridad, conforme a los servicios ofrecidos al momento de la reserva. Asimismo, brindará atención durante la estadía dentro del alcance de sus operaciones y procurará que las instalaciones permanezcan en óptimas condiciones para el disfrute de todos los huéspedes.
+
+3. Entorno natural
+Nuestro alojamiento se encuentra ubicado dentro de una reserva natural, rodeada de bosque, vegetación y fauna propia de la región. El huésped reconoce y acepta que es normal la presencia de insectos, aves, animales domésticos y fauna silvestre, así como variaciones propias del clima y del entorno natural.
+
+La presencia de zancudos, moscas, hormigas, mariposas, aves u otros animales propios de la zona hace parte de la experiencia de turismo de naturaleza y, por sí sola, no constituye un incumplimiento del servicio ni genera derecho a devolución del dinero o indemnización.
+
+Se recomienda el uso de repelente, bloqueador solar, ropa adecuada e hidratación durante la estadía, especialmente en temporadas de lluvia o altas temperaturas.
+
+4. Uso responsable de las instalaciones
+Las cabañas, el jacuzzi, los muebles, electrodomésticos, equipos, lencería, zonas comunes y demás elementos deberán utilizarse únicamente para el fin para el cual fueron diseñados.
+
+El huésped se compromete a hacer un uso responsable de todas las instalaciones y a seguir las recomendaciones de seguridad suministradas por el establecimiento.
+
+Cualquier daño ocasionado por uso inadecuado, negligencia, imprudencia o incumplimiento de las instrucciones será responsabilidad del titular de la reserva.
+
+5. Daños y reposición
+El huésped responderá por los daños o pérdidas ocasionados por él, sus acompañantes, visitantes, menores de edad o mascotas sobre las instalaciones, mobiliario, electrodomésticos, televisores, jacuzzi, lencería, toallas, sábanas, cobijas, equipos o cualquier otro bien perteneciente al establecimiento.
+
+El valor correspondiente será informado al huésped con base en el costo de reparación o reposición del bien afectado, pudiendo descontarse de la garantía entregada o cobrarse posteriormente cuando sea necesario.
+
+6. Menores de edad y mascotas
+Los menores de edad deberán permanecer bajo la supervisión permanente de sus padres o acompañantes, quienes asumirán toda responsabilidad por su cuidado y por los daños que puedan ocasionar.
+
+Cuando el establecimiento autorice el ingreso de mascotas, estas deberán permanecer bajo el control de sus propietarios durante toda la estadía. Cualquier daño ocasionado por ellas será responsabilidad exclusiva del titular de la reserva.
+
+7. Responsabilidad personal
+Cada huésped será responsable de actuar con prudencia y cuidado durante su permanencia en el establecimiento.
+
+Glamping La Reserva no será responsable por accidentes, lesiones o incidentes ocasionados por el uso inadecuado de las instalaciones, por el incumplimiento de las recomendaciones de seguridad, por la interacción voluntaria con animales propios o ajenos al establecimiento, ni por situaciones derivadas de decisiones personales del huésped que escapen al control razonable del alojamiento.
+
+8. Objetos personales
+Cada huésped es responsable del cuidado de sus pertenencias. Se recomienda mantener bajo custodia los objetos de valor.
+
+Glamping La Reserva no responderá por pérdidas, olvidos o hurtos de objetos personales, salvo cuando exista responsabilidad legal demostrada del establecimiento.
+
+9. Horarios
+El ingreso y la salida deberán realizarse dentro de los horarios establecidos en la reserva.
+
+Toda permanencia adicional estará sujeta a disponibilidad y podrá generar cobros adicionales conforme a las tarifas vigentes.
+
+10. Fuerza mayor
+Cuando por causas de fuerza mayor o caso fortuito se presenten fenómenos naturales, emergencias sanitarias, interrupciones en los servicios públicos, decisiones de autoridades competentes o cualquier otra circunstancia ajena al control del establecimiento que impida o afecte la prestación del servicio, las partes procurarán encontrar una solución razonable de conformidad con la legislación colombiana y las políticas de reserva aplicables.
+
+11. Política de reservas, cancelaciones y reprogramaciones
+Las reservas se consideran confirmadas una vez se reciba el pago del anticipo o del valor establecido por Glamping La Reserva.
+
+Las cancelaciones deberán solicitarse dentro de los siguientes plazos:
+
+- Reservas por días: con un mínimo de 24 horas de anticipación a la hora de ingreso.
+- Reservas por horas: con un mínimo de 3 horas de anticipación al inicio del servicio.
+
+Cuando la cancelación se realice dentro de estos plazos, el huésped tendrá derecho a reprogramar su reserva para una nueva fecha, de acuerdo con la disponibilidad del establecimiento. La reprogramación deberá efectuarse dentro del término que establezca Glamping La Reserva.
+
+Cuando la cancelación se realice fuera de los tiempos indicados, cuando el huésped no se presente en la fecha y hora reservadas (No Show) o decida retirarse antes de finalizar el tiempo contratado por razones personales, no habrá lugar a devolución del dinero ni del anticipo, debido a que la disponibilidad fue reservada exclusivamente para el huésped.
+
+En caso de fuerza mayor o caso fortuito debidamente demostrado, las partes procurarán llegar a una solución razonable, privilegiando la reprogramación de la reserva cuando sea posible.
+
+12. Convivencia y respeto
+Todos los huéspedes deberán mantener un comportamiento respetuoso con el personal, los demás visitantes, la naturaleza y las instalaciones.
+
+No se permitirá realizar actividades que alteren el orden, generen ruido excesivo, pongan en riesgo la seguridad de las personas o causen daños al establecimiento o al entorno natural.
+
+13. Tratamiento de datos personales
+Al realizar una reserva, diligenciar formularios o suministrar información personal, el huésped autoriza a Glamping La Reserva para recopilar, almacenar, usar y tratar sus datos personales, incluyendo nombre, documento de identidad, número telefónico, correo electrónico y demás información suministrada, exclusivamente para la administración de reservas, prestación del servicio, atención al cliente, cumplimiento de obligaciones legales, seguridad, facturación y envío de información relacionada con el alojamiento.
+
+El tratamiento de los datos personales se realizará conforme a la legislación colombiana vigente sobre protección de datos personales.
+
+14. Aceptación por medios físicos y electrónicos
+El huésped reconoce que la aceptación de estos Términos y Condiciones podrá realizarse mediante firma física, firma electrónica, selección de la casilla de aceptación dentro de la plataforma de reservas, confirmación por WhatsApp, correo electrónico o cualquier otro medio electrónico que permita evidenciar su consentimiento.
+
+Cualquiera de estos mecanismos tendrá plena validez como manifestación expresa de aceptación.
+
+15. Aceptación final
+Al leer estos Términos y Condiciones, confirmar la reserva, realizar un pago, marcar la casilla de aceptación en la plataforma, responder afirmativamente por medios electrónicos, ingresar al establecimiento o firmar este documento, el huésped declara que ha tenido la oportunidad de conocer su contenido, que lo comprende en su totalidad y que acepta voluntariamente todas sus disposiciones, comprometiéndose a cumplirlas durante su estadía.
+
+Glamping La Reserva agradece tu confianza y te desea una excelente experiencia rodeada de naturaleza. Nuestro compromiso es ofrecerte un espacio seguro, cómodo y agradable para que disfrutes al máximo tu estadía.</div>
+    </div>
+  </div>
+
+  <!-- Modal de Recomendaciones -->
+  <div id="modal-recomendaciones" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:700; align-items:center; justify-content:center; padding:16px;">
+    <div style="background:#ffffff; border-radius:14px; max-width:480px; width:100%; max-height:80vh; display:flex; flex-direction:column; overflow:hidden;">
+      <div style="padding:16px; border-bottom:1px solid #e3dcc9; display:flex; justify-content:space-between; align-items:center;">
+        <p style="font-weight:700; color:#1e3a1e; font-size:0.95rem;">📋 Recomendaciones para tu estadía</p>
+        <button onclick="cerrarRecomendaciones()" style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:#1e3a1e;">✕</button>
+      </div>
+      <div id="texto-recomendaciones" style="padding:16px; overflow-y:auto; font-size:0.8rem; color:#1e2a1a; line-height:1.6; white-space:pre-line;">RECOMENDACIONES PARA DISFRUTAR TU ESTADÍA
+
+En Glamping La Reserva queremos que vivas una experiencia inolvidable en contacto con la naturaleza. Por ello, te compartimos algunas recomendaciones que contribuirán a tu comodidad, seguridad y bienestar durante tu visita.
+
+Antes de viajar, consulta las condiciones climáticas de la zona para llevar la ropa y los elementos adecuados. En temporadas de lluvia es recomendable portar impermeable, calzado antideslizante y repelente contra insectos. En temporadas de altas temperaturas sugerimos utilizar bloqueador solar, gorra o sombrero, ropa fresca y mantener una adecuada hidratación.
+
+Recuerda que nuestro alojamiento se encuentra en un entorno natural, por lo que es normal encontrar insectos, aves y otros animales propios de la región. Te recomendamos mantener puertas y ventanas cerradas cuando no estés utilizando la cabaña y aplicar repelente si lo consideras necesario.
+
+Camina siempre con precaución, especialmente si el terreno se encuentra húmedo o resbaladizo. Evita correr por senderos, escaleras, zonas verdes o alrededor del jacuzzi, ya que podrías sufrir caídas o lesiones.
+
+Utiliza el jacuzzi de manera responsable y únicamente para el uso para el cual fue diseñado. No está permitido saltar, pararse sobre sus bordes o realizar juegos que puedan poner en riesgo tu seguridad o afectar su funcionamiento.
+
+Si visitas zonas cercanas a la reserva, evita acercarte, alimentar, acariciar o manipular animales que no pertenezcan al establecimiento, ya que su comportamiento puede ser impredecible y podrían ocasionarse accidentes.
+
+En caso de observar fauna silvestre, disfruta su presencia desde una distancia prudente y evita interferir con su hábitat natural.
+
+Si viajas con niños, mantenlos siempre bajo la supervisión de un adulto responsable. Si vienes con mascotas, procura llevarlas bajo control en todo momento, respetando a los demás huéspedes y las instalaciones.
+
+Cuida las instalaciones como si fueran tuyas. El buen uso de los muebles, equipos, lencería y zonas comunes permite que todos los visitantes disfruten de una experiencia agradable.
+
+Mantén tus objetos personales y de valor siempre bajo tu cuidado. Aunque procuramos ofrecer un ambiente seguro, es recomendable no dejar pertenencias desatendidas.
+
+Respeta el descanso de los demás huéspedes, evita ruidos excesivos y contribuye a conservar la tranquilidad y la armonía que caracterizan a Glamping La Reserva.
+
+Si durante tu estadía tienes alguna inquietud, observas una situación que requiera atención o necesitas ayuda, comunícate de inmediato con nuestro personal. Estaremos encantados de atenderte.
+
+Gracias por elegir Glamping La Reserva. Tu colaboración nos ayuda a conservar este espacio natural y a brindar una experiencia segura, responsable e inolvidable para todos nuestros visitantes.</div>
+    </div>
+  </div>
   <!-- ===== MÓDULO: SECCIÓN EXPERIENCIA NARRATIVA ===== -->
   <section id="seccion-experiencia" style="background:#ffffff; padding:20px; border-bottom:1px solid #c9a84c;">
     <div style="max-width:500px; margin:0 auto; text-align:center;">
@@ -1658,7 +1819,7 @@
 
     <div style="margin-top:14px; display:inline-block; background:#f9f6f0; border:1px solid #c9a84c; border-radius:10px; padding:10px 18px;">
       <p>🌿 <span>GLAMPING LA RESERVA</span> · Pereira, Risaralda, Colombia</p>
-      <p style="margin-top:6px; opacity:0.9;">Versión 1.0 · Actualización A#333 N#334 · Jose Alex N-R</p>
+      <p style="margin-top:6px; opacity:0.9;">Versión 1.0 · Actualización A#347 N#348 · Jose Alex N-R</p>
     </div>
   </footer>
 
@@ -1821,6 +1982,7 @@
           <button onclick="irASeccionPanel('panel-card-servicio6')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">6️⃣ Tarjeta 6 — <span id="menu-panel-nombre-servicio6">Plan Pasadía</span></button>
           <button onclick="irASeccionPanel('panel-card-servicio7')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">7️⃣ Tarjeta 7 — <span id="menu-panel-nombre-servicio7">Plan Dúo</span></button>
           <button onclick="irASeccionPanel('panel-card-servicio8')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">8️⃣ Tarjeta 8 — <span id="menu-panel-nombre-servicio8">Plan Full Dúo</span></button>
+          <button onclick="irASeccionPanel('indice-peticion-especial')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">🎨 Petición Especial</button>
           <button onclick="irASeccionPanel('indice-titulos')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">🏷️ Títulos de secciones</button>
           <button onclick="irASeccionPanel('indice-extras')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">👥🕐 Personas y horas adicionales</button>
           <button onclick="irASeccionPanel('indice-pagos')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">🅕 Pagos</button>
@@ -1834,7 +1996,10 @@
           <button onclick="irASeccionPanel('indice-faq')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">❓ FAQ</button>
           <button onclick="irASeccionPanel('indice-disponibilidad')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">📅 Disponibilidad y reservas</button>
           <button onclick="irASeccionPanel('indice-clientes')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">🗂️ Base de datos de clientes</button>
+          <button onclick="irASeccionPanel('indice-terminos')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">📋 Términos y Condiciones</button>
+          <button onclick="irASeccionPanel('indice-recomendaciones')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">📋 Recomendaciones para la Estadía</button>
           <button onclick="irASeccionPanel('indice-config')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">⚙️ Configuración general</button>
+          <button onclick="irASeccionPanel('indice-respaldo')" style="text-align:left; background:#f9f6f0; border:1px solid #e3dcc9; border-radius:6px; padding:8px 10px; font-size:0.8rem; color:#1e2a1a; cursor:pointer;">💾 Respaldo (JSON)</button>
         </div>
       </div>
 
@@ -2516,6 +2681,17 @@
         <button onclick="confirmarGuardar('¿Guardar todos los cambios de Plan Full Dúo?', function(){ guardarNombresPlanes(); guardarPreciosPlanes(); guardarSubtitulosPlanes(); guardarDescripcionesPlanes(); guardarHorarioTarjeta('servicio8'); guardarPersonasTarjeta('servicio8'); guardarHorasTarjeta('servicio8'); guardarNinosMascotasTarjeta('servicio8'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
       </div>
 
+      <!-- 🎨 Petición Especial (debajo de Tarjeta 8, respeta el orden real de la página) -->
+      <div id="indice-peticion-especial" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+        <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🎨 · Petición Especial</h3>
+        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección debajo de las 8 tarjetas — Botón para negociar servicios que no aplican a ninguna tarjeta.</p>
+        <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Título</label>
+        <input id="adm-peticion-titulo" type="text" placeholder="🎨 Arma tu servicio a tu gusto" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px; margin-bottom:10px;" />
+        <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Subtítulo</label>
+        <input id="adm-peticion-subtitulo" type="text" placeholder="¿Tienes una idea especial...?" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px; margin-bottom:10px;" />
+        <button onclick="confirmarGuardar('¿Guardar título y subtítulo de Petición Especial?', guardarTextoPeticionEspecial)" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer;">💾 Guardar textos</button>
+      </div>
+
       <!-- Títulos de las secciones (compartidos, no son por tarjeta) -->
       <div id="indice-titulos" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:8px;">🏷️ Títulos de las secciones</h3>
@@ -2730,6 +2906,15 @@ Zona de terraza/hamaca</textarea>
 
         <button onclick="agregarFAQAdmin()" style="width:100%; background:#ffffff; color:#1e2a1a; border:2px dashed #c9a84c; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem; margin-bottom:10px;">➕ Agregar nueva pregunta</button>
         <button onclick="confirmarGuardar('¿Guardar todos los cambios de preguntas frecuentes?', guardarFAQAdmin)" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar preguntas frecuentes</button>
+
+        <div style="border-top:1px dashed #c9a84c; margin-top:14px; padding-top:12px;">
+          <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:8px;">📁 Archivo exclusivo de este FAQ (útil si generas las preguntas con IA).</p>
+          <button onclick="exportarFAQJSON()" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:9px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.8rem; margin-bottom:8px;">📥 Exportar FAQ (JSON)</button>
+          <label style="display:block; width:100%; text-align:center; background:#ffffff; color:#1e2a1a; border:2px solid #c9a84c; padding:9px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.8rem;">
+            📤 Importar FAQ (JSON)
+            <input id="input-importar-faq" type="file" accept="application/json" onchange="importarFAQJSON(this)" style="display:none;" />
+          </label>
+        </div>
       </div>
 
       <!-- 📅 Disponibilidad y Reservas -->
@@ -2799,12 +2984,152 @@ Zona de terraza/hamaca</textarea>
         <p style="color:#a08a3f; font-size:0.68rem; margin-top:10px; font-style:italic;">⚠️ Datos en memoria (demo). Se reinician al recargar la página hasta conectar base de datos real.</p>
       </div>
 
+      <!-- 📋 Términos y Condiciones -->
+      <div id="indice-terminos" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+        <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">📋 · Términos y Condiciones</h3>
+        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Botón "Términos y condiciones" en Reservas — Texto legal del uso del servicio.</p>
+        <textarea id="adm-terminos-condiciones" rows="8" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.8rem; resize:vertical;">TÉRMINOS Y CONDICIONES DE ALOJAMIENTO
+
+GLAMPING LA RESERVA
+Bienvenido a Glamping La Reserva. Nuestro propósito es brindarte una experiencia de descanso, comodidad y conexión con la naturaleza. Estos Términos y Condiciones buscan proteger tanto a nuestros huéspedes como a nuestras instalaciones, estableciendo de manera clara los derechos y responsabilidades de ambas partes, con el fin de garantizar una estadía segura, tranquila y agradable para todos.
+
+1. Aceptación
+Al realizar una reserva, efectuar un pago, ingresar a las instalaciones o utilizar cualquiera de nuestros servicios, el huésped manifiesta haber leído, comprendido y aceptado íntegramente los presentes Términos y Condiciones.
+
+2. Nuestro compromiso
+Glamping La Reserva se compromete a entregar la cabaña en adecuadas condiciones de limpieza, funcionamiento y seguridad, conforme a los servicios ofrecidos al momento de la reserva. Asimismo, brindará atención durante la estadía dentro del alcance de sus operaciones y procurará que las instalaciones permanezcan en óptimas condiciones para el disfrute de todos los huéspedes.
+
+3. Entorno natural
+Nuestro alojamiento se encuentra ubicado dentro de una reserva natural, rodeada de bosque, vegetación y fauna propia de la región. El huésped reconoce y acepta que es normal la presencia de insectos, aves, animales domésticos y fauna silvestre, así como variaciones propias del clima y del entorno natural.
+
+La presencia de zancudos, moscas, hormigas, mariposas, aves u otros animales propios de la zona hace parte de la experiencia de turismo de naturaleza y, por sí sola, no constituye un incumplimiento del servicio ni genera derecho a devolución del dinero o indemnización.
+
+Se recomienda el uso de repelente, bloqueador solar, ropa adecuada e hidratación durante la estadía, especialmente en temporadas de lluvia o altas temperaturas.
+
+4. Uso responsable de las instalaciones
+Las cabañas, el jacuzzi, los muebles, electrodomésticos, equipos, lencería, zonas comunes y demás elementos deberán utilizarse únicamente para el fin para el cual fueron diseñados.
+
+El huésped se compromete a hacer un uso responsable de todas las instalaciones y a seguir las recomendaciones de seguridad suministradas por el establecimiento.
+
+Cualquier daño ocasionado por uso inadecuado, negligencia, imprudencia o incumplimiento de las instrucciones será responsabilidad del titular de la reserva.
+
+5. Daños y reposición
+El huésped responderá por los daños o pérdidas ocasionados por él, sus acompañantes, visitantes, menores de edad o mascotas sobre las instalaciones, mobiliario, electrodomésticos, televisores, jacuzzi, lencería, toallas, sábanas, cobijas, equipos o cualquier otro bien perteneciente al establecimiento.
+
+El valor correspondiente será informado al huésped con base en el costo de reparación o reposición del bien afectado, pudiendo descontarse de la garantía entregada o cobrarse posteriormente cuando sea necesario.
+
+6. Menores de edad y mascotas
+Los menores de edad deberán permanecer bajo la supervisión permanente de sus padres o acompañantes, quienes asumirán toda responsabilidad por su cuidado y por los daños que puedan ocasionar.
+
+Cuando el establecimiento autorice el ingreso de mascotas, estas deberán permanecer bajo el control de sus propietarios durante toda la estadía. Cualquier daño ocasionado por ellas será responsabilidad exclusiva del titular de la reserva.
+
+7. Responsabilidad personal
+Cada huésped será responsable de actuar con prudencia y cuidado durante su permanencia en el establecimiento.
+
+Glamping La Reserva no será responsable por accidentes, lesiones o incidentes ocasionados por el uso inadecuado de las instalaciones, por el incumplimiento de las recomendaciones de seguridad, por la interacción voluntaria con animales propios o ajenos al establecimiento, ni por situaciones derivadas de decisiones personales del huésped que escapen al control razonable del alojamiento.
+
+8. Objetos personales
+Cada huésped es responsable del cuidado de sus pertenencias. Se recomienda mantener bajo custodia los objetos de valor.
+
+Glamping La Reserva no responderá por pérdidas, olvidos o hurtos de objetos personales, salvo cuando exista responsabilidad legal demostrada del establecimiento.
+
+9. Horarios
+El ingreso y la salida deberán realizarse dentro de los horarios establecidos en la reserva.
+
+Toda permanencia adicional estará sujeta a disponibilidad y podrá generar cobros adicionales conforme a las tarifas vigentes.
+
+10. Fuerza mayor
+Cuando por causas de fuerza mayor o caso fortuito se presenten fenómenos naturales, emergencias sanitarias, interrupciones en los servicios públicos, decisiones de autoridades competentes o cualquier otra circunstancia ajena al control del establecimiento que impida o afecte la prestación del servicio, las partes procurarán encontrar una solución razonable de conformidad con la legislación colombiana y las políticas de reserva aplicables.
+
+11. Política de reservas, cancelaciones y reprogramaciones
+Las reservas se consideran confirmadas una vez se reciba el pago del anticipo o del valor establecido por Glamping La Reserva.
+
+Las cancelaciones deberán solicitarse dentro de los siguientes plazos:
+
+- Reservas por días: con un mínimo de 24 horas de anticipación a la hora de ingreso.
+- Reservas por horas: con un mínimo de 3 horas de anticipación al inicio del servicio.
+
+Cuando la cancelación se realice dentro de estos plazos, el huésped tendrá derecho a reprogramar su reserva para una nueva fecha, de acuerdo con la disponibilidad del establecimiento. La reprogramación deberá efectuarse dentro del término que establezca Glamping La Reserva.
+
+Cuando la cancelación se realice fuera de los tiempos indicados, cuando el huésped no se presente en la fecha y hora reservadas (No Show) o decida retirarse antes de finalizar el tiempo contratado por razones personales, no habrá lugar a devolución del dinero ni del anticipo, debido a que la disponibilidad fue reservada exclusivamente para el huésped.
+
+En caso de fuerza mayor o caso fortuito debidamente demostrado, las partes procurarán llegar a una solución razonable, privilegiando la reprogramación de la reserva cuando sea posible.
+
+12. Convivencia y respeto
+Todos los huéspedes deberán mantener un comportamiento respetuoso con el personal, los demás visitantes, la naturaleza y las instalaciones.
+
+No se permitirá realizar actividades que alteren el orden, generen ruido excesivo, pongan en riesgo la seguridad de las personas o causen daños al establecimiento o al entorno natural.
+
+13. Tratamiento de datos personales
+Al realizar una reserva, diligenciar formularios o suministrar información personal, el huésped autoriza a Glamping La Reserva para recopilar, almacenar, usar y tratar sus datos personales, incluyendo nombre, documento de identidad, número telefónico, correo electrónico y demás información suministrada, exclusivamente para la administración de reservas, prestación del servicio, atención al cliente, cumplimiento de obligaciones legales, seguridad, facturación y envío de información relacionada con el alojamiento.
+
+El tratamiento de los datos personales se realizará conforme a la legislación colombiana vigente sobre protección de datos personales.
+
+14. Aceptación por medios físicos y electrónicos
+El huésped reconoce que la aceptación de estos Términos y Condiciones podrá realizarse mediante firma física, firma electrónica, selección de la casilla de aceptación dentro de la plataforma de reservas, confirmación por WhatsApp, correo electrónico o cualquier otro medio electrónico que permita evidenciar su consentimiento.
+
+Cualquiera de estos mecanismos tendrá plena validez como manifestación expresa de aceptación.
+
+15. Aceptación final
+Al leer estos Términos y Condiciones, confirmar la reserva, realizar un pago, marcar la casilla de aceptación en la plataforma, responder afirmativamente por medios electrónicos, ingresar al establecimiento o firmar este documento, el huésped declara que ha tenido la oportunidad de conocer su contenido, que lo comprende en su totalidad y que acepta voluntariamente todas sus disposiciones, comprometiéndose a cumplirlas durante su estadía.
+
+Glamping La Reserva agradece tu confianza y te desea una excelente experiencia rodeada de naturaleza. Nuestro compromiso es ofrecerte un espacio seguro, cómodo y agradable para que disfrutes al máximo tu estadía.</textarea>
+        <button onclick="confirmarGuardar('¿Guardar los términos y condiciones?', guardarTerminosCondiciones)" style="margin-top:8px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer;">💾 Guardar términos y condiciones</button>
+      </div>
+
+      <!-- 📋 Recomendaciones para la Estadía -->
+      <div id="indice-recomendaciones" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+        <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">📋 · Recomendaciones para la Estadía</h3>
+        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Botón "Recomendaciones" en el Paso 3 de Reservas — También aparece en el comprobante descargable.</p>
+        <textarea id="adm-recomendaciones" rows="8" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.8rem; resize:vertical;">RECOMENDACIONES PARA DISFRUTAR TU ESTADÍA
+
+En Glamping La Reserva queremos que vivas una experiencia inolvidable en contacto con la naturaleza. Por ello, te compartimos algunas recomendaciones que contribuirán a tu comodidad, seguridad y bienestar durante tu visita.
+
+Antes de viajar, consulta las condiciones climáticas de la zona para llevar la ropa y los elementos adecuados. En temporadas de lluvia es recomendable portar impermeable, calzado antideslizante y repelente contra insectos. En temporadas de altas temperaturas sugerimos utilizar bloqueador solar, gorra o sombrero, ropa fresca y mantener una adecuada hidratación.
+
+Recuerda que nuestro alojamiento se encuentra en un entorno natural, por lo que es normal encontrar insectos, aves y otros animales propios de la región. Te recomendamos mantener puertas y ventanas cerradas cuando no estés utilizando la cabaña y aplicar repelente si lo consideras necesario.
+
+Camina siempre con precaución, especialmente si el terreno se encuentra húmedo o resbaladizo. Evita correr por senderos, escaleras, zonas verdes o alrededor del jacuzzi, ya que podrías sufrir caídas o lesiones.
+
+Utiliza el jacuzzi de manera responsable y únicamente para el uso para el cual fue diseñado. No está permitido saltar, pararse sobre sus bordes o realizar juegos que puedan poner en riesgo tu seguridad o afectar su funcionamiento.
+
+Si visitas zonas cercanas a la reserva, evita acercarte, alimentar, acariciar o manipular animales que no pertenezcan al establecimiento, ya que su comportamiento puede ser impredecible y podrían ocasionarse accidentes.
+
+En caso de observar fauna silvestre, disfruta su presencia desde una distancia prudente y evita interferir con su hábitat natural.
+
+Si viajas con niños, mantenlos siempre bajo la supervisión de un adulto responsable. Si vienes con mascotas, procura llevarlas bajo control en todo momento, respetando a los demás huéspedes y las instalaciones.
+
+Cuida las instalaciones como si fueran tuyas. El buen uso de los muebles, equipos, lencería y zonas comunes permite que todos los visitantes disfruten de una experiencia agradable.
+
+Mantén tus objetos personales y de valor siempre bajo tu cuidado. Aunque procuramos ofrecer un ambiente seguro, es recomendable no dejar pertenencias desatendidas.
+
+Respeta el descanso de los demás huéspedes, evita ruidos excesivos y contribuye a conservar la tranquilidad y la armonía que caracterizan a Glamping La Reserva.
+
+Si durante tu estadía tienes alguna inquietud, observas una situación que requiera atención o necesitas ayuda, comunícate de inmediato con nuestro personal. Estaremos encantados de atenderte.
+
+Gracias por elegir Glamping La Reserva. Tu colaboración nos ayuda a conservar este espacio natural y a brindar una experiencia segura, responsable e inolvidable para todos nuestros visitantes.</textarea>
+        <button onclick="confirmarGuardar('¿Guardar las recomendaciones?', guardarRecomendaciones)" style="margin-top:8px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer;">💾 Guardar recomendaciones</button>
+      </div>
+
       <!-- ⚙️ Configuración general (no ligado a una sección visual específica) -->
       <div id="indice-config" class="panel-card" style="background:#f0ece4; border-radius:12px; padding:16px; margin-bottom:0; border:1px dashed #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">⚙️ · Configuración General</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 No es una sección visual — Número de WhatsApp donde llegan las reservas.</p>
         <input id="adm-whatsapp" type="tel" placeholder="573016550121" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; background:#fffdf7; color:#1e2a1a; font-size:0.9rem;" />
         <button onclick="confirmarGuardar('¿Guardar el número de WhatsApp?', guardarWhatsApp)" style="margin-top:8px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer;">💾 Guardar número</button>
+      </div>
+
+      <!-- 💾 Respaldo JSON -->
+      <div id="indice-respaldo" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+        <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">💾 · Respaldo de tu Personalización</h3>
+        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Guarda o restaura todo lo que has editado (nombres, precios, textos, config.). Útil al pasar de este celular al Hosting real.</p>
+        <button onclick="exportarRespaldoJSON()" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer;">📥 Exportar respaldo (JSON)</button>
+        <p style="text-align:center; font-size:0.68rem; color:#6b6b6b; margin:4px 0 10px;">↓ Descarga el archivo a tu celular</p>
+        <label style="display:block; width:100%; text-align:center; background:#ffffff; color:#1e2a1a; border:2px solid #c9a84c; padding:10px; border-radius:8px; font-weight:700; cursor:pointer;">
+          📤 Importar respaldo (JSON)
+          <input id="input-importar-json" type="file" accept="application/json" onchange="importarRespaldoJSON(this)" style="display:none;" />
+        </label>
+        <p style="text-align:center; font-size:0.68rem; color:#6b6b6b; margin:4px 0 0;">↑ Sube aquí el archivo que ya descargaste</p>
       </div>
 
       <button onclick="cerrarAdmin()" style="margin-top:24px; width:100%; background:transparent; color:#1e3a1e; border:2px solid #1e3a1e; padding:12px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.9rem;">✕ Cerrar panel</button>
@@ -4064,9 +4389,17 @@ function construirDetalleReal(reservaData) {
 }
 
 // ===== ENVIAR RESERVA =====
+function generarConsecutivoReserva() {
+  let n = parseInt(localStorage.getItem('consecutivoReserva') || '0');
+  n++;
+  localStorage.setItem('consecutivoReserva', n);
+  return String(n).padStart(4, '0');
+}
+
 function enviarReserva() {
   const archivo = document.getElementById('res-comprobante').files[0];
   if (!archivo) { alert('Por favor sube el comprobante de pago.'); return; }
+  reservaData.consecutivo = generarConsecutivoReserva();
 
   // Bloquear fechas en Firebase demo (con hora real de entrada/salida + trazabilidad del cliente)
   const saldoPendiente = (reservaData.total || 0) - (reservaData.abono || 0);
@@ -4107,7 +4440,8 @@ function enviarReserva() {
 
   // Mensaje para el administrador
   const msgAdmin = encodeURIComponent(
-    `🏕️ *NUEVA RESERVA - Glamping La Reserva*\n\n` +
+    `🏕️ *NUEVA RESERVA - Glamping La Reserva*\n` +
+    `N° ${reservaData.consecutivo}\n\n` +
     `👤 Cliente: ${reservaData.nombre}\n` +
     `📱 WhatsApp: ${reservaData.tel}\n\n` +
     `🏠 Cabaña: ${serviciosInfo[reservaData.cabana].nombre}\n` +
@@ -4129,7 +4463,8 @@ function enviarReserva() {
 
   // Mensaje para el cliente — comprobante con derechos y términos
   const msgCliente = encodeURIComponent(
-    `✅ *Reserva confirmada - Glamping La Reserva*\n\n` +
+    `✅ *Reserva confirmada - Glamping La Reserva*\n` +
+    `N° ${reservaData.consecutivo}\n\n` +
     `Hola ${reservaData.nombre}, tu reserva fue enviada exitosamente.\n\n` +
     `━━━━━━━━━━━━━━━━━━\n` +
     `🏠 *DETALLE DE TU RESERVA*\n` +
@@ -4350,6 +4685,7 @@ function descargarComprobante() {
     { txt: 'Vereda Laguneta · Finca La Reserva', size: 13, color: '#f0ece4' },
     { sep: true },
     { txt: '✅ COMPROBANTE DE RESERVA', size: 16, bold: true, color: '#c9a84c' },
+    { txt: 'N° ' + (d.consecutivo || '----'), size: 13, bold: true, color: '#ffffff' },
     { sep: true },
     { txt: 'Cliente: ' + d.nombre, size: 14, color: '#ffffff' },
     { txt: 'WhatsApp: ' + d.tel, size: 14, color: '#ffffff' },
@@ -4366,8 +4702,10 @@ function descargarComprobante() {
     { txt: 'Abono (' + abonoTipo + '): $' + d.abono.toLocaleString('es-CO'), size: 14, bold: true, color: '#c9a84c' },
     { txt: 'Método de pago: ' + (d.metodo || '').toUpperCase(), size: 13, color: '#ffffff' },
     { sep: true },
-    { txt: '🎯 A LO QUE TIENES DERECHO', size: 15, bold: true, color: '#c9a84c' },
+    { txt: '✅ SERVICIOS INCLUIDOS EN TU PAGO', size: 15, bold: true, color: '#c9a84c' },
     ...construirDetalleReal(d).split('\n').filter(l => l.trim() && !l.includes('Servicios incluidos en tu pago')).map(l => ({ txt: l, size: 12, color: '#f0ece4' })),
+    { sep: true },
+    { txt: '📋 Revisa las recomendaciones para tu estadía en el sitio (Paso 3 de tu reserva).', size: 11, color: '#f0ece4' },
     { sep: true },
     { txt: 'Generado: ' + new Date().toLocaleString('es-CO'), size: 12, color: '#aaaaaa' },
     { txt: 'Conserva este comprobante.', size: 12, color: '#aaaaaa' },
@@ -4425,6 +4763,51 @@ function descargarComprobante() {
 function cerrarReserva() {}  // compatibilidad
 
 
+
+// ===== TÉRMINOS Y CONDICIONES =====
+function verTerminosCondiciones() {
+  document.getElementById('modal-terminos').style.display = 'flex';
+}
+
+function cerrarTerminosCondiciones() {
+  document.getElementById('modal-terminos').style.display = 'none';
+}
+
+function verRecomendaciones() {
+  document.getElementById('modal-recomendaciones').style.display = 'flex';
+}
+
+function cerrarRecomendaciones() {
+  document.getElementById('modal-recomendaciones').style.display = 'none';
+}
+
+// ===== PETICIÓN ESPECIAL (nueva sección, aislada del resto de la lógica) =====
+function abrirPeticionEspecial() {
+  document.getElementById('modal-peticion-especial').style.display = 'flex';
+}
+
+function cerrarPeticionEspecial() {
+  document.getElementById('modal-peticion-especial').style.display = 'none';
+}
+
+function validarPeticionEspecial() {
+  const texto = document.getElementById('texto-peticion-especial').value.trim();
+  const checked = document.getElementById('check-reviso-tarjetas').checked;
+  const btn = document.getElementById('btn-enviar-peticion-especial');
+  document.getElementById('contador-peticion-especial').textContent = texto.length + ' / 50';
+  const habilitado = texto.length >= 50 && checked;
+  btn.disabled = !habilitado;
+  btn.style.background = habilitado ? '#c9a84c' : '#c9c9c9';
+  btn.style.cursor = habilitado ? 'pointer' : 'not-allowed';
+}
+
+function enviarPeticionEspecial() {
+  const texto = document.getElementById('texto-peticion-especial').value.trim();
+  if (texto.length < 50 || !document.getElementById('check-reviso-tarjetas').checked) return;
+  const mensaje = encodeURIComponent('🎨 *Petición especial - Glamping La Reserva*\n\n' + texto);
+  window.open('https://wa.me/' + ADMIN_WA + '?text=' + mensaje, '_blank');
+  cerrarPeticionEspecial();
+}
 
 
 function renderFAQLista() {
@@ -4843,6 +5226,28 @@ function subirVideo(input) {
     if (d.foto_pasadia)  { const img = document.querySelector('[alt="Pasadía"]');          if(img) img.src = d.foto_pasadia; }
     if (d.videoHero) { const v = document.querySelector('.hero-video-wrapper video'); if(v) { v.src = d.videoHero; v.load(); } }
     if (d.nombreEmpresa) { const el = document.getElementById('nombre-empresa-texto'); if (el) el.textContent = d.nombreEmpresa; }
+    if (d.terminosCondiciones) {
+      const el = document.getElementById('texto-terminos-condiciones');
+      if (el) el.textContent = d.terminosCondiciones;
+      const campo = document.getElementById('adm-terminos-condiciones');
+      if (campo) campo.value = d.terminosCondiciones;
+    }
+    if (d.peticionEspecial) {
+      const t = document.getElementById('peticion-especial-titulo');
+      const s = document.getElementById('peticion-especial-subtitulo');
+      if (t && d.peticionEspecial.titulo) t.textContent = d.peticionEspecial.titulo;
+      if (s && d.peticionEspecial.subtitulo) s.textContent = d.peticionEspecial.subtitulo;
+      const campoT = document.getElementById('adm-peticion-titulo');
+      const campoS = document.getElementById('adm-peticion-subtitulo');
+      if (campoT && d.peticionEspecial.titulo) campoT.value = d.peticionEspecial.titulo;
+      if (campoS && d.peticionEspecial.subtitulo) campoS.value = d.peticionEspecial.subtitulo;
+    }
+    if (d.recomendaciones) {
+      const el = document.getElementById('texto-recomendaciones');
+      if (el) el.textContent = d.recomendaciones;
+      const campo = document.getElementById('adm-recomendaciones');
+      if (campo) campo.value = d.recomendaciones;
+    }
     if (d.fotosTestimonios) {
       Object.keys(d.fotosTestimonios).forEach(function(n) {
         const img = document.getElementById('foto-testimonio-' + n);
@@ -5654,6 +6059,112 @@ function subirFotoTestimonio(input, num) {
     alert('✅ Foto del testimonio ' + num + ' actualizada.');
   };
   reader.readAsDataURL(file);
+}
+
+// ===== RESPALDO / RESTAURACIÓN JSON (para migrar al Hosting real) =====
+function exportarRespaldoJSON() {
+  const d = localStorage.getItem('admData') || '{}';
+  const blob = new Blob([d], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'glamping-respaldo-' + new Date().toISOString().split('T')[0] + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  alert('✅ Respaldo descargado. Guárdalo en un lugar seguro.');
+}
+
+function importarRespaldoJSON(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const datos = JSON.parse(e.target.result);
+      localStorage.setItem('admData', JSON.stringify(datos));
+      alert('✅ Respaldo importado. La página se va a recargar para aplicar todo.');
+      location.reload();
+    } catch (err) {
+      alert('⚠️ Ese archivo no es un respaldo válido.');
+    }
+  };
+  reader.readAsText(file);
+}
+
+// ===== TÉRMINOS Y CONDICIONES =====
+function guardarTerminosCondiciones() {
+  const texto = document.getElementById('adm-terminos-condiciones').value.trim();
+  if (!texto) { alert('⚠️ Escribe el texto antes de guardar.'); return; }
+  const el = document.getElementById('texto-terminos-condiciones');
+  if (el) el.textContent = texto;
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  d.terminosCondiciones = texto;
+  localStorage.setItem('admData', JSON.stringify(d));
+  alert('✅ Términos y condiciones guardados.');
+}
+
+// ===== TEXTOS DE PETICIÓN ESPECIAL (nueva sección, aislada) =====
+function guardarTextoPeticionEspecial() {
+  const titulo = document.getElementById('adm-peticion-titulo').value.trim();
+  const subtitulo = document.getElementById('adm-peticion-subtitulo').value.trim();
+  if (titulo) document.getElementById('peticion-especial-titulo').textContent = titulo;
+  if (subtitulo) document.getElementById('peticion-especial-subtitulo').textContent = subtitulo;
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  d.peticionEspecial = { titulo, subtitulo };
+  localStorage.setItem('admData', JSON.stringify(d));
+  alert('✅ Textos actualizados.');
+}
+
+// ===== EXPORTAR / IMPORTAR SOLO FAQ (archivo identificado, no confundir con respaldo general) =====
+function exportarFAQJSON() {
+  const paquete = { tipo: 'glamping-faq', version: 1, faqLista: faqLista };
+  const blob = new Blob([JSON.stringify(paquete, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'glamping-preguntas-frecuentes.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  alert('✅ Archivo de preguntas frecuentes descargado.');
+}
+
+function importarFAQJSON(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const datos = JSON.parse(e.target.result);
+      if (datos.tipo !== 'glamping-faq' || !Array.isArray(datos.faqLista)) {
+        alert('⚠️ Este archivo no es un JSON de Preguntas Frecuentes válido.');
+        return;
+      }
+      faqLista.length = 0;
+      datos.faqLista.forEach(item => faqLista.push(item));
+      renderFAQAdmin();
+      guardarFAQAdmin();
+      alert('✅ Preguntas frecuentes importadas (' + faqLista.length + ' preguntas).');
+    } catch (err) {
+      alert('⚠️ Ese archivo no es un JSON válido.');
+    }
+  };
+  reader.readAsText(file);
+}
+
+// ===== RECOMENDACIONES PARA LA ESTADÍA =====
+function guardarRecomendaciones() {
+  const texto = document.getElementById('adm-recomendaciones').value.trim();
+  if (!texto) { alert('⚠️ Escribe el texto antes de guardar.'); return; }
+  const el = document.getElementById('texto-recomendaciones');
+  if (el) el.textContent = texto;
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  d.recomendaciones = texto;
+  localStorage.setItem('admData', JSON.stringify(d));
+  alert('✅ Recomendaciones guardadas.');
 }
 
 
