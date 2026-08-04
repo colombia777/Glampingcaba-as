@@ -1980,7 +1980,7 @@ Gracias por elegir Glamping La Reserva. Tu colaboración nos ayuda a conservar e
 
     <div style="margin-top:14px; display:inline-block; background:#f9f6f0; border:1px solid #c9a84c; border-radius:10px; padding:10px 18px;">
       <p>🌿 <span>GLAMPING LA RESERVA</span> · Pereira, Risaralda, Colombia</p>
-      <p style="margin-top:6px; opacity:0.9;">Versión 1.0 · Actualización A#484 N#485 · Jose Alex N-R</p>
+      <p style="margin-top:6px; opacity:0.9;">Versión 1.0 · Actualización A#485 N#486 · Jose Alex N-R</p>
     </div>
 
     <br>
@@ -2308,7 +2308,8 @@ WiFi + Smart TV</textarea>
             <div><label style="font-size:0.72rem; color:#1e2a1a;">Hora salida</label><select id="hora-fija-salida-servicio1" style="width:100%; padding:6px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.82rem; margin-top:2px;"><option value="">-- Elige --</option><option value="00:00">12:00 AM</option><option value="01:00">1:00 AM</option><option value="02:00">2:00 AM</option><option value="03:00">3:00 AM</option><option value="04:00">4:00 AM</option><option value="05:00">5:00 AM</option><option value="06:00">6:00 AM</option><option value="07:00">7:00 AM</option><option value="08:00">8:00 AM</option><option value="09:00">9:00 AM</option><option value="10:00">10:00 AM</option><option value="11:00">11:00 AM</option><option value="12:00">12:00 PM</option><option value="13:00">1:00 PM</option><option value="14:00">2:00 PM</option><option value="15:00">3:00 PM</option><option value="16:00">4:00 PM</option><option value="17:00">5:00 PM</option><option value="18:00">6:00 PM</option><option value="19:00">7:00 PM</option><option value="20:00">8:00 PM</option><option value="21:00">9:00 PM</option><option value="22:00">10:00 PM</option><option value="23:00">11:00 PM</option></select></div>
           </div>
         </div>
-        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresCabanas(); guardarPrecios(); guardarSubtitulosCabanas(); guardarDescripcionesCabanas(); guardarHorarioTarjeta('servicio1'); guardarPersonasTarjeta('servicio1'); guardarHorasTarjeta('servicio1'); guardarNinosMascotasTarjeta('servicio1'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
+        <label style="display:flex; align-items:center; gap:6px; font-size:0.78rem; color:#1e2a1a; margin-top:10px; cursor:pointer;"><input type="checkbox" id="bloqueo-finsemana-servicio1" /> 🔒 Bloquear viernes previo festivo, sábado, domingo y lunes festivo</label>
+        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresCabanas(); guardarPrecios(); guardarSubtitulosCabanas(); guardarDescripcionesCabanas(); guardarHorarioTarjeta('servicio1'); guardarPersonasTarjeta('servicio1'); guardarHorasTarjeta('servicio1'); guardarNinosMascotasTarjeta('servicio1'); guardarBloqueoFinSemana('servicio1'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
         <div style="border-top:1px solid #e3dcc9; margin-top:14px; padding-top:10px;">
           <p style="color:#1e3a1e; font-weight:700; font-size:0.76rem; margin-bottom:6px;">📍 ¿Cómo llegar? (independiente de esta tarjeta)</p>
           <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Dirección</label>
@@ -2410,7 +2411,8 @@ WiFi + Smart TV</textarea>
             <div><label style="font-size:0.72rem; color:#1e2a1a;">Hora salida</label><select id="hora-fija-salida-servicio2" style="width:100%; padding:6px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.82rem; margin-top:2px;"><option value="">-- Elige --</option><option value="00:00">12:00 AM</option><option value="01:00">1:00 AM</option><option value="02:00">2:00 AM</option><option value="03:00">3:00 AM</option><option value="04:00">4:00 AM</option><option value="05:00">5:00 AM</option><option value="06:00">6:00 AM</option><option value="07:00">7:00 AM</option><option value="08:00">8:00 AM</option><option value="09:00">9:00 AM</option><option value="10:00">10:00 AM</option><option value="11:00">11:00 AM</option><option value="12:00">12:00 PM</option><option value="13:00">1:00 PM</option><option value="14:00">2:00 PM</option><option value="15:00">3:00 PM</option><option value="16:00">4:00 PM</option><option value="17:00">5:00 PM</option><option value="18:00">6:00 PM</option><option value="19:00">7:00 PM</option><option value="20:00">8:00 PM</option><option value="21:00">9:00 PM</option><option value="22:00">10:00 PM</option><option value="23:00">11:00 PM</option></select></div>
           </div>
         </div>
-        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresCabanas(); guardarPrecios(); guardarSubtitulosCabanas(); guardarDescripcionesCabanas(); guardarHorarioTarjeta('servicio2'); guardarPersonasTarjeta('servicio2'); guardarHorasTarjeta('servicio2'); guardarNinosMascotasTarjeta('servicio2'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
+        <label style="display:flex; align-items:center; gap:6px; font-size:0.78rem; color:#1e2a1a; margin-top:10px; cursor:pointer;"><input type="checkbox" id="bloqueo-finsemana-servicio2" /> 🔒 Bloquear viernes previo festivo, sábado, domingo y lunes festivo</label>
+        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresCabanas(); guardarPrecios(); guardarSubtitulosCabanas(); guardarDescripcionesCabanas(); guardarHorarioTarjeta('servicio2'); guardarPersonasTarjeta('servicio2'); guardarHorasTarjeta('servicio2'); guardarNinosMascotasTarjeta('servicio2'); guardarBloqueoFinSemana('servicio2'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
         <div style="border-top:1px solid #e3dcc9; margin-top:14px; padding-top:10px;">
           <p style="color:#1e3a1e; font-weight:700; font-size:0.76rem; margin-bottom:6px;">📍 ¿Cómo llegar? (independiente de esta tarjeta)</p>
           <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Dirección</label>
@@ -2512,7 +2514,8 @@ WiFi + Smart TV</textarea>
             <div><label style="font-size:0.72rem; color:#1e2a1a;">Hora salida</label><select id="hora-fija-salida-servicio3" style="width:100%; padding:6px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.82rem; margin-top:2px;"><option value="">-- Elige --</option><option value="00:00">12:00 AM</option><option value="01:00">1:00 AM</option><option value="02:00">2:00 AM</option><option value="03:00">3:00 AM</option><option value="04:00">4:00 AM</option><option value="05:00">5:00 AM</option><option value="06:00">6:00 AM</option><option value="07:00">7:00 AM</option><option value="08:00">8:00 AM</option><option value="09:00">9:00 AM</option><option value="10:00">10:00 AM</option><option value="11:00">11:00 AM</option><option value="12:00">12:00 PM</option><option value="13:00">1:00 PM</option><option value="14:00">2:00 PM</option><option value="15:00">3:00 PM</option><option value="16:00">4:00 PM</option><option value="17:00">5:00 PM</option><option value="18:00">6:00 PM</option><option value="19:00">7:00 PM</option><option value="20:00">8:00 PM</option><option value="21:00">9:00 PM</option><option value="22:00">10:00 PM</option><option value="23:00">11:00 PM</option></select></div>
           </div>
         </div>
-        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresCabanas(); guardarPrecios(); guardarSubtitulosCabanas(); guardarDescripcionesCabanas(); guardarHorarioTarjeta('servicio3'); guardarPersonasTarjeta('servicio3'); guardarHorasTarjeta('servicio3'); guardarNinosMascotasTarjeta('servicio3'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
+        <label style="display:flex; align-items:center; gap:6px; font-size:0.78rem; color:#1e2a1a; margin-top:10px; cursor:pointer;"><input type="checkbox" id="bloqueo-finsemana-servicio3" /> 🔒 Bloquear viernes previo festivo, sábado, domingo y lunes festivo</label>
+        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresCabanas(); guardarPrecios(); guardarSubtitulosCabanas(); guardarDescripcionesCabanas(); guardarHorarioTarjeta('servicio3'); guardarPersonasTarjeta('servicio3'); guardarHorasTarjeta('servicio3'); guardarNinosMascotasTarjeta('servicio3'); guardarBloqueoFinSemana('servicio3'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
         <div style="border-top:1px solid #e3dcc9; margin-top:14px; padding-top:10px;">
           <p style="color:#1e3a1e; font-weight:700; font-size:0.76rem; margin-bottom:6px;">📍 ¿Cómo llegar? (independiente de esta tarjeta)</p>
           <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Dirección</label>
@@ -2614,7 +2617,8 @@ WiFi + Smart TV</textarea>
             <div><label style="font-size:0.72rem; color:#1e2a1a;">Hora salida</label><select id="hora-fija-salida-servicio4" style="width:100%; padding:6px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.82rem; margin-top:2px;"><option value="">-- Elige --</option><option value="00:00">12:00 AM</option><option value="01:00">1:00 AM</option><option value="02:00">2:00 AM</option><option value="03:00">3:00 AM</option><option value="04:00">4:00 AM</option><option value="05:00">5:00 AM</option><option value="06:00">6:00 AM</option><option value="07:00">7:00 AM</option><option value="08:00">8:00 AM</option><option value="09:00">9:00 AM</option><option value="10:00">10:00 AM</option><option value="11:00">11:00 AM</option><option value="12:00">12:00 PM</option><option value="13:00">1:00 PM</option><option value="14:00">2:00 PM</option><option value="15:00">3:00 PM</option><option value="16:00">4:00 PM</option><option value="17:00">5:00 PM</option><option value="18:00">6:00 PM</option><option value="19:00">7:00 PM</option><option value="20:00">8:00 PM</option><option value="21:00">9:00 PM</option><option value="22:00">10:00 PM</option><option value="23:00">11:00 PM</option></select></div>
           </div>
         </div>
-        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresCabanas(); guardarPrecios(); guardarSubtitulosCabanas(); guardarDescripcionesCabanas(); guardarHorarioTarjeta('servicio4'); guardarPersonasTarjeta('servicio4'); guardarHorasTarjeta('servicio4'); guardarNinosMascotasTarjeta('servicio4'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
+        <label style="display:flex; align-items:center; gap:6px; font-size:0.78rem; color:#1e2a1a; margin-top:10px; cursor:pointer;"><input type="checkbox" id="bloqueo-finsemana-servicio4" /> 🔒 Bloquear viernes previo festivo, sábado, domingo y lunes festivo</label>
+        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresCabanas(); guardarPrecios(); guardarSubtitulosCabanas(); guardarDescripcionesCabanas(); guardarHorarioTarjeta('servicio4'); guardarPersonasTarjeta('servicio4'); guardarHorasTarjeta('servicio4'); guardarNinosMascotasTarjeta('servicio4'); guardarBloqueoFinSemana('servicio4'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
         <div style="border-top:1px solid #e3dcc9; margin-top:14px; padding-top:10px;">
           <p style="color:#1e3a1e; font-weight:700; font-size:0.76rem; margin-bottom:6px;">📍 ¿Cómo llegar? (independiente de esta tarjeta)</p>
           <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Dirección</label>
@@ -2716,7 +2720,8 @@ WiFi + Smart TV</textarea>
             <div><label style="font-size:0.72rem; color:#1e2a1a;">Hora salida</label><select id="hora-fija-salida-servicio5" style="width:100%; padding:6px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.82rem; margin-top:2px;"><option value="">-- Elige --</option><option value="00:00">12:00 AM</option><option value="01:00">1:00 AM</option><option value="02:00">2:00 AM</option><option value="03:00">3:00 AM</option><option value="04:00">4:00 AM</option><option value="05:00">5:00 AM</option><option value="06:00">6:00 AM</option><option value="07:00">7:00 AM</option><option value="08:00">8:00 AM</option><option value="09:00">9:00 AM</option><option value="10:00">10:00 AM</option><option value="11:00">11:00 AM</option><option value="12:00">12:00 PM</option><option value="13:00">1:00 PM</option><option value="14:00">2:00 PM</option><option value="15:00">3:00 PM</option><option value="16:00">4:00 PM</option><option value="17:00">5:00 PM</option><option value="18:00">6:00 PM</option><option value="19:00">7:00 PM</option><option value="20:00">8:00 PM</option><option value="21:00">9:00 PM</option><option value="22:00">10:00 PM</option><option value="23:00">11:00 PM</option></select></div>
           </div>
         </div>
-        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresPlanes(); guardarPreciosPlanes(); guardarSubtitulosPlanes(); guardarDescripcionesPlanes(); guardarHorarioTarjeta('servicio5'); guardarPersonasTarjeta('servicio5'); guardarHorasTarjeta('servicio5'); guardarNinosMascotasTarjeta('servicio5'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
+        <label style="display:flex; align-items:center; gap:6px; font-size:0.78rem; color:#1e2a1a; margin-top:10px; cursor:pointer;"><input type="checkbox" id="bloqueo-finsemana-servicio5" /> 🔒 Bloquear viernes previo festivo, sábado, domingo y lunes festivo</label>
+        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresPlanes(); guardarPreciosPlanes(); guardarSubtitulosPlanes(); guardarDescripcionesPlanes(); guardarHorarioTarjeta('servicio5'); guardarPersonasTarjeta('servicio5'); guardarHorasTarjeta('servicio5'); guardarNinosMascotasTarjeta('servicio5'); guardarBloqueoFinSemana('servicio5'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
         <div style="border-top:1px solid #e3dcc9; margin-top:14px; padding-top:10px;">
           <p style="color:#1e3a1e; font-weight:700; font-size:0.76rem; margin-bottom:6px;">📍 ¿Cómo llegar? (independiente de esta tarjeta)</p>
           <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Dirección</label>
@@ -2818,7 +2823,8 @@ WiFi + Smart TV</textarea>
             <div><label style="font-size:0.72rem; color:#1e2a1a;">Hora salida</label><select id="hora-fija-salida-servicio6" style="width:100%; padding:6px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.82rem; margin-top:2px;"><option value="">-- Elige --</option><option value="00:00">12:00 AM</option><option value="01:00">1:00 AM</option><option value="02:00">2:00 AM</option><option value="03:00">3:00 AM</option><option value="04:00">4:00 AM</option><option value="05:00">5:00 AM</option><option value="06:00">6:00 AM</option><option value="07:00">7:00 AM</option><option value="08:00">8:00 AM</option><option value="09:00">9:00 AM</option><option value="10:00">10:00 AM</option><option value="11:00">11:00 AM</option><option value="12:00">12:00 PM</option><option value="13:00">1:00 PM</option><option value="14:00">2:00 PM</option><option value="15:00">3:00 PM</option><option value="16:00">4:00 PM</option><option value="17:00">5:00 PM</option><option value="18:00">6:00 PM</option><option value="19:00">7:00 PM</option><option value="20:00">8:00 PM</option><option value="21:00">9:00 PM</option><option value="22:00">10:00 PM</option><option value="23:00">11:00 PM</option></select></div>
           </div>
         </div>
-        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresPlanes(); guardarPreciosPlanes(); guardarSubtitulosPlanes(); guardarDescripcionesPlanes(); guardarHorarioTarjeta('servicio6'); guardarPersonasTarjeta('servicio6'); guardarHorasTarjeta('servicio6'); guardarNinosMascotasTarjeta('servicio6'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
+        <label style="display:flex; align-items:center; gap:6px; font-size:0.78rem; color:#1e2a1a; margin-top:10px; cursor:pointer;"><input type="checkbox" id="bloqueo-finsemana-servicio6" /> 🔒 Bloquear viernes previo festivo, sábado, domingo y lunes festivo</label>
+        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresPlanes(); guardarPreciosPlanes(); guardarSubtitulosPlanes(); guardarDescripcionesPlanes(); guardarHorarioTarjeta('servicio6'); guardarPersonasTarjeta('servicio6'); guardarHorasTarjeta('servicio6'); guardarNinosMascotasTarjeta('servicio6'); guardarBloqueoFinSemana('servicio6'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
         <div style="border-top:1px solid #e3dcc9; margin-top:14px; padding-top:10px;">
           <p style="color:#1e3a1e; font-weight:700; font-size:0.76rem; margin-bottom:6px;">📍 ¿Cómo llegar? (independiente de esta tarjeta)</p>
           <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Dirección</label>
@@ -2920,7 +2926,8 @@ WiFi + Smart TV</textarea>
             <div><label style="font-size:0.72rem; color:#1e2a1a;">Hora salida</label><select id="hora-fija-salida-servicio7" style="width:100%; padding:6px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.82rem; margin-top:2px;"><option value="">-- Elige --</option><option value="00:00">12:00 AM</option><option value="01:00">1:00 AM</option><option value="02:00">2:00 AM</option><option value="03:00">3:00 AM</option><option value="04:00">4:00 AM</option><option value="05:00">5:00 AM</option><option value="06:00">6:00 AM</option><option value="07:00">7:00 AM</option><option value="08:00">8:00 AM</option><option value="09:00">9:00 AM</option><option value="10:00">10:00 AM</option><option value="11:00">11:00 AM</option><option value="12:00">12:00 PM</option><option value="13:00">1:00 PM</option><option value="14:00">2:00 PM</option><option value="15:00">3:00 PM</option><option value="16:00">4:00 PM</option><option value="17:00">5:00 PM</option><option value="18:00">6:00 PM</option><option value="19:00">7:00 PM</option><option value="20:00">8:00 PM</option><option value="21:00">9:00 PM</option><option value="22:00">10:00 PM</option><option value="23:00">11:00 PM</option></select></div>
           </div>
         </div>
-        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresPlanes(); guardarPreciosPlanes(); guardarSubtitulosPlanes(); guardarDescripcionesPlanes(); guardarHorarioTarjeta('servicio7'); guardarPersonasTarjeta('servicio7'); guardarHorasTarjeta('servicio7'); guardarNinosMascotasTarjeta('servicio7'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
+        <label style="display:flex; align-items:center; gap:6px; font-size:0.78rem; color:#1e2a1a; margin-top:10px; cursor:pointer;"><input type="checkbox" id="bloqueo-finsemana-servicio7" /> 🔒 Bloquear viernes previo festivo, sábado, domingo y lunes festivo</label>
+        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresPlanes(); guardarPreciosPlanes(); guardarSubtitulosPlanes(); guardarDescripcionesPlanes(); guardarHorarioTarjeta('servicio7'); guardarPersonasTarjeta('servicio7'); guardarHorasTarjeta('servicio7'); guardarNinosMascotasTarjeta('servicio7'); guardarBloqueoFinSemana('servicio7'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
         <div style="border-top:1px solid #e3dcc9; margin-top:14px; padding-top:10px;">
           <p style="color:#1e3a1e; font-weight:700; font-size:0.76rem; margin-bottom:6px;">📍 ¿Cómo llegar? (independiente de esta tarjeta)</p>
           <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Dirección</label>
@@ -3022,7 +3029,8 @@ WiFi + Smart TV</textarea>
             <div><label style="font-size:0.72rem; color:#1e2a1a;">Hora salida</label><select id="hora-fija-salida-servicio8" style="width:100%; padding:6px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.82rem; margin-top:2px;"><option value="">-- Elige --</option><option value="00:00">12:00 AM</option><option value="01:00">1:00 AM</option><option value="02:00">2:00 AM</option><option value="03:00">3:00 AM</option><option value="04:00">4:00 AM</option><option value="05:00">5:00 AM</option><option value="06:00">6:00 AM</option><option value="07:00">7:00 AM</option><option value="08:00">8:00 AM</option><option value="09:00">9:00 AM</option><option value="10:00">10:00 AM</option><option value="11:00">11:00 AM</option><option value="12:00">12:00 PM</option><option value="13:00">1:00 PM</option><option value="14:00">2:00 PM</option><option value="15:00">3:00 PM</option><option value="16:00">4:00 PM</option><option value="17:00">5:00 PM</option><option value="18:00">6:00 PM</option><option value="19:00">7:00 PM</option><option value="20:00">8:00 PM</option><option value="21:00">9:00 PM</option><option value="22:00">10:00 PM</option><option value="23:00">11:00 PM</option></select></div>
           </div>
         </div>
-        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresPlanes(); guardarPreciosPlanes(); guardarSubtitulosPlanes(); guardarDescripcionesPlanes(); guardarHorarioTarjeta('servicio8'); guardarPersonasTarjeta('servicio8'); guardarHorasTarjeta('servicio8'); guardarNinosMascotasTarjeta('servicio8'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
+        <label style="display:flex; align-items:center; gap:6px; font-size:0.78rem; color:#1e2a1a; margin-top:10px; cursor:pointer;"><input type="checkbox" id="bloqueo-finsemana-servicio8" /> 🔒 Bloquear viernes previo festivo, sábado, domingo y lunes festivo</label>
+        <button onclick="confirmarGuardar('¿Guardar todos los cambios de T S?', function(){ guardarNombresPlanes(); guardarPreciosPlanes(); guardarSubtitulosPlanes(); guardarDescripcionesPlanes(); guardarHorarioTarjeta('servicio8'); guardarPersonasTarjeta('servicio8'); guardarHorasTarjeta('servicio8'); guardarNinosMascotasTarjeta('servicio8'); guardarBloqueoFinSemana('servicio8'); alert('✅ Tarjeta guardada correctamente.'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>
         <div style="border-top:1px solid #e3dcc9; margin-top:14px; padding-top:10px;">
           <p style="color:#1e3a1e; font-weight:700; font-size:0.76rem; margin-bottom:6px;">📍 ¿Cómo llegar? (independiente de esta tarjeta)</p>
           <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Dirección</label>
@@ -5081,8 +5089,8 @@ function abrirReserva(clave) {
   const info = serviciosInfo[clave];
   if (!info) return;
 
-  // Validación de fin de semana/festivo — aplica automático a cualquier tarjeta por horas
-  if (info.tipo === 'horas') {
+  // Validación de fin de semana/festivo — solo si el admin activó el bloqueo en esta tarjeta específica
+  if (info.bloqueoFinSemana) {
     const hoyValidar = new Date();
     const fechaHoyValidar = hoyValidar.toISOString().split('T')[0];
     const diaSemana = hoyValidar.getDay();
@@ -5744,6 +5752,7 @@ function subirVideo(input) {
     aplicarTarjetasActivasCustom(d);
     aplicarPersonasCustom(d);
     aplicarHorasCustom(d);
+    aplicarBloqueoFinSemanaCustom(d);
     aplicarHorasPorTarjetaCustom(d);
     aplicarNinosMascotasCustom(d);
     aplicarDescripcionesCustom(d);
@@ -7219,6 +7228,7 @@ function generarHTMLTarjetaPanel(clave, numero) {
       '<div><label style="font-size:0.72rem; color:#1e2a1a;">Hora entrada</label><select id="hora-fija-entrada-' + clave + '" style="width:100%; padding:6px; border:1px solid #c9a84c; border-radius:6px;">' + generarOpcionesHora() + '</select></div>' +
       '<div><label style="font-size:0.72rem; color:#1e2a1a;">Hora salida</label><select id="hora-fija-salida-' + clave + '" style="width:100%; padding:6px; border:1px solid #c9a84c; border-radius:6px;">' + generarOpcionesHora() + '</select></div>' +
     '</div>' +
+    '<label style="display:flex; align-items:center; gap:6px; font-size:0.78rem; color:#1e2a1a; margin-top:10px; cursor:pointer;"><input type="checkbox" id="bloqueo-finsemana-' + clave + '" /> 🔒 Bloquear viernes previo festivo, sábado, domingo y lunes festivo</label>' +
     '<label style="font-size:0.75rem; color:#1e2a1a; display:flex; align-items:center; gap:6px;"><input type="radio" id="activo-si-' + clave + '" name="activo-' + clave + '" checked onclick="guardarActivoTarjeta(\'' + clave + '\', true)" /> ✅ Disponible</label>' +
     '<label style="font-size:0.75rem; color:#1e2a1a; display:flex; align-items:center; gap:6px; margin-bottom:12px;"><input type="radio" id="activo-no-' + clave + '" name="activo-' + clave + '" onclick="guardarActivoTarjeta(\'' + clave + '\', false)" /> 🚫 Bloqueada</label>' +
     '<button onclick="confirmarGuardar(\'¿Guardar todos los cambios de esta tarjeta?\', function(){ guardarDatosTarjetaExtra(\'' + clave + '\'); })" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar esta tarjeta</button>' +
@@ -7267,6 +7277,7 @@ function guardarDatosTarjetaExtra(clave) {
   serviciosInfo[clave].mascotasIncluidas = parseInt(document.getElementById('mascotas-incluidas-' + clave).value) || 1;
   serviciosInfo[clave].precioMascotaExtra = parseInt(document.getElementById('precio-mascota-extra-' + clave).value) || 20000;
   guardarHorarioTarjeta(clave);
+  guardarBloqueoFinSemana(clave);
 
   refrescarServiciosUI();
 
@@ -7334,6 +7345,7 @@ function restaurarTarjetasExtra() {
   inicializarAcordeonPanel();
   inicializarChecklistDetalles();
   refrescarServiciosUI();
+  aplicarBloqueoFinSemanaCustom(d);
   }
 
   const eliminadas = d.tarjetasEliminadas || [];
@@ -7557,6 +7569,27 @@ function subirVideoLlegar(input, clave) {
     }
   };
   reader.readAsDataURL(file);
+}
+
+// ===== BLOQUEO DE FIN DE SEMANA/FESTIVO POR TARJETA (100% independiente, apagado de fábrica) =====
+function guardarBloqueoFinSemana(clave) {
+  const cb = document.getElementById('bloqueo-finsemana-' + clave);
+  if (!cb || !serviciosInfo[clave]) return;
+  serviciosInfo[clave].bloqueoFinSemana = cb.checked;
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  if (!d.bloqueoFinSemanaPorTarjeta) d.bloqueoFinSemanaPorTarjeta = {};
+  d.bloqueoFinSemanaPorTarjeta[clave] = cb.checked;
+  localStorage.setItem('admData', JSON.stringify(d));
+}
+
+function aplicarBloqueoFinSemanaCustom(d) {
+  if (!d.bloqueoFinSemanaPorTarjeta) return;
+  Object.keys(d.bloqueoFinSemanaPorTarjeta).forEach(function(clave) {
+    if (!serviciosInfo[clave]) return;
+    serviciosInfo[clave].bloqueoFinSemana = d.bloqueoFinSemanaPorTarjeta[clave];
+    const cb = document.getElementById('bloqueo-finsemana-' + clave);
+    if (cb) cb.checked = d.bloqueoFinSemanaPorTarjeta[clave];
+  });
 }
 
 
