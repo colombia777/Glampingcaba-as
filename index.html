@@ -1347,7 +1347,7 @@
 
         <div style="margin-bottom:12px;">
           <label style="font-size:0.82rem; color:#2a2a2a; display:block; margin-bottom:4px;">Cabaña seleccionada</label>
-          <select id="res-cabana" onchange="actualizarCalendario(); calcularTotal(); calcularFechaSalidaAutomatica(); calcularHoraSalidaAutomatica();" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.9rem; color:#1e2a3a;">
+          <select id="res-cabana" onchange="actualizarCalendario(); calcularTotal(); calcularFechaSalidaAutomatica(); calcularHoraSalidaAutomatica(); actualizarHorasDisponibles(); actualizarDuracionVisible();" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.9rem; color:#1e2a3a;">
             <option value="">— Selecciona una cabaña —</option>
             <option id="opt-servicio-servicio1" value="servicio1">T S — $280.000</option>
             <option id="opt-servicio-servicio2" value="servicio2">T S — $220.000</option>
@@ -1358,6 +1358,7 @@
             <option id="opt-servicio-servicio7" value="servicio7">T S — $390.000</option>
             <option id="opt-servicio-servicio8" value="servicio8">T S — $540.000</option>
           </select>
+          <p id="res-duracion-visible" style="font-size:0.72rem; color:#1e3a1e; font-weight:700; margin-top:4px; margin-bottom:0;"></p>
         </div>
 
         <!-- CALENDARIO DE DISPONIBILIDAD -->
@@ -1390,7 +1391,7 @@
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
           <div>
             <label style="font-size:0.82rem; color:#2a2a2a; display:block; margin-bottom:4px;">Fecha entrada</label>
-            <input type="date" id="res-entrada" onchange="calcularFechaSalidaAutomatica()" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.88rem;" />
+            <input type="date" id="res-entrada" onchange="calcularFechaSalidaAutomatica(); actualizarHorasDisponibles();" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.88rem;" />
           </div>
           <div>
             <label style="font-size:0.82rem; color:#2a2a2a; display:block; margin-bottom:4px;">Fecha salida</label>
@@ -1402,6 +1403,14 @@
           <div>
             <label style="font-size:0.82rem; color:#2a2a2a; display:block; margin-bottom:4px;">🕐 Hora entrada</label>
             <select id="res-hora-entrada" onchange="calcularHoraSalidaAutomatica()" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.9rem;">
+              <option value="00:00">12:00 AM</option>
+              <option value="01:00">1:00 AM</option>
+              <option value="02:00">2:00 AM</option>
+              <option value="03:00">3:00 AM</option>
+              <option value="04:00">4:00 AM</option>
+              <option value="05:00">5:00 AM</option>
+              <option value="06:00">6:00 AM</option>
+              <option value="07:00">7:00 AM</option>
               <option value="08:00">8:00 AM</option>
               <option value="09:00">9:00 AM</option>
               <option value="10:00">10:00 AM</option>
@@ -1419,10 +1428,19 @@
               <option value="22:00">10:00 PM</option>
               <option value="23:00">11:00 PM</option>
             </select>
+            <p id="nota-horas-disponibles" style="font-size:0.66rem; color:#6b6b6b; margin-top:4px; margin-bottom:0;">Elige primero la fecha de entrada para ver las horas disponibles ese día.</p>
           </div>
           <div>
             <label style="font-size:0.82rem; color:#2a2a2a; display:block; margin-bottom:4px;">🕐 Hora salida</label>
             <select id="res-hora-salida" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.9rem;">
+              <option value="00:00">12:00 AM</option>
+              <option value="01:00">1:00 AM</option>
+              <option value="02:00">2:00 AM</option>
+              <option value="03:00">3:00 AM</option>
+              <option value="04:00">4:00 AM</option>
+              <option value="05:00">5:00 AM</option>
+              <option value="06:00">6:00 AM</option>
+              <option value="07:00">7:00 AM</option>
               <option value="08:00">8:00 AM</option>
               <option value="09:00">9:00 AM</option>
               <option value="10:00">10:00 AM</option>
@@ -1472,22 +1490,22 @@
           <div>
             <label style="font-size:0.82rem; color:#2a2a2a; display:block; margin-bottom:4px;">Adultos</label>
             <select id="res-personas" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.9rem;">
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
+              <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5+</option>
             </select>
           </div>
         </div>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
           <div>
-            <label style="font-size:0.82rem; color:#2a2a2a; display:block; margin-bottom:4px;">👶 Niños</label>
+            <label style="font-size:0.82rem; color:#2a2a2a; display:block; margin-bottom:4px;">👶 Menores de edad</label>
             <select id="res-ninos" onchange="actualizarCamposEdadNinos()" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; font-size:0.9rem;">
-              <option value="0">0 niños</option>
-              <option value="1">1 niño</option>
-              <option value="2">2 niños</option>
-              <option value="3">3 niños</option>
+              <option value="0">0 menores</option>
+              <option value="1">1 menor</option>
+              <option value="2">2 menores</option>
+              <option value="3">3 menores</option>
               <option value="4+">4+</option>
             </select>
-            <p style="font-size:0.68rem; color:#6b6b6b; margin-top:4px; margin-bottom:0;">Niños de 7 años en adelante pagan tarifa de adulto.</p>
+            <p style="font-size:0.68rem; color:#6b6b6b; margin-top:4px; margin-bottom:0;">Los menores de 7 años en adelante pagan tarifa de adulto.</p>
             <div id="ninos-edades-container" style="margin-top:8px;"></div>
           </div>
           <div>
@@ -1513,7 +1531,7 @@
             <span>🕐 Horas adicionales:</span><strong id="res-cargo-horas"></strong>
           </div>
           <div id="res-linea-ninos" style="display:none; justify-content:space-between; margin-bottom:4px;">
-            <span>👶 Niños adicionales:</span><strong id="res-cargo-ninos"></strong>
+            <span>👶 Menores de edad adicionales:</span><strong id="res-cargo-ninos"></strong>
           </div>
           <div id="res-linea-mascotas" style="display:none; justify-content:space-between; margin-bottom:4px;">
             <span>🐾 Mascotas adicionales:</span><strong id="res-cargo-mascotas"></strong>
@@ -1752,7 +1770,7 @@ Si visitas zonas cercanas a la reserva, evita acercarte, alimentar, acariciar o 
 
 En caso de observar fauna silvestre, disfruta su presencia desde una distancia prudente y evita interferir con su hábitat natural.
 
-Si viajas con niños, mantenlos siempre bajo la supervisión de un adulto responsable. Si vienes con mascotas, procura llevarlas bajo control en todo momento, respetando a los demás huéspedes y las instalaciones.
+Si viajas con menores de edad, mantenlos siempre bajo la supervisión de un adulto responsable. Si vienes con mascotas, procura llevarlas bajo control en todo momento, respetando a los demás huéspedes y las instalaciones.
 
 Cuida las instalaciones como si fueran tuyas. El buen uso de los muebles, equipos, lencería y zonas comunes permite que todos los visitantes disfruten de una experiencia agradable.
 
@@ -1980,7 +1998,7 @@ Gracias por elegir Glamping La Reserva. Tu colaboración nos ayuda a conservar e
 
     <div style="margin-top:14px; display:inline-block; background:#f9f6f0; border:1px solid #c9a84c; border-radius:10px; padding:10px 18px;">
       <p>🌿 <span>GLAMPING LA RESERVA</span> · Pereira, Risaralda, Colombia</p>
-      <p style="margin-top:6px; opacity:0.9;">Versión 1.0 · Actualización A#485 N#486 · Jose Alex N-R</p>
+      <p style="margin-top:6px; opacity:0.9;">Versión 1.0 · Actualización A#497 N#498 · Jose Alex N-R</p>
     </div>
 
     <br>
@@ -3659,6 +3677,25 @@ const firebaseDemo = {
     const lista = this.reservasDetalle[cabana] || [];
     return lista.filter(r => r.fecha === fecha);
   },
+  // Devuelve las reservas de una fecha ya agrupadas (sin duplicar cuando una reserva cruza medianoche)
+  getGruposFecha(cabana, fecha) {
+    const detalles = this.getDetallesFecha(cabana, fecha);
+    const vistos = {};
+    const grupos = [];
+    detalles.forEach(r => {
+      const clave = r.grupoId || r.id;
+      if (vistos[clave]) return;
+      vistos[clave] = true;
+      grupos.push({
+        fechaInicio: r.fechaInicioReal || r.fecha,
+        horaInicio: r.horaInicioReal || r.horaEntrada,
+        fechaFin: r.fechaFinReal || r.fecha,
+        horaFin: r.horaFinReal || r.horaSalida,
+        cliente: r.cliente
+      });
+    });
+    return grupos;
+  },
   // Compatibilidad: devuelve la primera reserva de esa fecha (para vistas simples), o null
   getDetalleFecha(cabana, fecha) {
     const todas = this.getDetallesFecha(cabana, fecha);
@@ -3667,6 +3704,8 @@ const firebaseDemo = {
   // Verifica si un rango de hora solicitado se cruza con CUALQUIERA de las reservas ya existentes ese día
   hayCruceHorario(cabana, fecha, horaEntradaNueva, horaSalidaNueva) {
     const todas = this.getDetallesFecha(cabana, fecha);
+    // Si alguna reserva de ese día llega hasta el final (11:59 PM), la fecha queda consumida por completo
+    if (todas.some(r => r.horaSalida === '23:59')) return true;
     return todas.some(existente => (horaEntradaNueva < existente.horaSalida) && (horaSalidaNueva > existente.horaEntrada));
   },
   // Recorre todo el rango entrada→salida y devuelve la primera fecha en conflicto (o null si no hay ninguna)
@@ -3689,6 +3728,7 @@ const firebaseDemo = {
   },
   bloquearFechas(cabana, entrada, salida, horaEntrada, horaSalida, infoCliente) {
     if (!this.reservasDetalle[cabana]) this.reservasDetalle[cabana] = [];
+    const grupoId = 'g' + Date.now() + Math.random().toString(36).slice(2, 7);
     let d = new Date(entrada);
     const fin = new Date(salida);
     const totalDias = Math.max(1, Math.round((fin - d) / 86400000) + 1);
@@ -3699,7 +3739,7 @@ const firebaseDemo = {
       const esUltimo = i === totalDias - 1;
       const nuevaEntrada = esPrimero ? (horaEntrada || '15:00') : '00:00';
       const nuevaSalida  = esUltimo  ? (horaSalida  || '11:00') : '23:59';
-      const entry = { id: 'r' + Date.now() + Math.random().toString(36).slice(2, 7), fecha:f, horaEntrada:nuevaEntrada, horaSalida:nuevaSalida };
+      const entry = { id: 'r' + Date.now() + Math.random().toString(36).slice(2, 7), grupoId: grupoId, fechaInicioReal: entrada, fechaFinReal: salida, horaInicioReal: horaEntrada, horaFinReal: horaSalida, fecha:f, horaEntrada:nuevaEntrada, horaSalida:nuevaSalida };
       if (infoCliente) entry.cliente = infoCliente;
       this.reservasDetalle[cabana].push(entry);
       d.setDate(d.getDate() + 1);
@@ -3708,11 +3748,14 @@ const firebaseDemo = {
   },
   // Verificar si ese día tiene algún horario cerrado (totalmente reservado)
   getFechaTotalmenteReservada(cabana, fecha) {
-    return this.getDetallesFecha(cabana, fecha).some(r => r.horaEntrada === '00:00' && r.horaSalida === '23:59');
+    return this.getDetallesFecha(cabana, fecha).some(r => r.horaSalida === '23:59');
   },
   // Calcula los huecos de horario libres ese día que alcancen las horas necesarias
   calcularHorasLibres(cabana, fecha, horasNecesarias) {
     const reservas = this.getDetallesFecha(cabana, fecha).slice().sort((a, b) => a.horaEntrada.localeCompare(b.horaEntrada));
+    // Si alguna reserva llega hasta el final del día (11:59 PM), esa fecha queda consumida por completo
+    const llegaHastaFinDelDia = reservas.some(r => r.horaSalida === '23:59');
+    if (llegaHastaFinDelDia) return [];
     const gaps = [];
     let cursor = '00:00';
     reservas.forEach(r => {
@@ -4254,6 +4297,62 @@ function toggleComoLlegar(clave, btn) {
 
 // ===== MÓDULO: RESERVACIONES (CALENDARIO + FLUJO 4 PASOS) =====
 
+function actualizarDuracionVisible() {
+  const cabana = document.getElementById('res-cabana').value;
+  const info = serviciosInfo[cabana];
+  const el = document.getElementById('res-duracion-visible');
+  if (!el) return;
+  el.textContent = info ? '🕐 Duración: ' + info.horasIncluidas + ' horas incluidas' : '';
+}
+
+function actualizarHorasDisponibles() {
+  const cabana = document.getElementById('res-cabana').value;
+  const info = serviciosInfo[cabana];
+  const fechaEntrada = document.getElementById('res-entrada').value;
+  const selEntrada = document.getElementById('res-hora-entrada');
+  const nota = document.getElementById('nota-horas-disponibles');
+  if (!info || !fechaEntrada || info.horarioCerrado) return;
+
+  const valorActual = selEntrada.value;
+  let algunaDisponible = false;
+  let primeraDisponible = null;
+
+  Array.from(selEntrada.options).forEach(function(opt) {
+    const horaCandidata = opt.value;
+    const inicio = new Date(fechaEntrada + 'T' + horaCandidata + ':00');
+    const fin = new Date(inicio.getTime() + info.horasIncluidas * 3600000);
+    const fechaSalidaCand = fin.getFullYear() + '-' + String(fin.getMonth() + 1).padStart(2, '0') + '-' + String(fin.getDate()).padStart(2, '0');
+    const horaSalidaCand = String(fin.getHours()).padStart(2, '0') + ':' + String(fin.getMinutes()).padStart(2, '0');
+    const conflicto = firebaseDemo.hayConflictoRango(cabana, fechaEntrada, fechaSalidaCand, horaCandidata, horaSalidaCand);
+    if (conflicto) {
+      opt.hidden = true;
+      opt.disabled = true;
+    } else {
+      opt.hidden = false;
+      opt.disabled = false;
+      algunaDisponible = true;
+      if (primeraDisponible === null) primeraDisponible = horaCandidata;
+    }
+  });
+
+  if (!algunaDisponible) {
+    nota.textContent = '❌ Esta fecha no tiene horas disponibles para este servicio. Por favor elige otra fecha.';
+    nota.style.color = '#c0392b';
+    selEntrada.value = '';
+    alert('⚠️ Esta fecha ya no tiene horario disponible para este servicio. Por favor elige otra fecha.');
+    return;
+  }
+
+  nota.textContent = '✅ Mostrando solo las horas disponibles para esta fecha.';
+  nota.style.color = '#2d8f3f';
+
+  // Si la hora que tenía seleccionada ya no está disponible, se limpia para que elija otra
+  const opcionActualSigueDisponible = Array.from(selEntrada.options).some(function(o) { return o.value === valorActual && !o.disabled; });
+  if (!opcionActualSigueDisponible) {
+    selEntrada.value = '';
+  }
+}
+
 function calcularFechaSalidaAutomatica() {
   const cabana = document.getElementById('res-cabana').value;
   const info = serviciosInfo[cabana];
@@ -4276,20 +4375,52 @@ function calcularHoraSalidaAutomatica() {
   const info = serviciosInfo[cabana];
   const selSalida = document.getElementById('res-hora-salida');
   const entradaSel = document.getElementById('res-hora-entrada');
-  if (!info || !entradaSel.value) return;
+  const fechaEntrada = document.getElementById('res-entrada').value;
+  if (!info || !entradaSel.value || !fechaEntrada) return;
 
   const horaEntradaRaw = info.horarioCerrado ? info.horaFijaEntrada : entradaSel.value;
-  const [h, m] = horaEntradaRaw.split(':').map(Number);
-  const totalMinEntrada = h * 60 + m;
-  const totalMinSalida = (totalMinEntrada + info.horasIncluidas * 60) % (24 * 60);
-  const horaSalida = String(Math.floor(totalMinSalida / 60)).padStart(2, '0') + ':' + String(totalMinSalida % 60).padStart(2, '0');
 
+  // Validar que la hora elegida no haya pasado ya (evita confusión AM/PM)
+  if (!info.horarioCerrado) {
+    const ahora = new Date();
+    const hoyStr = ahora.getFullYear() + '-' + String(ahora.getMonth() + 1).padStart(2, '0') + '-' + String(ahora.getDate()).padStart(2, '0');
+    if (fechaEntrada === hoyStr) {
+      const entradaElegida = new Date(fechaEntrada + 'T' + horaEntradaRaw + ':00');
+      if (entradaElegida < ahora) {
+        const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+        const mananaDate = new Date(ahora); mananaDate.setDate(mananaDate.getDate() + 1);
+        const mananaTxt = mananaDate.getDate() + ' de ' + meses[mananaDate.getMonth()];
+        const [hh] = horaEntradaRaw.split(':').map(Number);
+        if (hh < 12) {
+          const horaPM = String(hh + 12).padStart(2, '0') + ':00';
+          const entradaPM = new Date(fechaEntrada + 'T' + horaPM + ':00');
+          if (entradaPM > ahora) {
+            alert('⚠️ Esa hora ya pasó hoy. ¿Quisiste decir ' + formatearHora12(horaPM) + ' en vez de ' + formatearHora12(horaEntradaRaw) + '? Por favor selecciona la hora correcta (PM).');
+          } else {
+            alert('⚠️ Ya no queda horario disponible hoy para esa hora. Por favor cambia la fecha de entrada al ' + mananaTxt + '.');
+          }
+        } else {
+          alert('⚠️ Ya no queda horario disponible hoy para esa hora. Por favor cambia la fecha de entrada al ' + mananaTxt + '.');
+        }
+        entradaSel.value = '';
+        return;
+      }
+    }
+  }
+  const horaEntradaNorm = horaEntradaRaw.split(':').map(function(p, i) { return i === 0 ? p.padStart(2, '0') : p; }).join(':');
+
+  // Cálculo real con fecha y hora juntas (si la hora cruza medianoche, la fecha se corrige sola)
+  const inicio = new Date(fechaEntrada + 'T' + horaEntradaNorm + ':00');
+  const fin = new Date(inicio.getTime() + info.horasIncluidas * 3600000);
+  const fechaSalida = fin.getFullYear() + '-' + String(fin.getMonth() + 1).padStart(2, '0') + '-' + String(fin.getDate()).padStart(2, '0');
+  const horaSalida = String(fin.getHours()).padStart(2, '0') + ':' + String(fin.getMinutes()).padStart(2, '0');
+
+  document.getElementById('res-salida').value = fechaSalida;
+  document.getElementById('res-salida').disabled = true;
   selSalida.value = horaSalida;
   selSalida.disabled = true;
 
   // Validación en tiempo real: revisar disponibilidad apenas se conocen fecha y hora completas
-  const fechaEntrada = document.getElementById('res-entrada').value;
-  const fechaSalida = document.getElementById('res-salida').value;
   if (fechaEntrada && fechaSalida) {
     const conflicto = firebaseDemo.hayConflictoRango(cabana, fechaEntrada, fechaSalida, horaEntradaRaw, horaSalida);
     if (conflicto) {
@@ -4471,7 +4602,7 @@ function actualizarCamposEdadNinos() {
     const fila = document.createElement('div');
     fila.style.cssText = 'display:flex; align-items:center; gap:8px; margin-bottom:6px;';
     fila.innerHTML =
-      '<label style="font-size:0.78rem; color:#2a2a2a; flex-shrink:0;">Edad niño ' + i + '</label>' +
+      '<label style="font-size:0.78rem; color:#2a2a2a; flex-shrink:0;">Edad menor ' + i + '</label>' +
       '<input type="number" min="0" max="17" id="edad-nino-' + i + '" oninput="validarEdadNino(' + i + ')" style="width:70px; padding:6px; border:1.5px solid #c9a84c; border-radius:6px; font-size:0.85rem;" />' +
       '<span id="aviso-edad-' + i + '" style="font-size:0.7rem; color:#c0392b; display:none;">⚠️ Paga tarifa de adulto</span>';
     cont.appendChild(fila);
@@ -4623,7 +4754,7 @@ function avisarNinoExtra() {
   const extra = num - info.ninosIncluidos;
   if (extra > 0) {
     const costoExtra = extra * info.precioNinoExtra;
-    alert('⚠️ Agregaste ' + extra + ' niño(s) extra — se suma $' + costoExtra.toLocaleString('es-CO') + ' a tu total. Verifica el total y el abono antes de continuar.');
+    alert('⚠️ Agregaste ' + extra + ' menor(es) de edad extra — se suma $' + costoExtra.toLocaleString('es-CO') + ' a tu total. Verifica el total y el abono antes de continuar.');
   }
 }
 
@@ -4735,7 +4866,7 @@ function validarYMostrarPaso1() {
     '🕐 Duración: ' + serviciosInfo[cabana].horasIncluidas + ' horas<br>' +
     '👤 Cliente: ' + nombre  + '<br>' +
     '📱 WhatsApp: ' + tel    + '<br>' +
-    '👥 Adultos: '  + personas + ' | 👶 Niños: ' + (ninos === '0' ? 'Sin niños' : ninos) + '<br>' +
+    '👥 Adultos: '  + personas + ' | 👶 Menores de edad: ' + (ninos === '0' ? 'Sin menores de edad' : ninos) + '<br>' +
     '🐾 Mascotas: ' + (mascotas === 'no' ? 'Sin mascotas' : mascotas) + '<br><br>' +
     '💰 Total: <strong>' + totalTxt + '</strong><br>' +
     '💳 Abono requerido: <strong>' + abonoTxt + '</strong>';
@@ -4879,11 +5010,11 @@ function construirDetalleReal(reservaData) {
   if (ninosRealesNum > 0) {
     const ninosExtra = Math.max(0, ninosRealesNum - info.ninosIncluidos);
     texto += ninosExtra > 0
-      ? `👶 Niños: ${ninosRealesNum} (${info.ninosIncluidos} incluido + ${ninosExtra} extra a $${info.precioNinoExtra.toLocaleString('es-CO')} c/u)\n`
-      : `👶 Niños: ${ninosRealesNum} (incluidos en el plan)\n`;
+      ? `👶 Menores de edad: ${ninosRealesNum} (${info.ninosIncluidos} incluido + ${ninosExtra} extra a $${info.precioNinoExtra.toLocaleString('es-CO')} c/u)\n`
+      : `👶 Menores de edad: ${ninosRealesNum} (incluidos en el plan)\n`;
   }
   if (adultosExtraNinos > 0) {
-    texto += `👦 Niños de 7+ años (pagan tarifa de adulto): ${adultosExtraNinos} (a $${info.precioPersonaExtra.toLocaleString('es-CO')} c/u)\n`;
+    texto += `👦 Menores de 7+ años (pagan tarifa de adulto): ${adultosExtraNinos} (a $${info.precioPersonaExtra.toLocaleString('es-CO')} c/u)\n`;
   }
   const mascotasNum = reservaData.mascotas === 'no' ? 0 : (reservaData.mascotas === '3+' ? 3 : parseInt(reservaData.mascotas) || 0);
   if (mascotasNum > 0) {
@@ -4955,7 +5086,7 @@ function enviarReserva() {
   const invPersonalizado = (window.INV_CUSTOM || invDefault).split('\n').map(l => `▸ ${l.replace(/^▸\s*/, '')}`).join('\n');
 
   const mascotasTxt = reservaData.mascotas === 'no' ? 'Sin mascotas' : `${reservaData.mascotas} mascota(s)`;
-  const ninosTxt    = reservaData.ninos === '0' ? 'Sin niños' : `${reservaData.ninos} niño(s)`;
+  const ninosTxt    = reservaData.ninos === '0' ? 'Sin menores de edad' : `${reservaData.ninos} menor(es) de edad`;
   const abonoTipo   = reservaData.abono === reservaData.total ? '100% (PAGO TOTAL)' : '50% (abono parcial)';
 
   // Mensaje para el administrador
@@ -4971,7 +5102,7 @@ function enviarReserva() {
     `🕐 Duración: ${serviciosInfo[reservaData.cabana].horasIncluidas} horas\n` +
     `🌙 Noches: ${reservaData.dias}\n\n` +
     `👥 Adultos: ${reservaData.personas}\n` +
-    `👶 Niños: ${ninosTxt}\n` +
+    `👶 Menores de edad: ${ninosTxt}\n` +
     `🐾 Mascotas: ${mascotasTxt}\n\n` +
     `💰 Total estadía: $${reservaData.total.toLocaleString('es-CO')}\n` +
     `💳 Abono (${abonoTipo}): $${reservaData.abono.toLocaleString('es-CO')}\n` +
@@ -4995,7 +5126,7 @@ function enviarReserva() {
     `📅 Check-in: ${reservaData.entrada} — ${reservaData.horaEntrada}\n` +
     `📅 Check-out: ${reservaData.salida} — ${reservaData.horaSalida}\n` +
     `🌙 Noches: ${reservaData.dias}\n` +
-    `👥 Adultos: ${reservaData.personas} | 👶 Niños: ${ninosTxt} | 🐾 ${mascotasTxt}\n\n` +
+    `👥 Adultos: ${reservaData.personas} | 👶 Menores de edad: ${ninosTxt} | 🐾 ${mascotasTxt}\n\n` +
     `💰 Total: $${reservaData.total.toLocaleString('es-CO')}\n` +
     `✔️ Abono pagado (${abonoTipo}): $${reservaData.abono.toLocaleString('es-CO')}\n` +
     `💳 Forma de pago: ${reservaData.metodo.toUpperCase()}\n\n` +
@@ -5041,7 +5172,7 @@ function enviarReserva() {
   document.getElementById('resumen-final').innerHTML =
     `🏠 <strong>${serviciosInfo[reservaData.cabana].nombre}</strong><br>` +
     `📅 ${reservaData.entrada} ${reservaData.horaEntrada} → ${reservaData.salida} ${reservaData.horaSalida}<br>` +
-    `👥 ${reservaData.personas} adulto(s) | 👶 ${reservaData.ninos} niño(s) | 🐾 ${mascotasTxt}<br>` +
+    `👥 ${reservaData.personas} adulto(s) | 👶 ${reservaData.ninos} menor(es) de edad | 🐾 ${mascotasTxt}<br>` +
     `💳 Abono (${abonoTipo}): <strong>$${reservaData.abono.toLocaleString('es-CO')}</strong><br>` +
     `💳 Método: ${reservaData.metodo.toUpperCase()}`;
 }
@@ -5064,7 +5195,7 @@ function nuevaReserva() {
   document.getElementById('res-resumen').style.display = 'none';
   document.getElementById('archivo-nombre').textContent = '';
   document.getElementById('res-comprobante').value = '';
-  document.getElementById('res-personas').selectedIndex = 0;
+  document.getElementById('res-personas').selectedIndex = 1;
   document.getElementById('res-ninos').selectedIndex = 0;
   document.getElementById('res-mascotas').selectedIndex = 0;
   document.getElementById('ninos-edades-container').innerHTML = '';
@@ -5149,7 +5280,7 @@ function _ejecutarAbrirReserva(clave) {
   document.getElementById('res-tel').value = '';
   document.getElementById('archivo-nombre').textContent = '';
   document.getElementById('res-comprobante').value = '';
-  document.getElementById('res-personas').selectedIndex = 0;
+  document.getElementById('res-personas').selectedIndex = 1;
   document.getElementById('res-ninos').selectedIndex = 0;
   document.getElementById('res-mascotas').selectedIndex = 0;
   document.getElementById('ninos-edades-container').innerHTML = '';
@@ -5178,12 +5309,16 @@ function _ejecutarAbrirReserva(clave) {
   const resCabana = document.getElementById('res-cabana');
   resCabana.value = clave;
   resCabana.disabled = true;
+  actualizarDuracionVisible();
 
   // Ningún campo se precarga solo — el cliente elige fecha y hora activamente
   document.getElementById('res-entrada').value = '';
   document.getElementById('res-salida').value  = '';
   document.getElementById('res-hora-entrada').value = '';
   document.getElementById('res-hora-salida').value  = '';
+  document.getElementById('nota-horas-disponibles').textContent = 'Elige primero la fecha de entrada para ver las horas disponibles ese día.';
+  document.getElementById('nota-horas-disponibles').style.color = '#6b6b6b';
+  Array.from(document.getElementById('res-hora-entrada').options).forEach(function(o) { o.hidden = false; o.disabled = false; });
   calcularTotal();
   calcularHoraSalidaAutomatica();
 
@@ -5217,7 +5352,7 @@ function descargarComprobante() {
     { txt: 'Salida:  ' + d.salida  + ' a las ' + d.horaSalida,  size: 13, color: '#f0ece4' },
     { sep: true },
     { txt: 'Adultos: ' + d.personas, size: 13, color: '#f0ece4' },
-    { txt: 'Niños: '    + (d.ninos   === '0'  ? 'Sin niños'    : d.ninos),   size: 13, color: '#f0ece4' },
+    { txt: 'Menores de edad: '    + (d.ninos   === '0'  ? 'Sin menores de edad'    : d.ninos),   size: 13, color: '#f0ece4' },
     { txt: 'Mascotas: ' + (d.mascotas === 'no' ? 'Sin mascotas' : d.mascotas), size: 13, color: '#f0ece4' },
     { sep: true },
     { txt: 'Total estadía: $' + d.total.toLocaleString('es-CO'), size: 14, bold: true, color: '#c9a84c' },
@@ -5415,15 +5550,19 @@ function renderCalDisp() {
   for (let d = 1; d <= diasMes; d++) {
     const fecha = dispAnio + '-' + String(dispMes+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
     const pasado = fecha < hoy;
-    const ocupado = ocupadas.includes(fecha);
+    const tieneReservas = ocupadas.includes(fecha);
+    const infoCab = serviciosInfo[dispCabana];
+    const horasNecesarias = infoCab ? infoCab.horasIncluidas : 24;
+    const hayHueco = tieneReservas && infoCab ? firebaseDemo.calcularHorasLibres(dispCabana, fecha, horasNecesarias).length > 0 : true;
+    const totalmenteOcupado = tieneReservas && !hayHueco;
     let bg = '#d4f5b0', color = '#1e3a1e', borde = '1px solid #a8d97a';
     if (pasado)  { bg = '#f0f0f0'; color = '#ccc'; borde = 'none'; }
-    if (ocupado) { bg = '#fde8e8'; color = '#c0392b'; borde = '1px solid #f5a0a0'; }
+    if (totalmenteOcupado) { bg = '#fde8e8'; color = '#c0392b'; borde = '1px solid #f5a0a0'; }
     let horaTxt = '';
-    if (ocupado) {
-      const detalles = firebaseDemo.getDetallesFecha(dispCabana, fecha);
-      if (detalles.length === 1) horaTxt = '<div style="font-size:0.48rem; font-weight:700;">Ocupado</div><div style="font-size:0.5rem; font-weight:600; line-height:1.1;">' + formatearHora12(detalles[0].horaEntrada) + ' – ' + formatearHora12(detalles[0].horaSalida) + '</div>';
-      else if (detalles.length > 1) horaTxt = '<div style="font-size:0.48rem; font-weight:700;">Ocupado</div><div style="font-size:0.55rem; font-weight:600; line-height:1;">' + detalles.length + ' reservas</div>';
+    if (totalmenteOcupado) {
+      horaTxt = '<div style="font-size:0.5rem; font-weight:700;">Ocupado</div>';
+    } else if (tieneReservas && !pasado) {
+      horaTxt = '<div style="font-size:0.5rem; font-weight:600;">Cupos</div>';
     } else if (!pasado) {
       horaTxt = '<div style="font-size:0.5rem; font-weight:600;">Dispo</div>';
     }
@@ -5443,23 +5582,24 @@ function renderCalDisp() {
 
 function mostrarDetalleFechaDisp(fecha) {
   const cont = document.getElementById('disp-detalle-fecha');
-  const [yyyy, mm, dd] = fecha.split('-');
   const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  function fechaCorta(f) {
+    const [y, m, d] = f.split('-');
+    return parseInt(d) + ' ' + meses[parseInt(m) - 1].slice(0, 5) + '.';
+  }
+  const [yyyy, mm, dd] = fecha.split('-');
   const fechaTxt = parseInt(dd) + ' de ' + meses[parseInt(mm) - 1];
-  const detalles = firebaseDemo.getDetallesFecha(dispCabana, fecha);
-  if (!detalles.length) {
+  const grupos = firebaseDemo.getGruposFecha(dispCabana, fecha);
+  if (!grupos.length) {
     cont.innerHTML = '📅 <strong>' + fechaTxt + '</strong><br>🟢 Todo el día disponible';
     return;
   }
-  const filas = detalles.map(detalle => {
-    const horaE12 = formatearHora12(detalle.horaEntrada);
-    const horaS12 = formatearHora12(detalle.horaSalida);
-    const todoElDia = detalle.horaEntrada === '00:00' && detalle.horaSalida === '23:59';
-    let extra = '👤 Ocupado por reserva de terceros';
-    if (detalle.cliente && detalle.cliente.nombre) extra = '👤 ' + detalle.cliente.nombre;
-    return '🔴 Ocupado de ' + horaE12 + ' – ' + horaS12 + (todoElDia ? ' (todo el día)' : '') + '&nbsp;&nbsp;<span style="font-size:0.7rem; color:#666;">' + extra + '</span>';
-  }).join('<hr style="margin:6px 0; border:none; border-top:1px dashed #ccc;">');
-  cont.innerHTML = '📅 <strong>' + fechaTxt + '</strong> · ' + detalles.length + (detalles.length === 1 ? ' reserva' : ' reservas') + '<br><br>' + filas;
+  const filas = grupos.map(g => {
+    const inicioTxt = fechaCorta(g.fechaInicio) + ' ' + formatearHora12(g.horaInicio);
+    const finTxt = fechaCorta(g.fechaFin) + ' ' + formatearHora12(g.horaFin);
+    return '🔴 Ocup. ' + inicioTxt + ' – ' + finTxt;
+  }).join('<br>');
+  cont.innerHTML = '📅 <strong>' + fechaTxt + '</strong> · ' + grupos.length + (grupos.length === 1 ? ' reserva' : ' reservas') + '<br><br>' + filas;
 }
 
 
