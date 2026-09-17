@@ -736,7 +736,7 @@
   <!-- ===== MÓDULO: SECCIÓN 2 – SLIDER PROMOCIONES ===== -->
   <section id="seccion-slider">
     <div class="seccion-titulo">
-      <h2 class="titulo-brillo" style="color:#2d8f3f;">Promociones & Servicios</h2>
+      <h2 id="slider-titulo" class="titulo-brillo" style="color:#2d8f3f;">Promociones & Servicios</h2>
     </div>
 
     <div class="slider-container">
@@ -974,7 +974,7 @@
       <div style="width:100%; background:transparent; border:2px solid #c9a84c; border-radius:14px; padding:16px 20px;">
         <div style="text-align:left;">
           <p id="planes-titulo" class="titulo-brillo" style="font-family:'Playfair Display',serif; color:#2d8f3f; font-size:1rem; font-weight:700; margin:0;">🏕️ Planes & Tarifas</p>
-          <p style="color:#000000; font-weight:700; font-size:0.72rem; margin:3px 0 0; opacity:0.85; text-align:center;">Planes por Horas, Solo Lunes a Jueves,<br>No aplica día previo a festivo<br>Por favor leer los detalles de cada servicio</p>
+          <p id="planes-subtitulo" style="color:#000000; font-weight:700; font-size:0.72rem; margin:3px 0 0; opacity:0.85; text-align:center;">Planes por Horas, Solo Lunes a Jueves,<br>No aplica día previo a festivo<br>Por favor leer los detalles de cada servicio</p>
         </div>
       </div>
 
@@ -1323,7 +1323,7 @@
       </div>
 
       <!-- Planes desde Planes & Tarifas -->
-      <p style="color:#1e3a1e; font-size:0.78rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin:16px 0 10px; background:#f9f6f0; border-left:4px solid #c9a84c; padding:10px 14px; border-radius:8px;">⭐ Planes & Tarifas</p>
+      <p id="planes-titulo-calendario" style="color:#1e3a1e; font-size:0.78rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin:16px 0 10px; background:#f9f6f0; border-left:4px solid #c9a84c; padding:10px 14px; border-radius:8px;">⭐ Planes & Tarifas</p>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px;">
         <button onclick="seleccionarCabanaCalendario(this,'servicio5')" class="btn-cabana-cal" style="border:2px solid #c9a84c; border-radius:12px; padding:14px 10px; background:#f9f6f0; cursor:pointer; text-align:center; transition:all 0.2s;">
           <div style="font-size:1.6rem;">👫</div>
@@ -1649,39 +1649,64 @@
         <p style="font-size:0.82rem; color:#2a2a2a; margin-bottom:16px;">Abono requerido: <strong id="paso2-abono" style="color:#1e2a1a;"></strong></p>
         <p style="font-size:0.85rem; color:#1e3a1e; font-weight:700; margin-bottom:10px;">👆 Escoge tu medio de pago para ver a dónde transferir</p>
 
-        <div id="metodos-pago" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
-          <div class="metodo-btn" onclick="seleccionarPago(this,'nequi')" style="border:2px solid #e8e0d0; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
-            <div style="font-size:1.6rem;">📱</div>
-            <div style="font-size:0.82rem; font-weight:600; color:#1e2a1a; margin-top:4px;">Nequi</div>
+        <div id="metodos-pago" style="display:flex; flex-direction:column; margin-bottom:16px;">
+          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
+            <div onclick="togglePago(this,'nequi')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
+              <span style="font-size:1.3rem;">📱</span>
+              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">Nequi</span>
+              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
+            </div>
+            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
           </div>
-          <div class="metodo-btn" onclick="seleccionarPago(this,'daviplata')" style="border:2px solid #e8e0d0; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
-            <div style="font-size:1.6rem;">💜</div>
-            <div style="font-size:0.82rem; font-weight:600; color:#1e2a1a; margin-top:4px;">Daviplata</div>
+          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
+            <div onclick="togglePago(this,'daviplata')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
+              <span style="font-size:1.3rem;">💜</span>
+              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">Daviplata</span>
+              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
+            </div>
+            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
           </div>
-          <div class="metodo-btn" onclick="seleccionarPago(this,'bancolombia')" style="border:2px solid #e8e0d0; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
-            <div style="font-size:1.6rem;">🏦</div>
-            <div style="font-size:0.82rem; font-weight:600; color:#1e2a1a; margin-top:4px;">Bancolombia</div>
+          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
+            <div onclick="togglePago(this,'bancolombia')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
+              <span style="font-size:1.3rem;">🏦</span>
+              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">Bancolombia</span>
+              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
+            </div>
+            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
           </div>
-          <div class="metodo-btn" onclick="seleccionarPago(this,'pse')" style="border:2px solid #e8e0d0; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
-            <div style="font-size:1.6rem;">🌐</div>
-            <div style="font-size:0.82rem; font-weight:600; color:#1e2a1a; margin-top:4px;">PSE</div>
+          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
+            <div onclick="togglePago(this,'pse')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
+              <span style="font-size:1.3rem;">🌐</span>
+              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">PSE</span>
+              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
+            </div>
+            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
           </div>
-          <div class="metodo-btn" onclick="seleccionarPago(this,'tarjeta')" style="border:2px solid #e8e0d0; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
-            <div style="font-size:1.6rem;">💳</div>
-            <div style="font-size:0.82rem; font-weight:600; color:#1e2a1a; margin-top:4px;">Tarjeta</div>
+          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
+            <div onclick="togglePago(this,'tarjeta')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
+              <span style="font-size:1.3rem;">💳</span>
+              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">Tarjeta</span>
+              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
+            </div>
+            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
           </div>
-          <div class="metodo-btn" onclick="seleccionarPago(this,'efectivo')" style="border:2px solid #e8e0d0; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
-            <div style="font-size:1.6rem;">💵</div>
-            <div style="font-size:0.82rem; font-weight:600; color:#1e2a1a; margin-top:4px;">Efectivo</div>
+          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
+            <div onclick="togglePago(this,'efectivo')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
+              <span style="font-size:1.3rem;">💵</span>
+              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">Efectivo</span>
+              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
+            </div>
+            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
           </div>
-          <div class="metodo-btn" onclick="seleccionarPago(this,'breve')" style="border:2px solid #e8e0d0; border-radius:10px; padding:14px 10px; text-align:center; cursor:pointer; transition:all 0.2s;">
-            <div style="font-size:1.6rem;">🔑</div>
-            <div style="font-size:0.82rem; font-weight:600; color:#1e2a1a; margin-top:4px;">Llaves Breve</div>
+          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
+            <div onclick="togglePago(this,'breve')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
+              <span style="font-size:1.3rem;">🔑</span>
+              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">Llaves Breve</span>
+              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
+            </div>
+            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
           </div>
         </div>
-
-        <!-- Info según método -->
-        <div id="info-pago" style="display:none; background:#f9f6f0; border-radius:10px; padding:14px; margin-bottom:16px; font-size:0.85rem; color:#1e2a1a; line-height:1.6;"></div>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
           <button onclick="irPaso1()" style="background:#f5f5f0; color:#1e2a1a; border:1.5px solid #e8e0d0; padding:12px; border-radius:8px; font-size:0.88rem; font-weight:600; cursor:pointer;">← Volver</button>
@@ -1725,7 +1750,8 @@
         <h3 style="font-family:'Playfair Display',serif; color:#1e2a1a; font-size:1.3rem; margin-bottom:8px;">¡Reserva enviada!</h3>
         <p style="font-size:0.85rem; color:#2a2a2a; margin-bottom:16px; line-height:1.6;" id="msg-confirmacion"></p>
         <div style="background:#f9f6f0; border-radius:10px; padding:14px; font-size:0.82rem; color:#1e2a1a; margin-bottom:20px;" id="resumen-final"></div>
-        <button onclick="descargarComprobante()" style="display:block; width:100%; background:#ffffff; color:#000000; border:2px solid #c9a84c; padding:12px 28px; border-radius:8px; font-weight:700; cursor:pointer; margin-bottom:12px; font-size:0.92rem;">📥 Descargar mi comprobante</button>
+        <button id="btn-descargar-pdf-reserva" onclick="descargarContratoPDF()" style="display:block; width:100%; background:#ffffff; color:#000000; border:2px solid #c9a84c; padding:12px 28px; border-radius:8px; font-weight:700; cursor:pointer; margin-bottom:12px; font-size:0.92rem;">📄 Descargar mi comprobante (PDF con contrato)</button>
+        <button id="btn-enviar-wa-cliente" onclick="enviarConfirmacionCliente()" style="display:block; width:100%; background:#25d366; color:#000000; border:2px solid #1ebe5d; padding:12px 28px; border-radius:8px; font-weight:700; cursor:pointer; margin-bottom:12px; font-size:0.92rem;">📤 Enviar mi confirmación por WhatsApp</button>
         <button onclick="volverInicio()" style="background:#c9a84c; color:#1e2a1a; border:2px solid #b8922a; padding:12px 28px; border-radius:8px; font-weight:600; cursor:pointer;">🏠 Volver a página principal</button>
       </div>
 
@@ -2070,7 +2096,7 @@ Gracias por elegir Glamping La Reserva. Tu colaboración nos ayuda a conservar e
 
     <div style="margin-top:14px; display:inline-block; background:#25d366; border:1px solid #1ebe5d; border-radius:10px; padding:10px 18px; color:#000000;">
       <p>🌿 <span>GLAMPING LA RESERVA</span> · Pereira, Risaralda, Colombia</p>
-      <p style="margin-top:6px; opacity:0.9;">Versión 1.0 · Actualización A#593 N#594 · Jose Alex N-R</p>
+      <p style="margin-top:6px; opacity:0.9;">Versión 1.0 · Actualización A#615 N#616 · Jose Alex N-R</p>
     </div>
 
     <br>
@@ -2307,6 +2333,16 @@ Gracias por elegir Glamping La Reserva. Tu colaboración nos ayuda a conservar e
         </div>
       </div>
 
+      <!-- 📤 Imagen para compartir (se adjunta junto al enlace en cada botón "Compartir") -->
+      <div id="indice-imagen-compartir" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+        <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">📤 Imagen para compartir</h3>
+        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Se adjunta automáticamente junto al enlace cada vez que alguien usa un botón "Compartir" (si el celular lo soporta).</p>
+        <label style="color:#1e2a1a; font-weight:600; font-size:0.78rem;">Selecciona la imagen
+          <input id="file-imagen-compartir" type="file" accept="image/*" style="display:block; margin-top:6px; color:#1e3a1e; font-size:0.75rem;" />
+        </label>
+        <button onclick="confirmarGuardarArchivo('¿Cambiar la imagen para compartir?', 'file-imagen-compartir', function(){ subirImagenCompartir(document.getElementById(&apos;file-imagen-compartir&apos;)); })" style="margin-top:8px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar imagen</button>
+      </div>
+
       <!-- 🅐 Video de bienvenida -->
       <div id="indice-bienvenida" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅐 Video al abrir el sitio</h3>
@@ -2321,6 +2357,9 @@ Gracias por elegir Glamping La Reserva. Tu colaboración nos ayuda a conservar e
       <div id="indice-slider" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅒 · Promociones & Slider de Imágenes</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección 3 — Textos del banner rotativo y fotos que el cliente ve al deslizar.</p>
+        <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Título de la sección</label>
+        <input id="adm-slider-titulo" type="text" placeholder="Promociones & Servicios" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px; margin-bottom:10px;" />
+        <button onclick="confirmarGuardar('¿Guardar el título de esta sección?', guardarTituloSlider)" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem; margin-bottom:14px;">💾 Guardar título</button>
         <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:10px;">
           <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Promo 1 — texto del badge</label><input id="adm-promo1" type="text" placeholder="🔥 HOY 10% OFF" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px;" /></div>
           <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Promo 2</label><input id="adm-promo2" type="text" placeholder="🌟 JUEVES 20% OFF" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px;" /></div>
@@ -2340,6 +2379,9 @@ Gracias por elegir Glamping La Reserva. Tu colaboración nos ayuda a conservar e
       <div id="indice-galeria-fotos" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">📸 Imágenes de servicios y cabañas</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Galería general, arriba de "Tus pagos, 100% seguros". Independiente de las 8 tarjetas.</p>
+        <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Título de la sección</label>
+        <input id="adm-galeria-fotos-titulo" type="text" placeholder="📸 Imágenes de nuestros servicios y cabañas" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px; margin-bottom:10px;" />
+        <button onclick="confirmarGuardar('¿Guardar el título de la galería de imágenes?', guardarTituloGaleriaFotos)" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem; margin-bottom:14px;">💾 Guardar título</button>
 
         <div id="adm-galeria-fotos-lista" style="margin-bottom:12px;"></div>
 
@@ -2357,6 +2399,9 @@ Gracias por elegir Glamping La Reserva. Tu colaboración nos ayuda a conservar e
       <div id="indice-galeria-videos" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🎬 Videos de servicios y cabañas</h3>
         <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Galería general, debajo de las imágenes. Independiente de las 8 tarjetas.</p>
+        <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Título de la sección</label>
+        <input id="adm-galeria-videos-titulo" type="text" placeholder="🎬 Videos de nuestros servicios y cabañas" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px; margin-bottom:10px;" />
+        <button onclick="confirmarGuardar('¿Guardar el título de la galería de videos?', guardarTituloGaleriaVideos)" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem; margin-bottom:14px;">💾 Guardar título</button>
 
         <div id="adm-galeria-videos-lista" style="margin-bottom:12px;"></div>
 
@@ -3287,6 +3332,8 @@ WiFi + Smart TV</textarea>
 
         <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Título del recuadro arriba de las tarjetas 5-8</label>
         <input id="adm-planes-titulo" type="text" placeholder="🏕️ Planes & Tarifas" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px; margin-bottom:8px;" />
+        <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Aviso debajo del título (3 líneas)</label>
+        <textarea id="adm-planes-subtitulo" rows="3" placeholder="Planes por Horas, Solo Lunes a Jueves,&#10;No aplica día previo a festivo&#10;Por favor leer los detalles de cada servicio" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px; margin-bottom:8px; resize:vertical;"></textarea>
         <button onclick="confirmarGuardar('¿Guardar el título de planes?', guardarTituloPlanes)" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar</button>
       </div>
 
@@ -3356,6 +3403,15 @@ WiFi + Smart TV</textarea>
           <input id="file-video-hero" type="file" accept="video/mp4" style="display:block; margin-top:6px; color:#1e3a1e; font-size:0.75rem;" />
         </label>
         <button onclick="confirmarGuardarArchivo('¿Cambiar el video principal?', 'file-video-hero', function(){ subirVideoAdmin(document.getElementById(&apos;file-video-hero&apos;),&apos;heroVideo&apos;); })" style="margin-top:8px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar video principal</button>
+      </div>
+
+      <!-- 🅙 Opiniones de clientes -->
+      <div id="indice-opiniones" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+        <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🅙 · Opiniones de clientes</h3>
+        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección donde el cliente ve y deja reseñas.</p>
+        <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Título de la sección</label>
+        <input id="adm-opiniones-titulo" type="text" placeholder="Clientes nos Recomiendan" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px; margin-bottom:10px;" />
+        <button onclick="confirmarGuardar('¿Guardar el título de opiniones?', guardarTituloOpiniones)" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar título</button>
       </div>
 
       <!-- 🅘 Audio experiencia -->
@@ -3431,14 +3487,15 @@ WiFi + Smart TV</textarea>
 
         <label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">Selecciona el servicio</label>
         <select id="disp-adm-selector" onchange="renderReporteDisponibilidad()" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin-top:4px; margin-bottom:12px;">
-          <option id="opt-disp-servicio1" value="servicio1">T S</option>
-          <option id="opt-disp-servicio2" value="servicio2">T S</option>
-          <option id="opt-disp-servicio3" value="servicio3">T S</option>
-          <option id="opt-disp-servicio4" value="servicio4">T S</option>
-          <option id="opt-disp-servicio5" value="servicio5">T S</option>
-          <option id="opt-disp-servicio6" value="servicio6">T S</option>
-          <option id="opt-disp-servicio7" value="servicio7">T S</option>
-          <option id="opt-disp-servicio8" value="servicio8">T S</option>
+          <option value="todas">📋 Todas las tarjetas (resumen completo)</option>
+          <option id="opt-disp-servicio1" value="servicio1">Tarjeta de servicio 1</option>
+          <option id="opt-disp-servicio2" value="servicio2">Tarjeta de servicio 2</option>
+          <option id="opt-disp-servicio3" value="servicio3">Tarjeta de servicio 3</option>
+          <option id="opt-disp-servicio4" value="servicio4">Tarjeta de servicio 4</option>
+          <option id="opt-disp-servicio5" value="servicio5">Tarjeta de servicio 5</option>
+          <option id="opt-disp-servicio6" value="servicio6">Tarjeta de servicio 6</option>
+          <option id="opt-disp-servicio7" value="servicio7">Tarjeta de servicio 7</option>
+          <option id="opt-disp-servicio8" value="servicio8">Tarjeta de servicio 8</option>
         </select>
 
         <div id="disp-adm-reporte" style="background:#f9f6f0; border-radius:8px; padding:10px; margin-bottom:14px; min-height:40px; font-size:0.78rem; color:#1e2a1a;"></div>
@@ -3462,6 +3519,14 @@ WiFi + Smart TV</textarea>
           <button onclick="confirmarGuardar('¿Bloquear esta fecha manualmente?', bloquearFechaManual)" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">🔒 Bloquear fecha</button>
         </div>
         <p style="color:#a08a3f; font-size:0.68rem; margin-top:10px; font-style:italic;">⚠️ Datos en memoria (demo). Se reinician al recargar la página hasta conectar base de datos real.</p>
+      </div>
+
+      <!-- ⏰ Reservas vencidas y próximas a vencer -->
+      <div id="indice-reservas-vencidas" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
+        <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">⏰ · Reservas vencidas y próximas a vencer</h3>
+        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Herramienta de gestión — Se calcula sola comparando la hora actual con cada reserva. No modifica ninguna reserva por sí sola.</p>
+        <button onclick="renderReservasVencidas()" style="width:100%; background:#f9f6f0; border:1px solid #c9a84c; color:#1e2a1a; padding:8px; border-radius:6px; cursor:pointer; font-size:0.78rem; margin-bottom:10px;">🔄 Actualizar ahora</button>
+        <div id="disp-adm-vencidas"></div>
       </div>
 
       <!-- 🗂️ Base de Datos de Clientes -->
@@ -3722,9 +3787,6 @@ Gracias por elegir Glamping La Reserva. Tu colaboración nos ayuda a conservar e
           </div>
         </div>
       </div>
-        </div>
-      </div>
-      </div>
 
       <button onclick="cerrarAdmin()" style="margin-top:24px; width:100%; background:transparent; color:#1e3a1e; border:2px solid #1e3a1e; padding:12px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.9rem;">✕ Cerrar panel</button>
 
@@ -3952,6 +4014,11 @@ const firebaseDemo = {
       d.setDate(d.getDate() + 1);
       i++;
     }
+    this.guardarReservasDemo();
+  },
+  // Guarda/recupera las reservas en localStorage para que persistan entre recargas (demo, mientras se conecta base de datos real)
+  guardarReservasDemo() {
+    try { localStorage.setItem('reservasDetalleDemo', JSON.stringify(this.reservasDetalle)); } catch (e) {}
   },
   // Verificar si ese día tiene algún horario cerrado (totalmente reservado)
   getFechaTotalmenteReservada(cabana, fecha) {
@@ -3978,6 +4045,16 @@ const firebaseDemo = {
     });
   }
 };
+
+// Recuperar reservas guardadas (persisten entre recargas, mientras se conecta base de datos real)
+(function() {
+  const guardado = localStorage.getItem('reservasDetalleDemo');
+  if (guardado) {
+    try { firebaseDemo.reservasDetalle = JSON.parse(guardado); } catch (e) {}
+  } else {
+    firebaseDemo.guardarReservasDemo();
+  }
+})();
 
 // ===== INFORMACIÓN DE MÉTODOS DE PAGO =====
 const infoPagosLabel = {
@@ -4524,14 +4601,24 @@ function actualizarHorasDisponibles() {
   let algunaDisponible = false;
   let primeraDisponible = null;
 
+  const ahora = new Date();
+  const fechaHoyTxt = ahora.getFullYear() + '-' + String(ahora.getMonth() + 1).padStart(2, '0') + '-' + String(ahora.getDate()).padStart(2, '0');
+  const esHoy = fechaEntrada === fechaHoyTxt;
+  const minutosAhora = ahora.getHours() * 60 + ahora.getMinutes();
+
   Array.from(selEntrada.options).forEach(function(opt) {
     const horaCandidata = opt.value;
+    if (!horaCandidata) return;
+    const partesHora = horaCandidata.split(':');
+    const minutosCandidata = parseInt(partesHora[0]) * 60 + parseInt(partesHora[1]);
+    const yaPaso = esHoy && minutosCandidata <= minutosAhora;
+
     const inicio = new Date(fechaEntrada + 'T' + horaCandidata + ':00');
     const fin = new Date(inicio.getTime() + info.horasIncluidas * 3600000);
     const fechaSalidaCand = fin.getFullYear() + '-' + String(fin.getMonth() + 1).padStart(2, '0') + '-' + String(fin.getDate()).padStart(2, '0');
     const horaSalidaCand = String(fin.getHours()).padStart(2, '0') + ':' + String(fin.getMinutes()).padStart(2, '0');
     const conflicto = firebaseDemo.hayConflictoRango(cabana, fechaEntrada, fechaSalidaCand, horaCandidata, horaSalidaCand);
-    if (conflicto) {
+    if (conflicto || yaPaso) {
       opt.hidden = true;
       opt.disabled = true;
     } else {
@@ -5141,13 +5228,24 @@ function irPaso2() {
   document.getElementById('form-reserva-container').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-function seleccionarPago(el, metodo) {
-  document.querySelectorAll('.metodo-btn').forEach(b => b.style.border = '2px solid #e8e0d0');
-  el.style.border = '2px solid #1e2a1a';
-  reservaData.metodo = metodo;
-  const info = document.getElementById('info-pago');
-  info.style.display = 'block';
-  info.innerHTML = infoPagos[metodo];
+function togglePago(headerEl, metodo) {
+  const fila = headerEl.parentElement;
+  const contenido = fila.querySelector('.contenido-pago');
+  const yaAbierto = contenido.style.display === 'block';
+
+  document.querySelectorAll('#metodos-pago .metodo-acordeon').forEach(function(f) {
+    f.style.border = '1.5px solid #e8e0d0';
+    f.querySelector('.contenido-pago').style.display = 'none';
+    f.querySelector('.flecha-pago').textContent = '▾';
+  });
+
+  if (!yaAbierto) {
+    fila.style.border = '2px solid #1e2a1a';
+    contenido.innerHTML = infoPagos[metodo];
+    contenido.style.display = 'block';
+    headerEl.querySelector('.flecha-pago').textContent = '▴';
+    reservaData.metodo = metodo;
+  }
 }
 
 function irPaso3() {
@@ -5379,14 +5477,16 @@ function enviarReserva() {
   // Abrir WhatsApp admin
   window.open(`https://wa.me/${ADMIN_WA}?text=${msgAdmin}`, '_blank');
 
-  // Abrir WhatsApp cliente con pequeño delay
-  setTimeout(() => {
-    window.open(`https://wa.me/57${reservaData.tel}?text=${msgCliente}`, '_blank');
-  }, 1500);
+  // Guardamos el mensaje del cliente para que él mismo lo envíe con un botón
+  // (abrirlo automático aquí lo bloquea el navegador, por eso pasa a ser manual)
+  window._msgClienteWa = msgCliente;
+  window._telClienteWa = reservaData.tel;
+  window._consecutivoWa = reservaData.consecutivo;
 
   // Mostrar confirmación
   document.getElementById('paso3').style.display = 'none';
   document.getElementById('paso4').style.display = 'block';
+  aplicarEstadoBotonWaCliente(reservaData.consecutivo);
   document.getElementById('form-reserva-container').scrollIntoView({behavior:'smooth', block:'start'});
   document.getElementById('msg-confirmacion').textContent =
     `¡Gracias ${reservaData.nombre}! Tu reserva fue enviada. Recibirás confirmación por WhatsApp.`;
@@ -5569,6 +5669,64 @@ function _ejecutarAbrirReserva(clave) {
   setTimeout(function() {
     document.getElementById('form-reserva-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 300);
+}
+
+function aplicarEstadoBotonWaCliente(consecutivo) {
+  const btn = document.getElementById('btn-enviar-wa-cliente');
+  if (!btn) return;
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  const yaEnviado = d.enviosWaCliente && d.enviosWaCliente[consecutivo];
+  if (yaEnviado) {
+    btn.disabled = true;
+    btn.style.opacity = '0.5';
+    btn.style.cursor = 'not-allowed';
+    btn.textContent = '✅ Ya enviado por WhatsApp';
+  } else {
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btn.style.cursor = 'pointer';
+    btn.textContent = '📤 Enviar mi confirmación por WhatsApp';
+  }
+}
+
+function enviarConfirmacionCliente() {
+  if (!window._msgClienteWa || !window._telClienteWa) { alert('⚠️ No hay una confirmación pendiente por enviar.'); return; }
+  window.open('https://wa.me/57' + window._telClienteWa + '?text=' + window._msgClienteWa, '_blank');
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  if (!d.enviosWaCliente) d.enviosWaCliente = {};
+  d.enviosWaCliente[window._consecutivoWa] = true;
+  try { localStorage.setItem('admData', JSON.stringify(d)); } catch (e) {}
+  aplicarEstadoBotonWaCliente(window._consecutivoWa);
+}
+
+function descargarContratoPDF() {
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  const terminos = d.terminosCondiciones || document.getElementById('texto-terminos-condiciones').textContent;
+  const resumenHtml = document.getElementById('resumen-final').innerHTML;
+
+  const ventana = window.open('', '_blank');
+  if (!ventana) { alert('⚠️ El navegador bloqueó la ventana de impresión. Habilita ventanas emergentes para este sitio e intenta de nuevo.'); return; }
+
+  ventana.document.write(
+    '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Contrato - Glamping La Reserva</title>' +
+    '<style>' +
+      'body{font-family:Arial,sans-serif; color:#1e2a1a; padding:24px; font-size:11px; line-height:1.4;}' +
+      'h2{font-family:Georgia,serif; color:#1e3a1e; font-size:16px; margin-bottom:10px;}' +
+      'h3{color:#1e3a1e; font-size:13px; margin:14px 0 6px;}' +
+      '.resumen{font-size:11px; margin-bottom:14px;}' +
+      '.terminos{white-space:pre-line; font-size:9.5px; line-height:1.35;}' +
+      'hr{border:none; border-top:1px solid #c9a84c; margin:14px 0;}' +
+    '</style></head><body>' +
+    '<h2>🏕️ Glamping La Reserva — Comprobante y Contrato de Servicio</h2>' +
+    '<div class="resumen">' + resumenHtml + '</div>' +
+    '<hr />' +
+    '<h3>Términos y Condiciones</h3>' +
+    '<div class="terminos">' + terminos + '</div>' +
+    '</body></html>'
+  );
+  ventana.document.close();
+  ventana.onload = function() { ventana.focus(); ventana.print(); };
+  setTimeout(function() { ventana.focus(); ventana.print(); }, 400);
 }
 
 function descargarComprobante() {
@@ -6002,15 +6160,66 @@ function cerrarOpcionesCompartir() {
   document.removeEventListener('click', cerrarOpcionesCompartirClickFuera);
 }
 
+function subirImagenCompartir(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const d = JSON.parse(localStorage.getItem('admData') || '{}');
+    d.imagenCompartir = e.target.result;
+    try {
+      localStorage.setItem('admData', JSON.stringify(d));
+      alert('✅ Imagen para compartir actualizada.');
+    } catch (err) {
+      alert('⚠️ La imagen es muy pesada y no se pudo guardar. Intenta con una de menor resolución.');
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+function obtenerImagenCompartir() {
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  return d.imagenCompartir || '';
+}
+
+async function dataUrlAFile(dataUrl, nombre) {
+  const res = await fetch(dataUrl);
+  const blob = await res.blob();
+  return new File([blob], nombre, { type: blob.type });
+}
+
+// Función central de compartir — usada por cualquier botón "Compartir" que deba enviar enlace + imagen
+async function compartirConImagen(titulo, texto, imagenOverride) {
+  const dataUrl = imagenOverride || obtenerImagenCompartir();
+  if (navigator.share) {
+    let archivo = null;
+    if (dataUrl) {
+      try { archivo = await dataUrlAFile(dataUrl, 'imagen.jpg'); } catch (e) { archivo = null; }
+    }
+    try {
+      if (archivo && navigator.canShare && navigator.canShare({ files: [archivo] })) {
+        await navigator.share({ title: titulo, text: texto, files: [archivo] });
+      } else {
+        await navigator.share({ title: titulo, text: texto });
+      }
+      return;
+    } catch (e) {
+      if (e && e.name === 'AbortError') return;
+      // Error real de soporte: cae al respaldo de WhatsApp solo texto
+    }
+  }
+  window.open('https://wa.me/?text=' + encodeURIComponent(texto), '_blank');
+}
+
 function obtenerEnlaceTarjeta(clave) {
-  return 'https://colombia777.github.io/Glampingcaba-as/#card-servicio-' + clave;
+  return 'https://colombia777.github.io/Glampingcaba-as/';
 }
 
 function compartirPorWhatsApp(clave) {
   cerrarOpcionesCompartir();
   const enlace = obtenerEnlaceTarjeta(clave);
-  const mensaje = encodeURIComponent('Mira este servicio de cabañas Glamping La Reserva: está ubicado a 25 minutos de Pereira está chévere \n\n' + enlace);
-  window.open('https://wa.me/?text=' + mensaje, '_blank');
+  const texto = 'Mira este servicio de cabañas Glamping La Reserva: está ubicado a 25 minutos de Pereira está chévere \n\n' + enlace;
+  compartirConImagen('Glamping La Reserva', texto);
 }
 
 function copiarEnlaceTarjeta(clave) {
@@ -6209,11 +6418,15 @@ function activarPromoSlide(num) {
 
 // ===== ACCESO AL PANEL =====
 function abrirAdmin() {
-  const modal = document.getElementById('modal-pin-admin');
-  modal.style.display = 'flex';
-  document.getElementById('input-pin-admin').value = '';
-  document.getElementById('pin-error').style.display = 'none';
-  setTimeout(() => document.getElementById('input-pin-admin').focus(), 100);
+  // ⚠️ PIN desactivado temporalmente (a petición del administrador) — para reactivar, restaurar el bloque de abajo
+  cargarDatosAdmin();
+  document.getElementById('panel-admin').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  renderReporteDisponibilidad();
+  renderFAQAdmin();
+  renderClientesDB('');
+  document.getElementById('panel-buscador').value = '';
+  filtrarPanel('');
 }
 
 function cerrarPinAdmin() { 
@@ -6690,12 +6903,56 @@ function guardarTituloCabanas() {
 
 function guardarTituloPlanes() {
   const titulo = document.getElementById('adm-planes-titulo').value.trim();
+  const subtitulo = document.getElementById('adm-planes-subtitulo').value.trim();
   if (!titulo) { alert('Escribe un título antes de guardar.'); return; }
   document.getElementById('planes-titulo').textContent = titulo;
+  document.getElementById('planes-titulo-calendario').innerHTML = '⭐ ' + titulo.replace(/^🏕️\s*/, '');
+  if (subtitulo) document.getElementById('planes-subtitulo').innerHTML = subtitulo.replace(/\n/g, '<br>');
   const d = JSON.parse(localStorage.getItem('admData') || '{}');
   d.tituloPlanes = titulo;
+  d.subtituloPlanes = subtitulo;
   localStorage.setItem('admData', JSON.stringify(d));
   alert('✅ Título de planes actualizado.');
+}
+
+function guardarTituloSlider() {
+  const titulo = document.getElementById('adm-slider-titulo').value.trim();
+  if (!titulo) { alert('Escribe un título antes de guardar.'); return; }
+  document.getElementById('slider-titulo').textContent = titulo;
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  d.tituloSlider = titulo;
+  localStorage.setItem('admData', JSON.stringify(d));
+  alert('✅ Título actualizado.');
+}
+
+function guardarTituloGaleriaFotos() {
+  const titulo = document.getElementById('adm-galeria-fotos-titulo').value.trim();
+  if (!titulo) { alert('Escribe un título antes de guardar.'); return; }
+  document.getElementById('galeria-fotos-titulo').textContent = titulo;
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  d.tituloGaleriaFotos = titulo;
+  localStorage.setItem('admData', JSON.stringify(d));
+  alert('✅ Título actualizado.');
+}
+
+function guardarTituloGaleriaVideos() {
+  const titulo = document.getElementById('adm-galeria-videos-titulo').value.trim();
+  if (!titulo) { alert('Escribe un título antes de guardar.'); return; }
+  document.getElementById('galeria-videos-titulo').textContent = titulo;
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  d.tituloGaleriaVideos = titulo;
+  localStorage.setItem('admData', JSON.stringify(d));
+  alert('✅ Título actualizado.');
+}
+
+function guardarTituloOpiniones() {
+  const titulo = document.getElementById('adm-opiniones-titulo').value.trim();
+  if (!titulo) { alert('Escribe un título antes de guardar.'); return; }
+  document.getElementById('ubicacion-titulo').textContent = titulo;
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  d.tituloOpiniones = titulo;
+  localStorage.setItem('admData', JSON.stringify(d));
+  alert('✅ Título actualizado.');
 }
 
 // ===== FASE 3: PANEL DE DISPONIBILIDAD Y RESERVAS =====
@@ -6703,12 +6960,8 @@ function guardarTituloPlanes() {
 function renderReporteDisponibilidad() {
   const cabana = document.getElementById('disp-adm-selector').value;
   const cont = document.getElementById('disp-adm-reporte');
-  const lista = (firebaseDemo.reservasDetalle[cabana] || []).slice().sort((a, b) => a.fecha.localeCompare(b.fecha));
-  if (!lista.length) {
-    cont.innerHTML = '✅ Sin fechas ocupadas para este servicio.';
-    return;
-  }
-  cont.innerHTML = lista.map(r => {
+
+  function filaReserva(r, cabanaDeEsta) {
     let clienteHtml = '';
     if (r.cliente && r.cliente.nombre) {
       const c = r.cliente;
@@ -6722,24 +6975,181 @@ function renderReporteDisponibilidad() {
     return '<div style="padding:8px 0; border-bottom:1px solid #e3dcc9;">' +
       '<div style="display:flex; justify-content:space-between; align-items:center;">' +
         '<span>📌 ' + r.fecha + ' · H. Inicio ' + r.horaEntrada + ' – H. Finaliza ' + r.horaSalida + '</span>' +
-        '<button onclick="liberarFechaAdmin(\'' + cabana + '\',\'' + r.id + '\')" style="background:#fde8e8; color:#c0392b; border:1px solid #f5a0a0; border-radius:6px; padding:4px 8px; font-size:0.72rem; cursor:pointer;">Liberar</button>' +
+        '<button onclick="liberarFechaAdmin(\'' + cabanaDeEsta + '\',\'' + r.id + '\')" style="background:#fde8e8; color:#c0392b; border:1px solid #f5a0a0; border-radius:6px; padding:4px 8px; font-size:0.72rem; cursor:pointer;">Liberar</button>' +
       '</div>' +
       clienteHtml +
     '</div>';
-  }).join('');
+  }
+
+  if (cabana === 'todas') {
+    const NOMBRES_TARJETA = {};
+    for (let n = 1; n <= 8; n++) { NOMBRES_TARJETA['servicio' + n] = 'Tarjeta de servicio ' + n; }
+    const claves = Object.keys(firebaseDemo.reservasDetalle).filter(function(k) { return (firebaseDemo.reservasDetalle[k] || []).length; });
+    if (!claves.length) {
+      cont.innerHTML = '✅ Sin fechas ocupadas en ninguna tarjeta.';
+      return;
+    }
+    cont.innerHTML = claves.map(function(clave) {
+      const lista = firebaseDemo.reservasDetalle[clave].slice().sort((a, b) => a.fecha.localeCompare(b.fecha));
+      return '<p style="font-weight:700; color:#1e3a1e; font-size:0.8rem; margin:10px 0 4px;">' + (NOMBRES_TARJETA[clave] || clave) + '</p>' +
+        lista.map(function(r) { return filaReserva(r, clave); }).join('');
+    }).join('');
+    return;
+  }
+
+  const lista = (firebaseDemo.reservasDetalle[cabana] || []).slice().sort((a, b) => a.fecha.localeCompare(b.fecha));
+  if (!lista.length) {
+    cont.innerHTML = '✅ Sin fechas ocupadas para este servicio.';
+    return;
+  }
+  cont.innerHTML = lista.map(function(r) { return filaReserva(r, cabana); }).join('');
 }
+
+// ===== RESERVAS VENCIDAS Y PRÓXIMAS A VENCER (solo lectura + registro de contacto, no toca el guardado existente) =====
+function obtenerGruposReservas() {
+  const grupos = {};
+  Object.keys(firebaseDemo.reservasDetalle).forEach(function(cabana) {
+    (firebaseDemo.reservasDetalle[cabana] || []).forEach(function(r) {
+      const clave = r.grupoId || r.id;
+      if (!grupos[clave]) {
+        grupos[clave] = {
+          grupoId: clave,
+          cabana: cabana,
+          fechaInicioReal: r.fechaInicioReal || r.fecha,
+          fechaFinReal: r.fechaFinReal || r.fecha,
+          horaInicioReal: r.horaInicioReal || r.horaEntrada,
+          horaFinReal: r.horaFinReal || r.horaSalida,
+          cliente: r.cliente || null
+        };
+      }
+    });
+  });
+  return Object.keys(grupos).map(function(k) { return grupos[k]; });
+}
+
+function obtenerContactosReserva() {
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  return d.contactosReserva || {};
+}
+
+function guardarContactoReserva(grupoId, nota, foto) {
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  if (!d.contactosReserva) d.contactosReserva = {};
+  d.contactosReserva[grupoId] = { nota: nota, foto: foto || (d.contactosReserva[grupoId] ? d.contactosReserva[grupoId].foto : ''), fecha: new Date().toISOString() };
+  try { localStorage.setItem('admData', JSON.stringify(d)); } catch (e) { alert('⚠️ La foto es muy pesada y no se pudo guardar. Intenta con una más liviana.'); }
+}
+
+var fotoContactoTemp = {};
+function subirFotoContacto(input, grupoId) {
+  const file = input.files[0];
+  if (!file) return;
+  comprimirImagenArchivo(file, function(dataUrl) { fotoContactoTemp[grupoId] = dataUrl; });
+}
+
+function guardarRegistroContacto(grupoId) {
+  const nota = document.getElementById('nota-contacto-' + grupoId).value.trim();
+  if (!nota && !fotoContactoTemp[grupoId]) { alert('Escribe una nota o adjunta una foto de soporte.'); return; }
+  guardarContactoReserva(grupoId, nota, fotoContactoTemp[grupoId]);
+  delete fotoContactoTemp[grupoId];
+  renderReservasVencidas();
+  alert('✅ Contacto registrado.');
+}
+
+function enviarMensajeVencida(grupoId) {
+  const grupos = obtenerGruposReservas();
+  const g = grupos.find(function(x) { return x.grupoId === grupoId; });
+  if (!g) return;
+  const c = g.cliente;
+  const nombre = (c && c.nombre) || 'Cliente';
+  let texto = 'Hola ' + nombre + ', notamos que tu reserva del ' + g.fechaInicioReal + ' no fue utilizada y no tuvimos contacto contigo para reprogramarla o cancelarla a tiempo. Lastimosamente, según nuestras políticas, no es posible hacer devolución ni reasignar esa fecha. Cualquier duda, quedamos atentos.';
+
+  const contacto = obtenerContactosReserva()[grupoId];
+  let fotoContacto = '';
+  if (contacto) {
+    const fechaHoraTxt = new Date(contacto.fecha).toLocaleString('es-CO');
+    texto += '\n\n📋 Registro de contacto (' + fechaHoraTxt + '): ' + (contacto.nota || '(sin nota)');
+    fotoContacto = contacto.foto || '';
+  }
+
+  if (fotoContacto) {
+    compartirConImagen('Glamping La Reserva', texto, fotoContacto);
+    return;
+  }
+
+  if (c && c.whatsapp) {
+    const numero = c.whatsapp.replace(/\D/g, '');
+    window.open('https://wa.me/57' + numero + '?text=' + encodeURIComponent(texto), '_blank');
+  } else {
+    window.open('https://wa.me/?text=' + encodeURIComponent(texto), '_blank');
+  }
+}
+
+function renderReservasVencidas() {
+  const cont = document.getElementById('disp-adm-vencidas');
+  if (!cont) return;
+  const NOMBRES_TARJETA = {};
+  for (let n = 1; n <= 8; n++) { NOMBRES_TARJETA['servicio' + n] = 'Tarjeta de servicio ' + n; }
+  const ahora = new Date();
+  const contactos = obtenerContactosReserva();
+  const vencidas = [];
+  const proximas = [];
+
+  obtenerGruposReservas().forEach(function(g) {
+    const inicio = new Date(g.fechaInicioReal + 'T' + (g.horaInicioReal || '00:00') + ':00');
+    const fin = new Date(g.fechaFinReal + 'T' + (g.horaFinReal || '23:59') + ':00');
+    if (isNaN(inicio) || isNaN(fin)) return;
+    if (fin < ahora) {
+      vencidas.push(g);
+    } else if (inicio > ahora && (inicio - ahora) <= 30 * 60000) {
+      proximas.push(g);
+    }
+  });
+
+  function filaGrupo(g, tipo) {
+    const c = g.cliente;
+    const contacto = contactos[g.grupoId];
+    let html = '<div style="padding:10px; border:1px solid ' + (tipo === 'vencida' ? '#f5a0a0' : '#e0c08a') + '; background:' + (tipo === 'vencida' ? '#fff5f5' : '#fffaf0') + '; border-radius:8px; margin-bottom:10px;">';
+    html += '<p style="font-weight:700; font-size:0.8rem; color:#1e2a1a; margin-bottom:4px;">' + (NOMBRES_TARJETA[g.cabana] || g.cabana) + '</p>';
+    html += '<p style="font-size:0.76rem; color:#3a3a3a; margin-bottom:4px;">📌 ' + g.fechaInicioReal + ' ' + g.horaInicioReal + ' → ' + g.fechaFinReal + ' ' + g.horaFinReal + '</p>';
+    if (c && c.nombre) html += '<p style="font-size:0.76rem; color:#3a3a3a; margin-bottom:6px;">👤 ' + c.nombre + ' · 📱 ' + (c.whatsapp || '—') + '</p>';
+    if (contacto) {
+      html += '<div style="background:#eef7ee; border:1px dashed #2d8f3f; border-radius:6px; padding:8px; margin-bottom:6px; font-size:0.72rem; color:#1e3a1e;">✅ Contacto registrado: ' + (contacto.nota || '(sin nota)') + (contacto.foto ? '<br><img src="' + contacto.foto + '" style="max-width:100%; margin-top:4px; border-radius:6px;" />' : '') + '</div>';
+    }
+    html += '<textarea id="nota-contacto-' + g.grupoId + '" rows="2" placeholder="Nota: ¿qué se le dijo al cliente?" style="width:100%; padding:6px; border:1px solid #c9a84c; border-radius:6px; font-size:0.75rem; margin-bottom:6px; resize:vertical;"></textarea>';
+    html += '<input type="file" accept="image/*" onchange="subirFotoContacto(this,\'' + g.grupoId + '\')" style="display:block; font-size:0.7rem; margin-bottom:6px;" />';
+    html += '<div style="display:flex; gap:6px;">';
+    html += '<button onclick="guardarRegistroContacto(\'' + g.grupoId + '\')" style="flex:1; background:#c9a84c; color:#1e2a1a; border:none; padding:7px; border-radius:6px; font-weight:700; cursor:pointer; font-size:0.74rem;">📝 Registrar contacto</button>';
+    if (tipo === 'vencida') {
+      html += '<button onclick="enviarMensajeVencida(\'' + g.grupoId + '\')" style="flex:1; background:#25d366; color:#000000; border:1px solid #1ebe5d; padding:7px; border-radius:6px; cursor:pointer; font-size:0.74rem;">📤 Enviar mensaje</button>';
+      html += '<button onclick="liberarFechaAdmin(\'' + g.cabana + '\',\'' + g.grupoId + '\')" style="flex:1; background:#fde8e8; color:#c0392b; border:1px solid #f5a0a0; padding:7px; border-radius:6px; cursor:pointer; font-size:0.74rem;">Liberar</button>';
+    }
+    html += '</div></div>';
+    return html;
+  }
+
+  let html = '';
+  html += '<p style="font-weight:700; color:#c0392b; font-size:0.82rem; margin-bottom:6px;">⏰ Vencidas (' + vencidas.length + ')</p>';
+  html += vencidas.length ? vencidas.map(function(g) { return filaGrupo(g, 'vencida'); }).join('') : '<p style="color:#6b6b6b; font-size:0.76rem; margin-bottom:12px;">Sin reservas vencidas.</p>';
+  html += '<p style="font-weight:700; color:#b8860b; font-size:0.82rem; margin:10px 0 6px;">🔔 Próximas a vencer (30 min o menos)</p>';
+  html += proximas.length ? proximas.map(function(g) { return filaGrupo(g, 'proxima'); }).join('') : '<p style="color:#6b6b6b; font-size:0.76rem;">Sin reservas próximas a empezar en los próximos 30 minutos.</p>';
+  cont.innerHTML = html;
+}
+document.addEventListener('DOMContentLoaded', renderReservasVencidas);
 
 function liberarFechaAdmin(cabana, idReserva) {
   confirmarGuardar('¿Liberar esta reserva de ' + cabana + '?', function() {
     const lista = firebaseDemo.reservasDetalle[cabana] || [];
-    firebaseDemo.reservasDetalle[cabana] = lista.filter(r => r.id !== idReserva);
+    firebaseDemo.reservasDetalle[cabana] = lista.filter(r => r.id !== idReserva && r.grupoId !== idReserva);
+    firebaseDemo.guardarReservasDemo();
     renderReporteDisponibilidad();
+    renderReservasVencidas();
     alert('✅ Reserva liberada.');
   });
 }
 
 function bloquearFechaManual() {
   const cabana = document.getElementById('disp-adm-selector').value;
+  if (cabana === 'todas') { alert('⚠️ Elige una tarjeta específica arriba para poder bloquear una fecha (no aplica en "Todas las tarjetas").'); return; }
   const fecha = document.getElementById('disp-adm-fecha').value;
   const horaE = document.getElementById('disp-adm-hora-entrada').value;
   const horaS = document.getElementById('disp-adm-hora-salida').value;
@@ -7002,12 +7412,32 @@ document.addEventListener('DOMContentLoaded', renderizarUtilidadesPanel);
 
 // ===== PANEL ADMIN: Galería general de fotos =====
 var galeriaFotoImagenTemp = '';
+// ===== Compresión de imágenes (reduce resolución y calidad antes de guardar) =====
+function comprimirImagenArchivo(file, callback) {
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = function() {
+      const MAX_ANCHO = 1000;
+      let w = img.width, h = img.height;
+      if (w > MAX_ANCHO) { h = Math.round(h * MAX_ANCHO / w); w = MAX_ANCHO; }
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      callback(canvas.toDataURL('image/jpeg', 0.72));
+    };
+    img.onerror = function() { callback(e.target.result); };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
 function subirImagenGaleriaTemp(input) {
   const file = input.files[0];
   if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) { galeriaFotoImagenTemp = e.target.result; };
-  reader.readAsDataURL(file);
+  comprimirImagenArchivo(file, function(dataUrl) { galeriaFotoImagenTemp = dataUrl; });
 }
 
 function agregarFotoGaleria() {
@@ -7029,9 +7459,7 @@ var editFotoGaleriaImagenTemp = {};
 function subirImagenEditarGaleria(input, id) {
   const file = input.files[0];
   if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) { editFotoGaleriaImagenTemp[id] = e.target.result; };
-  reader.readAsDataURL(file);
+  comprimirImagenArchivo(file, function(dataUrl) { editFotoGaleriaImagenTemp[id] = dataUrl; });
 }
 
 function guardarEdicionFotoGaleria(id) {
@@ -7089,6 +7517,9 @@ var galeriaVideoTemp = '';
 function subirVideoGaleriaTemp(input) {
   const file = input.files[0];
   if (!file) return;
+  if (file.size > 8 * 1024 * 1024) {
+    alert('⚠️ Este video pesa ' + (file.size / (1024*1024)).toFixed(1) + ' MB. Es probable que no se pueda guardar. Comprímelo o acórtalo antes de subirlo (recomendado: menos de 8 MB).');
+  }
   const reader = new FileReader();
   reader.onload = function(e) { galeriaVideoTemp = e.target.result; };
   reader.readAsDataURL(file);
@@ -7113,6 +7544,9 @@ var editVideoGaleriaTemp = {};
 function subirVideoEditarGaleria(input, id) {
   const file = input.files[0];
   if (!file) return;
+  if (file.size > 8 * 1024 * 1024) {
+    alert('⚠️ Este video pesa ' + (file.size / (1024*1024)).toFixed(1) + ' MB. Es probable que no se pueda guardar. Comprímelo o acórtalo antes de subirlo (recomendado: menos de 8 MB).');
+  }
   const reader = new FileReader();
   reader.onload = function(e) { editVideoGaleriaTemp[id] = e.target.result; };
   reader.readAsDataURL(file);
@@ -7167,6 +7601,117 @@ function renderizarGaleriaVideosPanel() {
   }).join('');
 }
 document.addEventListener('DOMContentLoaded', renderizarGaleriaVideosPanel);
+
+// ===== CARGA DEMO DE INVENTARIO (solo entra si Menú/Bodega están vacíos) =====
+function repararInventarioDemoDuplicado() {
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  if (d.demoInventarioReparado) return;
+
+  const NOMBRES_DEMO_MENU = ['Desayuno Típico Campesino', 'Desayuno Continental', 'Almuerzo Ejecutivo', 'Bandeja Paisa', 'Cena Romántica a la Parrilla', 'Baby Asado a la Noche', 'Botella Vino Tinto', 'Botella Vino Blanco'];
+  const NOMBRES_DEMO_BODEGA = ['Coca-Cola 350 ml', 'Agua Cristal 600 ml', 'Gaseosa Manzana Postobón', 'Cerveza Club Colombia', 'Papas Margarita'];
+  const TODOS_NOMBRES_DEMO = NOMBRES_DEMO_MENU.concat(NOMBRES_DEMO_BODEGA);
+
+  let productos = obtenerProductosInventario();
+  const codigosDemoAEliminar = productos.filter(function(p) { return TODOS_NOMBRES_DEMO.indexOf(p.nombre) !== -1; }).map(function(p) { return p.codigo; });
+
+  if (!codigosDemoAEliminar.length) {
+    const d2 = JSON.parse(localStorage.getItem('admData') || '{}');
+    d2.demoInventarioReparado = true;
+    localStorage.setItem('admData', JSON.stringify(d2));
+    return;
+  }
+
+  productos = productos.filter(function(p) { return TODOS_NOMBRES_DEMO.indexOf(p.nombre) === -1; });
+  guardarProductosInventario(productos);
+
+  let menu = obtenerMenuAlimentos();
+  menu = menu.filter(function(item) { return NOMBRES_DEMO_MENU.indexOf(item.titulo) === -1; });
+  guardarMenuAlimentosStorage(menu);
+
+  const stock = obtenerStockInventario();
+  Object.keys(stock).forEach(function(bod) {
+    codigosDemoAEliminar.forEach(function(cod) { delete stock[bod][cod]; });
+  });
+  guardarStockInventario(stock);
+
+  const d3 = JSON.parse(localStorage.getItem('admData') || '{}');
+  d3.demoInventarioReparado = true;
+  d3.demoInventarioCargado = false;
+  localStorage.setItem('admData', JSON.stringify(d3));
+
+  cargarInventarioDemo();
+}
+document.addEventListener('DOMContentLoaded', repararInventarioDemoDuplicado);
+
+function cargarInventarioDemo() {
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  if (d.demoInventarioCargado) return;
+
+  let cambios = false;
+
+  // --- Menú de Alimentos: 2 por categoría (Desayuno, Almuerzo, Cena, Vino) ---
+  const menuActual = obtenerMenuAlimentos();
+  if (!menuActual.length) {
+    const platosDemo = [
+      { titulo: 'Desayuno Típico Campesino', detalle: 'Huevos, arepa, chocolate y queso', precio: '25000', costo: '9000', tipo: 'desayuno' },
+      { titulo: 'Desayuno Continental', detalle: 'Fruta, yogurt, pan y jugo natural', precio: '22000', costo: '8000', tipo: 'desayuno' },
+      { titulo: 'Almuerzo Ejecutivo', detalle: 'Sopa, principio, proteína y jugo', precio: '30000', costo: '11000', tipo: 'almuerzo' },
+      { titulo: 'Bandeja Paisa', detalle: 'Frijoles, arroz, carne, chicharrón y huevo', precio: '38000', costo: '14000', tipo: 'almuerzo' },
+      { titulo: 'Cena Romántica a la Parrilla', detalle: 'Carne a la parrilla, papa y ensalada', precio: '55000', costo: '20000', tipo: 'cena' },
+      { titulo: 'Baby Asado a la Noche', detalle: 'Cordero al asador con guarniciones', precio: '60000', costo: '22000', tipo: 'cena' },
+      { titulo: 'Botella Vino Tinto', detalle: 'Vino tinto reserva, 750ml', precio: '70000', costo: '25000', tipo: 'vino' },
+      { titulo: 'Botella Vino Blanco', detalle: 'Vino blanco seco, 750ml', precio: '65000', costo: '23000', tipo: 'vino' }
+    ];
+    const stockMenu = obtenerStockInventario();
+    if (!stockMenu['001']) stockMenu['001'] = {};
+    const productosMenu = obtenerProductosInventario();
+    platosDemo.forEach(function(p) {
+      const idItem = 'item' + Date.now() + Math.floor(Math.random() * 100000);
+      const categoriaEspejo = p.tipo === 'vino' ? 'bebidas' : 'platos';
+      const codigoInv = siguienteCodigoEnCategoria(categoriaEspejo) || siguienteCodigoProducto();
+      menuActual.push({ id: idItem, titulo: p.titulo, imagen: '', detalle: p.detalle, precio: p.precio, costo: p.costo, tipo: p.tipo, tarjetas: [], inventarioCodigo: codigoInv });
+      productosMenu.push({ codigo: codigoInv, nombre: p.titulo, detalle: 'Vinculado al Menú de Alimentos', categoria: categoriaEspejo, precio: p.precio, costo: p.costo });
+      guardarProductosInventario(productosMenu);
+      stockMenu['001'][codigoInv] = 15;
+    });
+    guardarMenuAlimentosStorage(menuActual);
+    guardarStockInventario(stockMenu);
+    cambios = true;
+  }
+
+  // --- Bodega de Inventarios: productos sueltos (bebidas/snacks) ---
+  let productosActuales = obtenerProductosInventario();
+  const yaHayBebidas = productosActuales.some(function(p) { return p.nombre === 'Coca-Cola 350 ml'; });
+  if (!yaHayBebidas) {
+    const bodegaDemo = [
+      { nombre: 'Coca-Cola 350 ml', detalle: 'Gaseosa en lata', categoria: 'bebidas', precio: '4000', costo: '1500' },
+      { nombre: 'Agua Cristal 600 ml', detalle: 'Agua embotellada', categoria: 'bebidas', precio: '3000', costo: '1000' },
+      { nombre: 'Gaseosa Manzana Postobón', detalle: 'Gaseosa en lata', categoria: 'bebidas', precio: '4500', costo: '1600' },
+      { nombre: 'Cerveza Club Colombia', detalle: 'Cerveza 330 ml', categoria: 'bebidas', precio: '7000', costo: '2600' },
+      { nombre: 'Papas Margarita', detalle: 'Paquete individual', categoria: 'otras', precio: '6000', costo: '2200' }
+    ];
+    const stockBodega = obtenerStockInventario();
+    if (!stockBodega['001']) stockBodega['001'] = {};
+    bodegaDemo.forEach(function(p) {
+      productosActuales = obtenerProductosInventario();
+      const codigo = siguienteCodigoEnCategoria(p.categoria) || siguienteCodigoProducto();
+      productosActuales.push({ codigo: codigo, nombre: p.nombre, detalle: p.detalle, categoria: p.categoria, imagen: '', precio: p.precio, costo: p.costo, stockMinimo: null });
+      guardarProductosInventario(productosActuales);
+      stockBodega['001'][codigo] = 20;
+    });
+    guardarStockInventario(stockBodega);
+    cambios = true;
+  }
+
+  if (cambios) {
+    const d2 = JSON.parse(localStorage.getItem('admData') || '{}');
+    d2.demoInventarioCargado = true;
+    localStorage.setItem('admData', JSON.stringify(d2));
+    renderizarMenuPanel();
+    renderizarPanelBodegas();
+  }
+}
+document.addEventListener('DOMContentLoaded', cargarInventarioDemo);
 
 function agregarClienteManual() {
   const nombre = document.getElementById('adm-cliente-nombre').value.trim();
@@ -8251,6 +8796,19 @@ function restaurarTarjetasExtra() {
   recalcularNumerosVisibles();
 }
 document.addEventListener('DOMContentLoaded', restaurarTarjetasExtra);
+
+// Recuperar la galería guardada de las 8 tarjetas originales (mismo mecanismo que ya usan las tarjetas extra)
+function restaurarGaleriasOriginales() {
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  if (!d.galeriasPorTarjeta) return;
+  for (let n = 1; n <= 8; n++) {
+    const clave = 'servicio' + n;
+    if (d.galeriasPorTarjeta[clave]) {
+      galeriaFotosPorServicio[clave] = d.galeriasPorTarjeta[clave];
+    }
+  }
+}
+document.addEventListener('DOMContentLoaded', restaurarGaleriasOriginales);
 
 // ===== ELIMINAR TARJETA (oculta, nunca borra la clave interna — trazabilidad segura) =====
 function emojiNumero(n) {
@@ -9389,9 +9947,19 @@ function agregarCategoriaInventario() {
   if (!nombre || !nombre.trim()) return;
   const cats = obtenerCategoriasInventario();
   const clave = 'cat' + Date.now();
-  const maxFin = cats.reduce(function(max, c) { return Math.max(max, c.rangoFin || 1000); }, 1000);
-  const rangoInicio = maxFin + 101;
-  const rangoFin = rangoInicio + 199;
+  const maxFin = cats.reduce(function(max, c) { return Math.max(max, c.rangoFin || 0); }, 0);
+  const sugeridoInicio = maxFin + 1;
+  const sugeridoFin = sugeridoInicio + 99;
+
+  const inicioTxt = prompt('¿Desde qué código empieza esta categoría? (ej: ' + sugeridoInicio + ')', String(sugeridoInicio));
+  if (inicioTxt === null) return;
+  const finTxt = prompt('¿Hasta qué código termina esta categoría? (ej: ' + sugeridoFin + ')', String(sugeridoFin));
+  if (finTxt === null) return;
+
+  const rangoInicio = parseInt(inicioTxt) || sugeridoInicio;
+  const rangoFin = parseInt(finTxt) || sugeridoFin;
+  if (rangoFin <= rangoInicio) { alert('⚠️ El código final debe ser mayor que el inicial.'); return; }
+
   cats.push({ clave: clave, nombre: nombre.trim(), rangoInicio: rangoInicio, rangoFin: rangoFin });
   guardarCategoriasInventario(cats);
   renderizarPanelBodegas();
@@ -9405,6 +9973,33 @@ function editarNombreCategoriaInventario(clave) {
   const nuevoNombre = prompt('Nuevo nombre para esta categoría:', cat.nombre);
   if (!nuevoNombre || !nuevoNombre.trim()) return;
   cat.nombre = nuevoNombre.trim();
+
+  const cambiarRango = confirm('¿También quieres cambiar el rango de códigos de esta categoría? (hoy: ' + cat.rangoInicio + ' – ' + cat.rangoFin + ')');
+  if (cambiarRango) {
+    const inicioTxt = prompt('Nuevo código de inicio:', String(cat.rangoInicio));
+    if (inicioTxt !== null) {
+      const finTxt = prompt('Nuevo código final:', String(cat.rangoFin));
+      if (finTxt !== null) {
+        const nuevoInicio = parseInt(inicioTxt) || cat.rangoInicio;
+        const nuevoFin = parseInt(finTxt) || cat.rangoFin;
+        if (nuevoFin <= nuevoInicio) {
+          alert('⚠️ El código final debe ser mayor que el inicial. El rango no se cambió.');
+        } else {
+          const productos = obtenerProductosInventario();
+          const fueraDeRango = productos.some(function(p) {
+            return p.categoria === clave && (parseInt(p.codigo) < nuevoInicio || parseInt(p.codigo) > nuevoFin);
+          });
+          if (fueraDeRango) {
+            alert('⚠️ Ya hay productos en esta categoría con códigos fuera de ese nuevo rango. Ajusta el rango para que los incluya, o mueve esos productos primero.');
+          } else {
+            cat.rangoInicio = nuevoInicio;
+            cat.rangoFin = nuevoFin;
+          }
+        }
+      }
+    }
+  }
+
   guardarCategoriasInventario(cats);
   renderizarPanelBodegas();
 }
