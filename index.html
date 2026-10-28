@@ -145,6 +145,18 @@
     .adm-hit-card { outline:2px solid #c9a84c; outline-offset:2px; }
     mark.adm-hit { background:rgba(201,168,76,0.18); color:inherit; border:2px solid #c9a84c; border-radius:999px; padding:0 6px; }
     .adm--buscando .panel-cards-grid > :not(.panel-card):not(#indice-tarjetas-servicio) { display:none; }
+    .mp-sw { position:relative; display:inline-block; width:44px; height:24px; flex-shrink:0; }
+    .mp-sw input { opacity:0; width:0; height:0; position:absolute; }
+    .mp-sw span { position:absolute; inset:0; background:#c8c3b6; border-radius:24px; cursor:pointer; transition:background .2s; }
+    .mp-sw span::before { content:''; position:absolute; left:3px; top:3px; width:18px; height:18px; background:#fff; border-radius:50%; transition:transform .2s; box-shadow:0 1px 3px rgba(0,0,0,.3); }
+    .mp-sw input:checked + span { background:#2d8f3f; }
+    .mp-sw input:checked + span::before { transform:translateX(20px); }
+    .adm-lapiz { display:inline-block; margin-left:8px; font-size:0.85rem; cursor:pointer; vertical-align:middle; }
+    .adm--org .adm-lapiz { display:none; }
+    .adm-editor-titulo { background:#fffdf7; border:1.5px solid #c9a84c; border-radius:10px; padding:10px; margin:8px 0; }
+    .adm-editor-titulo input { width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; font-size:0.9rem; margin-bottom:8px; box-sizing:border-box; }
+    .adm-editor-titulo button { padding:8px 12px; border-radius:8px; font-weight:700; font-size:0.78rem; cursor:pointer; border:1.5px solid #c9a84c; background:#fff; color:#1e3a1e; }
+    .adm-editor-titulo button.adm-guardar { background:#c9a84c; color:#1e2a1a; }
     .adm-mover, .adm-org-reset { display:none; }
     .adm--org .adm-mover { display:inline-flex; float:right; gap:6px; }
     .adm--org .adm-org-reset { display:inline-block; }
@@ -1631,64 +1643,7 @@
         <p style="font-size:0.82rem; color:#2a2a2a; margin-bottom:16px;">Abono requerido: <strong id="paso2-abono" style="color:#1e2a1a;"></strong></p>
         <p style="font-size:0.85rem; color:#1e3a1e; font-weight:700; margin-bottom:10px;">👆 Escoge tu medio de pago para ver a dónde transferir</p>
 
-        <div id="metodos-pago" style="display:flex; flex-direction:column; margin-bottom:16px;">
-          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
-            <div onclick="togglePago(this,'nequi')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
-              <span style="font-size:1.3rem;">📱</span>
-              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">Nequi</span>
-              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
-            </div>
-            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
-          </div>
-          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
-            <div onclick="togglePago(this,'daviplata')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
-              <span style="font-size:1.3rem;">💜</span>
-              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">Daviplata</span>
-              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
-            </div>
-            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
-          </div>
-          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
-            <div onclick="togglePago(this,'bancolombia')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
-              <span style="font-size:1.3rem;">🏦</span>
-              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">Bancolombia</span>
-              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
-            </div>
-            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
-          </div>
-          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
-            <div onclick="togglePago(this,'pse')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
-              <span style="font-size:1.3rem;">🌐</span>
-              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">PSE</span>
-              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
-            </div>
-            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
-          </div>
-          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
-            <div onclick="togglePago(this,'tarjeta')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
-              <span style="font-size:1.3rem;">💳</span>
-              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">Tarjeta</span>
-              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
-            </div>
-            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
-          </div>
-          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
-            <div onclick="togglePago(this,'efectivo')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
-              <span style="font-size:1.3rem;">💵</span>
-              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">Efectivo</span>
-              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
-            </div>
-            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
-          </div>
-          <div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">
-            <div onclick="togglePago(this,'breve')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">
-              <span style="font-size:1.3rem;">🔑</span>
-              <span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">Llaves Breve</span>
-              <span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>
-            </div>
-            <div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>
-          </div>
-        </div>
+        <div id="metodos-pago" style="display:flex; flex-direction:column; margin-bottom:16px;"></div>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
           <button onclick="irPaso1()" style="background:#f5f5f0; color:#1e2a1a; border:1.5px solid #e8e0d0; padding:12px; border-radius:8px; font-size:0.88rem; font-weight:600; cursor:pointer;">← Volver</button>
@@ -2085,7 +2040,7 @@ Gracias por elegir Glamping La Reserva. Tu colaboración nos ayuda a conservar e
 
     <div style="margin-top:14px; display:inline-block; background:#25d366; border:1px solid #1ebe5d; border-radius:10px; padding:10px 18px; color:#000000;">
       <p>🌿 <span>GLAMPING LA RESERVA</span> · Pereira, Risaralda, Colombia</p>
-      <p style="margin-top:6px; opacity:0.9;">Versión 1.0 · Actualización A#639 N#640 · Jose Alex N-R</p>
+      <p style="margin-top:6px; opacity:0.9;">Versión 1.0 · Actualización A#644 N#645 · Jose Alex N-R</p>
     </div>
 
     <br>
@@ -3410,17 +3365,10 @@ WiFi + Smart TV</textarea>
       <!-- 💳 Métodos de Pago -->
       <div id="indice-pagoinfo" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">💳 · Métodos de Pago</h3>
-        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección de Reservas — Datos que ve el cliente al elegir cómo pagar (cuentas, llaves, números).</p>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">📱 Nequi</label><textarea id="adm-pago-nequi" rows="3" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.8rem; margin-top:4px; resize:vertical;" placeholder="Envía el abono al número 301 655 0121"></textarea></div>
-          <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">💜 Daviplata</label><textarea id="adm-pago-daviplata" rows="3" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.8rem; margin-top:4px; resize:vertical;"></textarea></div>
-          <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">🏦 Bancolombia</label><textarea id="adm-pago-bancolombia" rows="3" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.8rem; margin-top:4px; resize:vertical;" placeholder="Cuenta Ahorros: XXXX-XXXX-XXXX"></textarea></div>
-          <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">🌐 PSE</label><textarea id="adm-pago-pse" rows="3" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.8rem; margin-top:4px; resize:vertical;"></textarea></div>
-          <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">💳 Tarjeta</label><textarea id="adm-pago-tarjeta" rows="3" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.8rem; margin-top:4px; resize:vertical;"></textarea></div>
-          <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">💵 Efectivo</label><textarea id="adm-pago-efectivo" rows="3" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.8rem; margin-top:4px; resize:vertical;"></textarea></div>
-          <div><label style="color:#1e2a1a; font-weight:600; font-size:0.75rem;">🔑 Llaves Breve</label><textarea id="adm-pago-breve" rows="3" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.8rem; margin-top:4px; resize:vertical;"></textarea></div>
-        </div>
-        <button onclick="confirmarGuardar('¿Guardar los datos de métodos de pago?', guardarInfoPagos)" style="margin-top:10px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Guardar métodos de pago</button>
+        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Sección de Reservas — Formas de pago que ve el cliente. Enciende las que uses; las apagadas quedan guardadas en pausa. Puedes crear y borrar. En el texto, usa **así** para negrilla.</p>
+        <div id="adm-metodos-lista" style="display:flex; flex-direction:column; gap:12px;"></div>
+        <button onclick="agregarMetodoPago()" style="margin-top:12px; width:100%; background:#ffffff; color:#1e3a1e; border:1.5px solid #c9a84c; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.82rem;">➕ Agregar forma de pago</button>
+        <button onclick="confirmarGuardar('¿Guardar los datos de las formas de pago?', guardarMetodosPagoAdmin)" style="margin-top:8px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer;">💾 Guardar formas de pago</button>
       </div>
 
       <!-- 🍽️ Menú de Alimentos y Vinos (compartido, mismo menú en las 8 tarjetas) -->
@@ -3538,7 +3486,7 @@ WiFi + Smart TV</textarea>
           </div>
           <button onclick="confirmarGuardar('¿Agregar este cliente a la base de datos?', agregarClienteManual)" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem;">💾 Agregar cliente</button>
         </div>
-        <p style="color:#a08a3f; font-size:0.68rem; margin-top:10px; font-style:italic;">⚠️ Datos en memoria (demo). Se reinician al recargar la página hasta conectar base de datos real.</p>
+        <p style="color:#a08a3f; font-size:0.68rem; margin-top:10px; font-style:italic;">💾 Los clientes se guardan en este navegador y viajan en la copia de seguridad.</p>
       </div>
 
       <!-- 📊 Utilidades del Negocio -->
@@ -3684,10 +3632,13 @@ Gracias por elegir Glamping La Reserva. Tu colaboración nos ayuda a conservar e
       <!-- 🧑‍💼 Botón Asesor (pie del sitio) -->
       <div id="indice-asesor" class="panel-card" style="background:#ffffff; border-radius:12px; padding:16px; margin-bottom:36px; border:1px solid #e3dcc9; border-left:4px solid #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">🧑‍💼 Botón Asesor</h3>
-        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Botón circular al final del sitio que abre WhatsApp. El número que muestra y al que escribe es el de "Número que recibe reservas".</p>
+        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 Botón flotante que abre WhatsApp. Tiene su propio número; si no lo llenas, usa el de "Número que recibe reservas".</p>
         <label style="color:#1e2a1a; font-weight:600; font-size:0.78rem;">Texto sobre la foto</label>
         <input id="adm-asesor-texto" type="text" maxlength="14" placeholder="Asesor" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin:4px 0 8px;" />
         <button onclick="guardarTextoAsesor()" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem; margin-bottom:12px;">💾 Guardar texto</button>
+        <label style="color:#1e2a1a; font-weight:600; font-size:0.78rem;">Número de WhatsApp del Asesor <span style="font-weight:400; color:#6b6b6b;">(si lo dejas vacío usa el de reservas)</span></label>
+        <input id="adm-asesor-numero" type="tel" placeholder="Ej: 3001234567" style="width:100%; padding:8px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; margin:4px 0 8px;" />
+        <button onclick="guardarNumeroAsesor()" style="width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer; font-size:0.85rem; margin-bottom:12px;">💾 Guardar número</button>
         <label style="color:#1e2a1a; font-weight:600; font-size:0.78rem;">Foto del asesor
           <input id="file-foto-asesor" type="file" accept="image/*" style="display:block; margin-top:6px; color:#1e3a1e; font-size:0.75rem;" />
         </label>
@@ -3711,7 +3662,7 @@ Gracias por elegir Glamping La Reserva. Tu colaboración nos ayuda a conservar e
       <!-- ⚙️ Configuración general (no ligado a una sección visual específica) -->
       <div id="indice-config" class="panel-card" style="background:#f0ece4; border-radius:12px; padding:16px; margin-bottom:0; border:1px dashed #c9a84c;">
         <h3 style="color:#1e3a1e; font-size:0.9rem; margin-bottom:2px;">⚙️ Número que recibe reservas</h3>
-        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 No es una sección visual — Número de WhatsApp donde llegan las reservas y al que escribe el botón Asesor.</p>
+        <p style="color:#6b6b6b; font-size:0.72rem; margin-bottom:10px;">📍 No es una sección visual — Número de WhatsApp donde llegan las reservas.</p>
         <input id="adm-whatsapp" type="tel" placeholder="573016550121" style="width:100%; padding:10px; border:1.5px solid #c9a84c; border-radius:8px; background:#fffdf7; color:#1e2a1a; font-size:0.9rem;" />
         <button onclick="confirmarGuardar('¿Guardar el número de WhatsApp?', guardarWhatsApp)" style="margin-top:8px; width:100%; background:#c9a84c; color:#1e2a1a; border:none; padding:10px; border-radius:8px; font-weight:700; cursor:pointer;">💾 Guardar número</button>
       </div>
@@ -4070,18 +4021,22 @@ function guardarAbonoConfig() {
   });
 }
 
-// ===== BOTÓN ASESOR (pie del sitio): foto y texto editables; el número es el único de "Número que recibe reservas" =====
-var asesorConfig = { texto: 'Asesor', foto: '' };
-function numeroWhatsApp() {   // única fuente del número: el que guarda el administrador; si no hay, el de respaldo
-  let n = String(window.ADMIN_WA_CUSTOM || ADMIN_WA).replace(/\D/g, '');
+// ===== BOTÓN ASESOR: foto, texto y número propio editables; si no tiene número usa el de "Número que recibe reservas" =====
+var asesorConfig = { texto: 'Asesor', foto: '', numero: '' };
+function normalizarNumeroWA(raw) {
+  let n = String(raw || '').replace(/\D/g, '');
   if (n.length === 10) n = '57' + n;
   return n;
+}
+function numeroWhatsApp(item) {   // única fuente de números: por ítem ('asesor'); sin número propio (o sin ítem) usa el de reservas
+  if (item === 'asesor') { const a = normalizarNumeroWA(asesorConfig.numero); if (a.length >= 11) return a; }
+  return normalizarNumeroWA(window.ADMIN_WA_CUSTOM || ADMIN_WA);
 }
 function formatearNumeroWhatsApp(n) {
   return (n.length === 12 && n.startsWith('57')) ? n.slice(2, 5) + ' ' + n.slice(5, 8) + ' ' + n.slice(8) : '+' + n;
 }
 function actualizarBotonAsesor() {
-  const n = numeroWhatsApp();
+  const n = numeroWhatsApp('asesor');
   const enlace = 'https://wa.me/' + n + '?text=' + encodeURIComponent('Hola, quiero información sobre las cabañas');
   ['asesor-enlace', 'asesor-numero'].forEach(function(id) { const a = document.getElementById(id); if (a) a.href = enlace; });
   const num = document.getElementById('asesor-numero-texto'); if (num) num.textContent = formatearNumeroWhatsApp(n);
@@ -4093,16 +4048,27 @@ function actualizarBotonAsesor() {
 function cargarAsesor() {
   try {
     const a = JSON.parse(localStorage.getItem('admData') || '{}').asesor;
-    if (a) { if (a.texto) asesorConfig.texto = a.texto; if (a.foto) asesorConfig.foto = a.foto; }
+    if (a) { if (a.texto) asesorConfig.texto = a.texto; if (a.foto) asesorConfig.foto = a.foto; if (a.numero) asesorConfig.numero = a.numero; }
   } catch (e) {}
   const campo = document.getElementById('adm-asesor-texto');
   if (campo) campo.value = asesorConfig.texto;
+  const campoNum = document.getElementById('adm-asesor-numero');
+  if (campoNum) campoNum.value = asesorConfig.numero;
   actualizarBotonAsesor();
 }
 function guardarAsesor() {
   const d = JSON.parse(localStorage.getItem('admData') || '{}');
-  d.asesor = { texto: asesorConfig.texto, foto: asesorConfig.foto };
+  d.asesor = { texto: asesorConfig.texto, foto: asesorConfig.foto, numero: asesorConfig.numero };
   localStorage.setItem('admData', JSON.stringify(d));
+}
+function guardarNumeroAsesor() {
+  const crudo = document.getElementById('adm-asesor-numero').value.trim();
+  const n = normalizarNumeroWA(crudo);
+  if (crudo && (n.length < 11 || n.length > 15)) { alert('⚠️ Escribe un número válido (10 dígitos o con indicativo, ej: 3001234567).'); return; }
+  confirmarGuardar(crudo ? '¿Guardar el número del Asesor?' : '¿Quitar el número propio? El Asesor usará el número de reservas.', function() {
+    asesorConfig.numero = crudo; guardarAsesor(); actualizarBotonAsesor();
+    alert('✅ Número del Asesor actualizado.');
+  });
 }
 function guardarTextoAsesor() {
   const t = document.getElementById('adm-asesor-texto').value.trim();
@@ -4316,32 +4282,97 @@ const firebaseDemo = {
 })();
 
 // ===== INFORMACIÓN DE MÉTODOS DE PAGO =====
-const infoPagosLabel = {
-  nequi: '📱 <strong>Nequi:</strong>',
-  daviplata: '💜 <strong>Daviplata:</strong>',
-  bancolombia: '🏦 <strong>Bancolombia:</strong>',
-  pse: '🌐 <strong>PSE:</strong>',
-  tarjeta: '💳 <strong>Tarjeta:</strong>',
-  efectivo: '💵 <strong>Efectivo en destino:</strong>',
-  breve: '🔑 <strong>Llaves Breve:</strong>'
-};
-const infoPagosBody = {
-  nequi: 'Envía el abono al número\n<strong>301 655 0121</strong>\nConcepto: tu nombre + cabaña. Sí, dale una vez hagas el envío, tómale una captura a tu comprobante y ten listo, y dale continuar al botón para que envíes el comprobante.',
-  daviplata: 'Envía el abono al número\n<strong>301 655 0121</strong>\nConcepto: tu nombre + cabaña. Sí, dale una vez hagas el envío, tómale una captura a tu comprobante y ten listo, y dale continuar al botón para que envíes el comprobante.',
-  bancolombia: 'Cuenta Ahorros: <strong>XXXX-XXXX-XXXX</strong>\nA nombre de: Cabañas La Reserva\nConcepto: tu nombre + cabaña',
-  pse: 'Acceso a través de plataforma Nequi o Daviplata\nNúmero receptor: <strong>301 655 0121</strong>',
-  tarjeta: 'Paga con tarjeta débito o crédito a través del link seguro\nTe lo enviaremos por WhatsApp al confirmar',
-  efectivo: 'Se acepta abono parcial o total al llegar\nUbicación: Autopista del Café, Km. 14 Vía Armenia',
-  breve: 'Consulta el código Llaves Breve\nTe lo enviaremos por WhatsApp al confirmar'
-};
-function construirInfoPagos() {
-  const obj = {};
-  Object.keys(infoPagosLabel).forEach(k => {
-    obj[k] = infoPagosLabel[k] + '<br>' + infoPagosBody[k].split('\n').join('<br>');
+// ===== FORMAS DE PAGO: lista editable (crear, borrar, encender/apagar). Se guarda en admData.metodosPago =====
+const METODOS_PAGO_BASE = [
+  { id: 'nequi', icono: '📱', nombre: 'Nequi', texto: 'Envía el abono al número\n**301 655 0121**\nConcepto: tu nombre + cabaña. Sí, dale una vez hagas el envío, tómale una captura a tu comprobante y ten listo, ¡Gracias!' },
+  { id: 'daviplata', icono: '💜', nombre: 'Daviplata', texto: 'Envía el abono al número\n**301 655 0121**\nConcepto: tu nombre + cabaña. Sí, dale una vez hagas el envío, tómale una captura a tu comprobante y ten listo, ¡Gracias!' },
+  { id: 'bancolombia', icono: '🏦', nombre: 'Bancolombia', texto: 'Cuenta Ahorros: **XXXX-XXXX-XXXX**\nA nombre de: Cabañas La Reserva\nConcepto: tu nombre + cabaña' },
+  { id: 'pse', icono: '🌐', nombre: 'PSE', texto: 'Acceso a través de plataforma Nequi o Daviplata\nNúmero receptor: **301 655 0121**' },
+  { id: 'tarjeta', icono: '💳', nombre: 'Tarjeta', texto: 'Paga con tarjeta débito o crédito a través del link seguro\nTe lo enviaremos por WhatsApp al confirmar' },
+  { id: 'efectivo', icono: '💵', nombre: 'Efectivo', texto: 'Se acepta abono parcial o total al llegar\nUbicación: Autopista del Café, Km. 14 Vía Armenia' },
+  { id: 'breve', icono: '🔑', nombre: 'Llaves Breve', texto: 'Consulta el código Llaves Breve\nTe lo enviaremos por WhatsApp al confirmar' }
+];
+var metodosPago = [];
+function cargarMetodosPago() {
+  let d = {}; try { d = JSON.parse(localStorage.getItem('admData') || '{}'); } catch (e) {}
+  if (Array.isArray(d.metodosPago) && d.metodosPago.length) { metodosPago = d.metodosPago; return; }
+  metodosPago = METODOS_PAGO_BASE.map(function(m) {
+    const viejo = d.infoPagosBody && d.infoPagosBody[m.id];   // textos guardados con la versión anterior
+    return { id: m.id, icono: m.icono, nombre: m.nombre, texto: (viejo || m.texto).replace(/<\/?strong>/g, '**').replace(/<br\s*\/?>/g, '\n'), activo: true };
   });
-  return obj;
 }
-const infoPagos = construirInfoPagos();
+cargarMetodosPago();
+function guardarMetodosPago() {
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  d.metodosPago = metodosPago;
+  localStorage.setItem('admData', JSON.stringify(d));
+}
+function escHTMLPago(t) { return String(t === undefined || t === null ? '' : t).replace(/[&<>"']/g, function(ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]; }); }
+function textoMetodoPagoHTML(m) {   // el texto del administrador se muestra como texto (con **negrilla** y saltos de línea)
+  return '<strong>' + escHTMLPago(m.icono) + ' ' + escHTMLPago(m.nombre) + ':</strong><br>' + escHTMLPago(m.texto).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').split('\n').join('<br>');
+}
+function renderMetodosPago() {   // arma el paso de pago del cliente solo con las formas encendidas
+  const cont = document.getElementById('metodos-pago'); if (!cont) return;
+  const activos = metodosPago.filter(function(m) { return m.activo; });
+  cont.innerHTML = activos.length ? activos.map(function(m) {
+    return '<div class="metodo-acordeon" style="border:1.5px solid #e8e0d0; border-radius:10px; margin-bottom:8px; overflow:hidden;">' +
+      '<div onclick="togglePago(this,\'' + escHTMLPago(m.id) + '\')" style="display:flex; align-items:center; gap:10px; padding:12px 14px; cursor:pointer; background:#fffdf7;">' +
+        '<span style="font-size:1.3rem;">' + escHTMLPago(m.icono) + '</span>' +
+        '<span style="flex:1; font-weight:600; color:#1e2a1a; font-size:0.88rem;">' + escHTMLPago(m.nombre) + '</span>' +
+        '<span class="flecha-pago" style="color:#c9a84c; font-size:0.8rem;">▾</span>' +
+      '</div>' +
+      '<div class="contenido-pago" style="display:none; padding:14px; background:#f9f6f0; font-size:0.85rem; color:#1e2a1a; line-height:1.6; border-top:1px solid #e8e0d0;"></div>' +
+    '</div>';
+  }).join('') : '<p style="font-size:0.85rem; color:#6b6b6b;">Por ahora no hay formas de pago disponibles. Escríbenos por WhatsApp para coordinar tu pago.</p>';
+  if (reservaData && reservaData.metodoId && !activos.some(function(m) { return m.id === reservaData.metodoId; })) { reservaData.metodo = ''; reservaData.metodoId = ''; }
+}
+function renderMetodosAdmin() {
+  const cont = document.getElementById('adm-metodos-lista'); if (!cont) return;
+  const inp = 'padding:7px; border:1px solid #c9a84c; border-radius:6px; background:#fffdf7; color:#1e2a1a; font-size:0.85rem; box-sizing:border-box;';
+  cont.innerHTML = metodosPago.map(function(m, i) {
+    return '<div style="border:1px solid ' + (m.activo ? '#c9a84c' : '#e3dcc9') + '; border-radius:10px; padding:10px; background:' + (m.activo ? '#ffffff' : '#f4f1ea') + ';">' +
+      '<div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">' +
+        '<label class="mp-sw" title="' + (m.activo ? 'Encendida: la ve el cliente' : 'Apagada: en pausa') + '"><input type="checkbox" ' + (m.activo ? 'checked' : '') + ' onchange="alternarMetodoPago(' + i + ', this.checked)"><span></span></label>' +
+        '<input id="mp-icono-' + i + '" type="text" maxlength="4" value="' + escHTMLPago(m.icono) + '" style="width:52px; text-align:center; ' + inp + '" />' +
+        '<input id="mp-nombre-' + i + '" type="text" maxlength="40" value="' + escHTMLPago(m.nombre) + '" style="flex:1; min-width:0; ' + inp + '" />' +
+        '<button type="button" onclick="borrarMetodoPago(' + i + ')" aria-label="Borrar forma de pago" style="background:#ffffff; border:1.5px solid #c00; color:#c00; border-radius:8px; padding:6px 9px; cursor:pointer;">🗑️</button>' +
+      '</div>' +
+      '<p style="font-size:0.68rem; color:' + (m.activo ? '#2d8f3f' : '#8a8a8a') + '; font-weight:700; margin:0 0 6px;">' + (m.activo ? '● Encendida (la ve el cliente)' : '○ Apagada (en pausa)') + '</p>' +
+      '<textarea id="mp-texto-' + i + '" rows="3" style="width:100%; ' + inp + ' font-family:inherit;">' + escHTMLPago(m.texto) + '</textarea>' +
+    '</div>';
+  }).join('');
+}
+function alternarMetodoPago(i, encendida) {
+  if (!encendida && metodosPago.filter(function(m) { return m.activo; }).length <= 1) {
+    alert('⚠️ Debe quedar al menos una forma de pago encendida.'); renderMetodosAdmin(); return;
+  }
+  metodosPago[i].activo = encendida;
+  guardarMetodosPago(); renderMetodosPago(); renderMetodosAdmin();
+}
+function agregarMetodoPago() {
+  metodosPago.push({ id: 'mp' + Date.now(), icono: '💰', nombre: 'Nueva forma de pago', texto: '', activo: false });
+  guardarMetodosPago(); renderMetodosAdmin();
+  alert('✅ Forma de pago creada, apagada. Escribe sus datos, guárdalos y enciéndela.');
+}
+function borrarMetodoPago(i) {
+  const m = metodosPago[i]; if (!m) return;
+  if (m.activo && metodosPago.filter(function(x) { return x.activo; }).length <= 1) { alert('⚠️ No puedes borrar la única forma de pago encendida.'); return; }
+  confirmarGuardar('¿Borrar "' + m.nombre + '"? No se puede deshacer. Si solo quieres pausarla, apágala.', function() {
+    metodosPago.splice(i, 1); guardarMetodosPago(); renderMetodosPago(); renderMetodosAdmin();
+  });
+}
+function guardarMetodosPagoAdmin() {
+  metodosPago.forEach(function(m, i) {
+    const n = document.getElementById('mp-nombre-' + i), ic = document.getElementById('mp-icono-' + i), t = document.getElementById('mp-texto-' + i);
+    if (n && n.value.trim()) m.nombre = n.value.trim();
+    if (ic) m.icono = ic.value.trim() || m.icono;
+    if (t) m.texto = t.value.trim();
+  });
+  guardarMetodosPago(); renderMetodosPago(); renderMetodosAdmin();
+  alert('✅ Formas de pago actualizadas.');
+}
+renderMetodosPago();
+renderMetodosAdmin();
 
 // ===== NOMBRES DE MESES (para calendarios) =====
 const mesesNombres = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
@@ -4353,6 +4384,17 @@ const _enviarReservaOriginal = enviarReserva;
 
 // ===== BASE DE DATOS DE CLIENTES (trazabilidad administrativa) =====
 var clientesDB = [];
+function cargarClientesDB() {
+  try { const l = JSON.parse(localStorage.getItem('admData') || '{}').clientesDB; if (Array.isArray(l)) clientesDB = l; } catch (e) {}
+}
+cargarClientesDB();
+function guardarClientesDB() {   // una sola vía para guardar la base de clientes (reservas nuevas, manuales y observaciones)
+  try {
+    const d = JSON.parse(localStorage.getItem('admData') || '{}');
+    d.clientesDB = clientesDB;
+    localStorage.setItem('admData', JSON.stringify(d));
+  } catch (e) { alert('⚠️ No se pudo guardar la base de clientes: el almacenamiento del celular está lleno.'); }
+}
 
 
 var faqLista = [
@@ -5594,10 +5636,12 @@ function togglePago(headerEl, metodo) {
 
   if (!yaAbierto) {
     fila.style.border = '2px solid #1e2a1a';
-    contenido.innerHTML = infoPagos[metodo];
+    const m = metodosPago.find(function(x) { return x.id === metodo; });
+    contenido.innerHTML = m ? textoMetodoPagoHTML(m) : '';
     contenido.style.display = 'block';
     headerEl.querySelector('.flecha-pago').textContent = '▴';
-    reservaData.metodo = metodo;
+    reservaData.metodo = m ? m.nombre : metodo;
+    reservaData.metodoId = metodo;
   }
 }
 
@@ -5758,8 +5802,10 @@ function enviarReserva() {
     saldo: saldoPendiente,
     fechaReserva: infoCliente.fechaReserva,
     dejoOpinion: false,
-    opinionTexto: ''
+    opinionTexto: '',
+    observacion: ''
   });
+  guardarClientesDB();
 
   // Inventario: usar el personalizado del admin o el por defecto
   const mascotasTxt = reservaData.mascotas === 'no' ? 'Sin mascotas' : `${reservaData.mascotas} mascota(s)`;
@@ -7574,26 +7620,6 @@ function bloquearFechaManual() {
   alert('✅ Fecha bloqueada manualmente.');
 }
 
-function guardarInfoPagos() {
-  const claves = ['nequi', 'daviplata', 'bancolombia', 'pse', 'tarjeta', 'efectivo', 'breve'];
-  const nuevosDatos = {};
-  claves.forEach(k => {
-    const val = document.getElementById('adm-pago-' + k).value.trim();
-    if (val) {
-      infoPagosBody[k] = val.replace(/\n/g, '\n'); // conserva saltos de línea tal cual
-      nuevosDatos[k] = val;
-    }
-  });
-  // Reconstruir infoPagos con los textos actualizados
-  claves.forEach(k => {
-    infoPagos[k] = infoPagosLabel[k] + '<br>' + infoPagosBody[k].split('\n').join('<br>');
-  });
-  const d = JSON.parse(localStorage.getItem('admData') || '{}');
-  d.infoPagosBody = infoPagosBody;
-  localStorage.setItem('admData', JSON.stringify(d));
-  alert('✅ Métodos de pago actualizados.');
-}
-
 // ===== GESTIÓN DINÁMICA DE PREGUNTAS FRECUENTES (FAQ) =====
 
 function renderFAQAdmin() {
@@ -7748,27 +7774,32 @@ function renderClientesDB(filtro) {
     return;
   }
 
-  cont.innerHTML = lista.slice().reverse().map(({ c, i }) =>
-    '<div style="background:#f9f6f0; border:1px solid #e3dcc9; border-radius:8px; padding:10px; font-size:0.78rem; color:#1e2a1a; line-height:1.6;">' +
-      '👤 <strong>' + c.nombre + '</strong> · 📱 ' + c.whatsapp + '<br>' +
-      '🏕️ ' + (serviciosInfo[c.cabana] ? serviciosInfo[c.cabana].nombre : c.cabana) + ' · 📅 ' + c.entrada + (c.salida && c.salida !== c.entrada ? ' → ' + c.salida : '') + (c.duracion ? ' · ' + c.duracion : '') + '<br>' +
-      '💰 Total: $' + (c.total || 0).toLocaleString('es-CO') + ' · Abono: $' + (c.abono || 0).toLocaleString('es-CO') + ' · Saldo: $' + (c.saldo || 0).toLocaleString('es-CO') + '<br>' +
-      '🗓️ Reservó el: ' + (c.fechaReserva || '—') + '<br>' +
-      '<label style="display:flex; align-items:center; gap:6px; margin-top:6px; cursor:pointer;">' +
-        '<input type="checkbox" ' + (c.dejoOpinion ? 'checked' : '') + ' onchange="toggleOpinionCliente(' + i + ', this.checked)" style="width:16px; height:16px; accent-color:#c9a84c;" /> ' +
-        '¿Dejó opinión?' +
-      '</label>' +
-    '</div>'
-  ).join('');
+  const esc = function(t) { return String(t === undefined || t === null ? '' : t).replace(/[&<>"']/g, function(ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]; }); };
+  const fechaCorta = function(f) { const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(f); return m ? m[3] + '/' + m[2] + '/' + m[1].slice(2) : f; };   // 28/10/26
+  const celda = 'padding:6px 4px; border-bottom:1px solid #eee7d6; white-space:nowrap;';
+  const filas = lista.slice().reverse().map(function(x) {
+    const c = x.c, i = x.i;
+    const servicio = serviciosInfo[c.cabana] ? serviciosInfo[c.cabana].nombre : c.cabana;
+    const fecha = (c.entrada && c.entrada !== '—') ? c.entrada : (c.fechaReserva || '—');
+    return '<tr>' +
+      '<td style="' + celda + ' font-weight:700; max-width:64px; overflow:hidden; text-overflow:ellipsis;" title="' + esc(c.nombre) + '">' + esc(c.nombre) + '</td>' +
+      '<td style="' + celda + '">' + esc(c.whatsapp) + '</td>' +
+      '<td style="' + celda + ' max-width:44px; overflow:hidden; text-overflow:ellipsis;">' + esc(servicio) + '</td>' +
+      '<td style="' + celda + '" title="' + esc(fecha) + '">' + esc(fechaCorta(fecha)) + '</td>' +
+      '<td style="' + celda + ' padding:4px 6px;"><input type="text" value="' + esc(c.observacion) + '" placeholder="Escribe aquí…" onchange="guardarObservacionCliente(' + i + ', this.value)" style="width:100%; min-width:72px; padding:5px 5px; border:1px solid #e3dcc9; border-radius:5px; background:#fffdf7; color:#1e2a1a; font-size:0.7rem; box-sizing:border-box;" /></td>' +
+    '</tr>';
+  }).join('');
+  const th = 'padding:7px 4px; text-align:left; white-space:nowrap; background:#f0ece4; border-bottom:2px solid #c9a84c;';
+  cont.innerHTML = '<div style="overflow-x:auto; border:1px solid #e3dcc9; border-radius:8px; max-height:60vh; overflow-y:auto;">' +
+    '<table style="border-collapse:collapse; width:100%; font-size:0.68rem; color:#1e2a1a;">' +
+    '<thead><tr><th style="' + th + '">Nombre</th><th style="' + th + '">WhatsApp</th><th style="' + th + '">Servicio</th><th style="' + th + '">Fecha</th><th style="' + th + '">Observación</th></tr></thead>' +
+    '<tbody>' + filas + '</tbody></table></div>';
 }
 
-function toggleOpinionCliente(indice, valor) {
-  if (clientesDB[indice]) {
-    clientesDB[indice].dejoOpinion = valor;
-    const d = JSON.parse(localStorage.getItem('admData') || '{}');
-    d.clientesDB = clientesDB;
-    localStorage.setItem('admData', JSON.stringify(d));
-  }
+function guardarObservacionCliente(indice, valor) {
+  if (!clientesDB[indice]) return;
+  clientesDB[indice].observacion = valor.trim();
+  guardarClientesDB();
 }
 
 // ===== UTILIDADES DEL NEGOCIO (solo lectura: venta - costo de Reservas + Bodega/Menú) =====
@@ -8170,16 +8201,14 @@ function agregarClienteManual() {
     entrada: fecha || '—', salida: fecha || '—', duracion,
     total, abono, saldo: total - abono,
     fechaReserva: fecha || new Date().toISOString().split('T')[0],
-    dejoOpinion: false, opinionTexto: ''
+    dejoOpinion: false, opinionTexto: '', observacion: ''
   });
 
   ['nombre','whatsapp','servicio','fecha','duracion','total','abono'].forEach(campo => {
     document.getElementById('adm-cliente-' + campo).value = '';
   });
 
-  const d = JSON.parse(localStorage.getItem('admData') || '{}');
-  d.clientesDB = clientesDB;
-  localStorage.setItem('admData', JSON.stringify(d));
+  guardarClientesDB();
 
   renderClientesDB(document.getElementById('adm-clientes-buscador').value);
   alert('✅ Cliente agregado a la base de datos.');
@@ -8746,12 +8775,21 @@ function cerrarBloque(card) {
   const f = h3.querySelector('.flecha-acordeon-panel');
   if (f) f.textContent = ' ▼';
 }
+function recordarPosicionBloque(card) { card._yAntes = card.getBoundingClientRect().top; }   // altura en pantalla antes de abrirlo
+function volverAPosicionBloque(card) {   // al cerrarlo, el bloque queda a la misma altura en que estaba
+  if (!card || card._yAntes === undefined) return;
+  const panel = document.getElementById('panel-admin');
+  panel.scrollTo({ top: panel.scrollTop + (card.getBoundingClientRect().top - card._yAntes), behavior: 'instant' });
+  card._yAntes = undefined;
+}
 function volverABloquesPanel() {
+  const abierto = Array.from(bloquesPanel()).find(function(c) { return c.classList.contains('abierta'); });
   bloquesPanel().forEach(cerrarBloque);
   document.querySelector('.panel-admin-shell').classList.remove('adm--uno');
   const buscador = document.getElementById('panel-buscador');
   if (buscador) { buscador.value = ''; filtrarPanel(''); }
-  document.getElementById('panel-admin').scrollTo({ top: 0 });
+  if (abierto && abierto._yAntes !== undefined) volverAPosicionBloque(abierto);
+  else document.getElementById('panel-admin').scrollTo({ top: 0 });
 }
 
 // ===== ORGANIZADOR DE BLOQUES (orden guardado en admData.ordenPanel) =====
@@ -8827,6 +8865,43 @@ function restablecerOrdenPanel() {
   });
 }
 
+// ===== TÍTULOS DE LOS BLOQUES EDITABLES (admData.titulosPanel = { idBloque: título }) =====
+var PREFIJO_TITULO = /^(\s*(?:[\p{Extended_Pictographic}\u200D\uFE0F]+\s*)*(?:·\s*)?)/u;   // el emoji del bloque no se edita
+function nodoTituloPanel(h3) {
+  return Array.from(h3.childNodes).find(function(n) { return n.nodeType === 3 && n.nodeValue.trim(); });
+}
+function aplicarTitulosPanel() {
+  let t = {}; try { t = JSON.parse(localStorage.getItem('admData') || '{}').titulosPanel || {}; } catch (e) {}
+  document.querySelectorAll(BLOQUE_SEL).forEach(function(card) {
+    if (card.dataset.tituloOriginal === undefined) return;
+    const h3 = card.querySelector('h3'), nodo = h3 && nodoTituloPanel(h3); if (!nodo) return;
+    nodo.nodeValue = t[card.id] !== undefined ? t[card.id] : card.dataset.tituloOriginal;
+  });
+}
+function cerrarEditorTituloPanel() { document.querySelectorAll('.adm-editor-titulo').forEach(function(e) { e.remove(); }); }
+function guardarTituloPanel(card, texto) {   // texto = título completo, o null para restaurar el original
+  const d = JSON.parse(localStorage.getItem('admData') || '{}');
+  d.titulosPanel = d.titulosPanel || {};
+  if (texto === null) delete d.titulosPanel[card.id]; else d.titulosPanel[card.id] = texto;
+  localStorage.setItem('admData', JSON.stringify(d));
+  aplicarTitulosPanel();
+}
+function abrirEditorTituloPanel(card) {
+  const h3 = card.querySelector('h3'), nodo = nodoTituloPanel(h3); if (!nodo) return;
+  const habia = !!(h3.nextElementSibling && h3.nextElementSibling.classList.contains('adm-editor-titulo'));
+  cerrarEditorTituloPanel(); if (habia) return;
+  const actual = nodo.nodeValue, pre = PREFIJO_TITULO.exec(actual)[1], resto = actual.slice(pre.length).trim();
+  const ed = document.createElement('div'); ed.className = 'adm-editor-titulo';
+  ed.innerHTML = '<input type="text" maxlength="60" /><div style="display:flex; gap:6px; flex-wrap:wrap;"><button type="button" class="adm-guardar">💾 Guardar nombre</button><button type="button" class="adm-restaurar">↩️ Nombre original</button><button type="button" class="adm-cancelar">Cancelar</button></div>';
+  const inp = ed.querySelector('input'); inp.value = resto;
+  ed.querySelector('.adm-guardar').onclick = function() {
+    const v = inp.value.trim(); if (!v) { alert('Escribe el nombre del bloque.'); return; }
+    guardarTituloPanel(card, (pre || ' ') + (pre && !/\s$/.test(pre) ? ' ' : '') + v); cerrarEditorTituloPanel();
+  };
+  ed.querySelector('.adm-restaurar').onclick = function() { guardarTituloPanel(card, null); cerrarEditorTituloPanel(); };
+  ed.querySelector('.adm-cancelar').onclick = cerrarEditorTituloPanel;
+  h3.after(ed); inp.focus();
+}
 function inicializarAcordeonPanel() {
   const shell = document.querySelector('.panel-admin-shell');
   document.querySelectorAll(BLOQUE_SEL).forEach(function(card) {
@@ -8878,12 +8953,22 @@ function inicializarAcordeonPanel() {
       mover.className = 'adm-mover';
       mover.innerHTML = '<button type="button" aria-label="Subir bloque" onclick="event.stopPropagation(); moverBloque(this,-1)">▲</button><button type="button" aria-label="Bajar bloque" onclick="event.stopPropagation(); moverBloque(this,1)">▼</button>';
       h3.appendChild(mover);
+      const nodoT = nodoTituloPanel(h3);
+      if (nodoT) {
+        card.dataset.tituloOriginal = nodoT.nodeValue;
+        const lap = document.createElement('span');
+        lap.className = 'adm-lapiz'; lap.textContent = '✏️'; lap.title = 'Cambiar el nombre de este bloque';
+        lap.setAttribute('role', 'button'); lap.setAttribute('aria-label', 'Cambiar el nombre de este bloque');
+        lap.addEventListener('click', function(ev) { ev.stopPropagation(); abrirEditorTituloPanel(card); });
+        h3.insertBefore(lap, h3.querySelector('.flecha-acordeon-panel') || mover);
+      }
     }
 
     h3.addEventListener('click', function() {
       if (shell.classList.contains('adm--org')) return;   // en modo organizar los títulos no abren
       const cuerpo = cuerpoBloque(card);
       const abrir = !card.classList.contains('abierta');
+      if (abrir && !anidado) recordarPosicionBloque(card);
       if (abrir) {
         const hermanos = anidado ? card.parentElement.querySelectorAll(':scope > ' + '.panel-card') : bloquesPanel();
         hermanos.forEach(function(otra) { if (otra !== card) cerrarBloque(otra); });
@@ -8896,6 +8981,7 @@ function inicializarAcordeonPanel() {
       if (!anidado) {
         shell.classList.toggle('adm--uno', abrir);
         if (abrir) document.getElementById('panel-admin').scrollTo({ top: 0 });
+        else volverAPosicionBloque(card);
       }
     });
   });
@@ -8906,6 +8992,7 @@ function inicializarAcordeonPanel() {
     const d = JSON.parse(localStorage.getItem('admData') || '{}');
     if (d.ordenPanel && d.ordenPanel.length) aplicarOrdenPanel(d.ordenPanel); else refrescarFlechasPanel();
   } catch (e) { refrescarFlechasPanel(); }
+  aplicarTitulosPanel();
 }
 document.addEventListener('DOMContentLoaded', inicializarAcordeonPanel);
 
